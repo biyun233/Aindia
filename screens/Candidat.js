@@ -1,24 +1,25 @@
 import React from 'react';
-import { View, SafeAreaView, Text, StyleSheet, StatusBar } from "react-native";
-
-import Header from '../components/Header';
-
+import { View, Text, StyleSheet } from "react-native";
+import Constants from 'expo-constants';
 
 const Candidat = props => {
     return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#254151" /> 
-      <Header />
-    </View>
-       
+        <View style={styles.container}>
+
+        </View>
+
+        
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
+        flexDirection: "column",
         alignItems: "center",
+        backgroundColor: "#EBEAEA",
+        paddingBottom: 20,
+        marginTop: Constants.statusBarHeight
     }
 });
 

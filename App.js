@@ -1,36 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, Image, ScrollView, TouchableHighlight, TouchableOpacity, Platform } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import Acceuil from './screens/Acceuil';
+import React, {useState, useEffect} from 'react';
+import { View, Text, StyleSheet } from "react-native";
 import Candidat from './screens/Candidat';
 import * as Font from 'expo-font';
-
-const { Navigator, Screen } = createStackNavigator();
-
+import RegisterUser from './screens/RegisterUser';
+import Login from './screens/Login';
+import Filtrer from './screens/Filtrer';
+import Navigator from './routes/HomeStack';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
-  const loadFirst = async () => {
+  const LoadFont = async () => {
     try {
-      /*
       await Font.loadAsync({
-        'Gilroy': Gilroy,
-        "GT-Sectre-Fine-Regular": require("./assets/fonts/GT-Sectre-Fine-Regular.ttf"),
-        "Montserrat-Medium": require("./assets/fonts/Montserrat-Medium.ttf"),
+        "Gilroy": require("./assets/fonts/Gilroy-Bold.ttf"),
+        "GT-Sectra-Fine-Regular": require("./assets/fonts/GT-Sectra-Fine-Regular.ttf"),
         "Montserrat-Black": require("./assets/fonts/Montserrat-Black.ttf"),
-        "Montserrat-SemiBold": require("./assets/fonts/Montserrat-Semibold.ttf")
-        
+        "Montserrat-Medium": require("./assets/fonts/Montserrat-Medium.ttf"),
+        "Montserrat-SemiBold": require("./assets/fonts/Montserrat-SemiBold.ttf")
       });
-      */
       setLoading(false);
     } catch (e) {
-      console.error("erreur", e);
+      console.error('erreur', e);
     }
   }
+  
   useEffect(() => {
-      loadFirst();
-  }, [])
+    LoadFont();
+  },[]);
 
   if(loading) {
     return (
@@ -39,31 +35,13 @@ const App = () => {
       </View>
     )
   }
-
   return (
-    <NavigationContainer>
-      <Navigator 
-          screenOptions = {options => {
-            return { 
-              headerLeft: null,
-              title: null
-            };
-          }}>
-        <Screen name="Acceuil" component={Acceuil} />
-        <Screen 
-          name="Candidat" 
-          component={Candidat} 
-          />
-      </Navigator>
-    </NavigationContainer>
-   
-    )
-
+    <Navigator />
+  );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,  //important
-    backgroundColor: "white",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
