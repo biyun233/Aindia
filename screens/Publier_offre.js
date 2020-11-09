@@ -3,10 +3,18 @@ import {SafeAreaView, View, Text, StyleSheet, FlatList, TextInput, StatusBar, Lo
 import FiltreItem from '../components/FiltreItem';
 import { Button } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Formik } from 'formik';
 
 LogBox.ignoreLogs(['Warning: ...']);
 LogBox.ignoreAllLogs();
-export default function Filtrer() {
+export default function Publer_offre() {
+    const [titre, setTitre] = useState("");
+    const [nom, setNom] = useState("");
+    const [salaire_min, setSalaire_min] = useState("");
+    const [salaire_max, setSalaire_max] = useState("");
+    const [localisation, setLocalisation] = useState("");
+    const [mission, setMission] = useState("");
+    const [tech, setTech] = useState("");
     const [etude, setEtude] = useState([
         {text: 'Peu importe', key:'1', select: 'false', id: 'etude'},
         {text: 'moins de bac +3', key:'2', select: 'false', id: 'etude'},
@@ -22,16 +30,6 @@ export default function Filtrer() {
         {text: 'de 3 à 5 ans', key:'4', select: 'false', id: 'experience'},
         {text: 'plus de 5 ans', key:'5', select: 'false', id: 'experience'},
     ]);
-
-    const [salaire, setSalaire] = useState([
-        {text: 'Peu importe', key:'1', select: 'false', id: 'salaire'},
-        {text: 'moins de 1000€', key:'2', select: 'false', id: 'salaire'}, 
-        {text: '1000-3000 € ', key:'3', select: 'false', id: 'salaire'},
-        {text: '3000-5000 €', key:'4', select: 'false', id: 'salaire'},
-        {text: 'plus de 5000€', key:'5', select: 'false', id: 'salaire'},
-    ]);
-
-    const [location, setLocation] = useState("");
 
     const handle = (item, state, setState) => {
         let prev = [...state];
@@ -55,20 +53,34 @@ export default function Filtrer() {
             case 'experience': 
                 handle(item, experience, setExperience);
                 break;
-            case 'salaire': 
-                handle(item, salaire, setSalaire);
-                break;
         }
-        console.log("item: " + item.text + ", select = " + item.select);
     };
 
 
     return (    
-        
         <SafeAreaView style={styles.container}>
+            <Formik
+                initialValues={{ title:'',
+                nom:'', location:'', 
+                salaireMin:'', salaireMax:'',
+                expérience:'', niveau:'',
+                date:'', recruteur:'',
+                poste:'Manager', mission:'',
+                tech:''}}
+                onSubmit={(values) => {
+
+                }}
+            >
             <KeyboardAwareScrollView >
-                    <StatusBar barStyle="dark-content"/>
+                    <StatusBar barStyle="light-content"/>
                     <View style={styles.content}>
+                        <View>
+                            <TextInput style={styles.input} placeholder="Titre d'offre" value={titre}  onChangeText={value => setTitre(value)}/>
+                            <TextInput style={styles.input} placeholder="Nom d'entreprise" value={nom}  onChangeText={value => setNom(value)}/>
+                            <TextInput style={styles.input} placeholder="Salaire Minimum" value={salaire_min}  onChangeText={value => setSalaire_min(value)}/>
+                            <TextInput style={styles.input} placeholder="Salaire Maximum" value={salaire_max}  onChangeText={value => setSalaire_max(value)}/>
+                            <TextInput style={styles.input} placeholder="Localisation" value={localisation}  onChangeText={value => setLocalisation(value)}/>
+                        </View>
                         <View style={styles.list}>
                             <Text style={styles.title}>Niveau d'études</Text>
                             <FlatList 
@@ -89,19 +101,14 @@ export default function Filtrer() {
                                     <FiltreItem item={item} pressHandler={pressHandler}/>
                                     )}
                                 />
-                            
-                        
-                            <Text style={styles.title}>Salaire par mois</Text>
-                            <FlatList 
-                                keyExtractor={(item) => item.key}
-                                numColumns= {2}
-                                data={salaire}
-                                renderItem={({item}) => (
-                                    <FiltreItem item={item} pressHandler={pressHandler}/>
-                                    )}
-                                />
-                            <Text style={styles.title}>Localisation</Text>
-                            <TextInput style={styles.input} value={location} onChangeText={value => setLocation(value)}/>
+                            <Text style={styles.title}>Mission</Text>
+                            <TextInput 
+                                multiline={true} 
+                                style={styles.input_grand} 
+                                value={mission} 
+                                onChangeText={value => setMission(value)}/>
+                            <Text style={styles.title}>Technologie Requis</Text>
+                            <TextInput multiline={true} style={styles.input_grand} value={tech} onChangeText={value => setTech(value)}/>
                             <Button 
                                 title='Appliquer' 
                                 buttonStyle={styles.button} 
@@ -110,6 +117,8 @@ export default function Filtrer() {
                         </View>
                     </View>              
             </KeyboardAwareScrollView>
+            
+            </Formik>
         </SafeAreaView>
     );
 };
@@ -136,8 +145,17 @@ const styles = StyleSheet.create({
         marginVertical: 20
     },
     input: {
+        borderBottomWidth: 1,
+        width: 300,
+        height: 30,
+        marginTop: 20,
+        marginBottom: 10
+      },
+    input_grand: {
         borderWidth: 1,
-        height: 30
+        height: 150,
+        width: 300,
+        backgroundColor: "white"
     },
     button: {
         flexDirection: "column",

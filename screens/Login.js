@@ -8,9 +8,6 @@ const Login = props => {
   const [email, setEmail] = useState("");
   const [passeword, setPassword] = useState("");
 
-  const goTo = () => {
-    props.navigation.navigate("Candidat");
-  };
 
   return (
       <View style={styles.container}>
@@ -26,7 +23,7 @@ const Login = props => {
               title='Se connecter' 
               buttonStyle={styles.button} 
               titleStyle={styles.connexion} 
-              onPress={() => props.navigation.navigate("Candidat")}/>
+              onPress={() => props.navigation.navigate("TabRoute_candidat")}/>
         </View>
         <View>
             <Button 

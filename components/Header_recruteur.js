@@ -4,10 +4,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { prefix } from '../utils/constant';
 
 
-export default function Header({ navigation }) {
+export default function Header_recruteur({ navigation }) {
     const [search, setSearch] = useState("");
     const pressHandler = () => {
-        navigation.navigate('TabRoute_recruteur');
+        navigation.navigate('TabRoute_candidat');
     }
     return (  
         <SafeAreaView style={styles.container}>
@@ -18,7 +18,7 @@ export default function Header({ navigation }) {
             </View>
             <TouchableOpacity onPress = {pressHandler}>
                 <View style={styles.versionContainer}>
-                    <Text style={styles.version}>Candidat</Text>
+                    <Text style={styles.version}>Recruteur</Text>
                     <Ionicons style={styles.downIcon} name={`${prefix}-arrow-down`}/>
                 </View>
             </TouchableOpacity>
