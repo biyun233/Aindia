@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import Candidat from './screens/Candidat';
 import * as Font from 'expo-font';
 import RegisterUser from './screens/RegisterUser';
-import Login from './screens/Login';
+import Login from './screens/LoginUser';
 import Filtrer from './screens/Filtrer';
 import Navigator from './routes/HomeStack';
 

@@ -8,39 +8,37 @@ export default function OffreDetails({navigation}) {
     const salaire = navigation.getParam('salaireMin') + '-' + navigation.getParam('salaireMax') + '€';
     return (
         <ScrollView>
-
-        
-        <View style={styles.container}>
-            <Text style={styles.title}>{navigation.getParam('title')}</Text>
-            <Text style={styles.salaire}>{salaire}</Text>
-            <View style={styles.line}>
-                <View style={styles.infoline}>
-                    <Octicons name="location" size={20} color="black" />
-                    <Text style={styles.info}>{navigation.getParam('location')}</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>{navigation.getParam('title')}</Text>
+                <Text style={styles.salaire}>{salaire}</Text>
+                <View style={styles.line}>
+                    <View style={styles.infoline}>
+                        <Octicons name="location" size={20} color="black" />
+                        <Text style={styles.info}>{navigation.getParam('location')}</Text>
+                    </View>
+                    <View style={styles.infoline}>
+                        <AntDesign name="tool" size={20} color="black" />
+                        <Text style={styles.info}>{navigation.getParam('expérience')}</Text>
+                    </View>
+                    <View style={styles.infoline}>
+                        <SimpleLineIcons name="graduation" size={20} color="black" />
+                        <Text style={styles.info}>{navigation.getParam('étude')}</Text>
+                    </View>
                 </View>
-                <View style={styles.infoline}>
-                    <AntDesign name="tool" size={20} color="black" />
-                    <Text style={styles.info}>{navigation.getParam('expérience')}</Text>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.little_title}>Mission:</Text>
+                    <Text style={styles.info}>{navigation.getParam('mission')}</Text>
                 </View>
-                <View style={styles.infoline}>
-                    <SimpleLineIcons name="graduation" size={20} color="black" />
-                    <Text style={styles.info}>{navigation.getParam('niveau')}</Text>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.little_title}>Technologie requis : </Text>
+                    <Text style={styles.info}>{navigation.getParam('tech')}</Text>
                 </View>
+                <Button 
+                    title='Communiquer' 
+                    buttonStyle={styles.button} 
+                    titleStyle={styles.buttonContent} 
+                    />
             </View>
-            <View style={styles.infoContainer}>
-                <Text style={styles.little_title}>Mission:</Text>
-                <Text style={styles.info}>{navigation.getParam('mission')}</Text>
-            </View>
-            <View style={styles.infoContainer}>
-                <Text style={styles.little_title}>Technologie requis : </Text>
-                <Text style={styles.info}>{navigation.getParam('tech')}</Text>
-            </View>
-            <Button 
-                title='Communiquer' 
-                buttonStyle={styles.button} 
-                titleStyle={styles.buttonContent} 
-                />
-        </View>
         </ScrollView>
     )
 }

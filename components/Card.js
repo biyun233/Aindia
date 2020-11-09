@@ -4,7 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 export default function Card({item}) {
     const salaire = item.salaireMin + '-' + item.salaireMax + '€';
     const expérience = 'Expérience: ' + item.expérience;
-    const niveau = 'Niveau: ' + item.niveau;
+    const étude = 'Étude: ' + item.étude;
     const recruteur = item.recruteur + '-' + item.poste;
     return (
         <View style={styles.card}>
@@ -18,7 +18,7 @@ export default function Card({item}) {
             </View>
             <View style={styles.infoline}>
                 <Text style={styles.item}>{expérience}</Text>
-                <Text style={styles.item}>{niveau}</Text>
+                <Text style={styles.item}>{étude}</Text>
             </View>
             <View style={styles.icon}>
                 <MaterialIcons name="person-outline" size={24} color="black" />

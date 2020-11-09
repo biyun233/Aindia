@@ -3,10 +3,11 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import Filtrer from '../screens/Filtrer';
 import RegisterUser from '../screens/RegisterUser';
-import Login from '../screens/Login';
+import Login from '../screens/LoginUser';
 import BottomTab_candidat from './BottomTab_candidat';
 import BottomTab_recruteur from './BottomTab_recruteur';
 import OffreDetails from '../screens/OffreDetails';
+import CreateProfilUser from '../screens/CreateProfilUser';
 
 const screens = {
     Login: {
@@ -57,7 +58,14 @@ const screens = {
               },
             headerBackTitle: "Candidat"
         }
-    }
+    },
+    CreateProfilUser: {
+        screen: CreateProfilUser,
+        navigationOptions: {
+          title: "Création De Mon Profil",
+          //header: null,
+        },
+    },
     
 }
 

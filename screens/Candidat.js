@@ -10,7 +10,7 @@ export default function Candidat({ navigation }) {
         {title:'Développeur Web(H/F)',
          nom:'Thales', location:'Bordeaux', 
          salaireMin:'800', salaireMax:'1000',
-         expérience:'+ de 3 ans', niveau:'bac +3',
+         expérience:'+ de 3 ans', étude:'bac +3',
          date:'10-10-2020', recruteur:'WANG Biyun',
          poste:'Manager', mission:'1. Analyser et/ou développer les composants techniques communs.\n2. Assurer la maintenance corrective et évolutive des développements. \n3. Tester, identifier et traiter les dysfonctionnements éventuels.\n',
          tech:'— Framework Spring, Hibernate, React JS, Angular, Vue.js\n— PostgreSQL, Elasticsearch, Go, Docker, Kubernetes, AWS, Google Cloud', key: '1'}

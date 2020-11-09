@@ -1,125 +1,122 @@
 import React, { useState } from 'react';
-import {SafeAreaView, View, Text, StyleSheet, FlatList, TextInput, StatusBar, LogBox } from "react-native";
-import FiltreItem from '../components/FiltreItem';
+import {SafeAreaView, View, Text, StyleSheet, TextInput, StatusBar, LogBox, Picker } from "react-native";
 import { Button } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Formik } from 'formik';
-
-LogBox.ignoreLogs(['Warning: ...']);
-LogBox.ignoreAllLogs();
 export default function Publer_offre() {
-    const [titre, setTitre] = useState("");
-    const [nom, setNom] = useState("");
-    const [salaire_min, setSalaire_min] = useState("");
-    const [salaire_max, setSalaire_max] = useState("");
-    const [localisation, setLocalisation] = useState("");
-    const [mission, setMission] = useState("");
-    const [tech, setTech] = useState("");
-    const [etude, setEtude] = useState([
-        {text: 'Peu importe', key:'1', select: 'false', id: 'etude'},
-        {text: 'moins de bac +3', key:'2', select: 'false', id: 'etude'},
-        {text: 'bac +3 ', key:'3', select: 'false', id: 'etude'},
-        {text: 'bac +4', key:'4', select: 'false', id: 'etude'},
-        {text: 'bac +5 ou plus', key:'5', select: 'false', id: 'etude'},
-    ]);
 
-    const [experience, setExperience] = useState([
-        {text: 'Stagiaire', key:'1', select: 'false', id: 'experience'},
-        {text: 'moins de 1 an', key:'2', select: 'false', id: 'experience'},
-        {text: 'plus de 1 an ', key:'3', select: 'false', id: 'experience'},
-        {text: 'de 3 à 5 ans', key:'4', select: 'false', id: 'experience'},
-        {text: 'plus de 5 ans', key:'5', select: 'false', id: 'experience'},
-    ]);
-
-    const handle = (item, state, setState) => {
-        let prev = [...state];
-                for (let i = 0; i < prev.length; i++) {
-                    if (prev[i] === item ) {
-                        console.log("item:  " + prev[i].text + ", select is " + prev[i].select);
-                        if(prev[i].select == "false"){
-                            prev[i].select = "true";
-                        }else if(prev[i].select == "true"){
-                            prev[i].select = "false";
-                        }
-                    } 
-                }
-                setState(prev);
+    const date = new Date().getDate();
+    const month = new Date().getMonth()+1;
+    const year = new Date().getFullYear();
+    var time = date + '/' + month + '/' + year;
+    console.log(time);
+    function addOffre(offre) {
+        offre.recruteur = Firebase.auth().currentUser.uid; 
+        offre.date = time;
+        Firebase.firestore()
+        .collection('OfferDetails')
+        .add(offre)
+        .then(res => alert('OK'))
+        .catch((error) => console.log(error));
     }
-    const pressHandler = (item) => {
-        switch(item.id){
-            case 'etude': 
-                handle(item, etude, setEtude);
-                break;
-            case 'experience': 
-                handle(item, experience, setExperience);
-                break;
-        }
-    };
-
-
-    return (    
+    
+    return (   
+        <Formik
+            initialValues={{ title:'',
+            nom:'', location:'', 
+            salaireMin:'', salaireMax:'',
+            expérience:'', étude:'',
+            date: '', recruteur:'',
+            poste:'manager', mission:'',
+            tech:''}}
+            onSubmit={(values) => {
+                console.log(values);
+                addOffre(values);
+            }}
+        >
+        {(props) => (
         <SafeAreaView style={styles.container}>
-            <Formik
-                initialValues={{ title:'',
-                nom:'', location:'', 
-                salaireMin:'', salaireMax:'',
-                expérience:'', niveau:'',
-                date:'', recruteur:'',
-                poste:'Manager', mission:'',
-                tech:''}}
-                onSubmit={(values) => {
-
-                }}
-            >
             <KeyboardAwareScrollView >
-                    <StatusBar barStyle="light-content"/>
-                    <View style={styles.content}>
-                        <View>
-                            <TextInput style={styles.input} placeholder="Titre d'offre" value={titre}  onChangeText={value => setTitre(value)}/>
-                            <TextInput style={styles.input} placeholder="Nom d'entreprise" value={nom}  onChangeText={value => setNom(value)}/>
-                            <TextInput style={styles.input} placeholder="Salaire Minimum" value={salaire_min}  onChangeText={value => setSalaire_min(value)}/>
-                            <TextInput style={styles.input} placeholder="Salaire Maximum" value={salaire_max}  onChangeText={value => setSalaire_max(value)}/>
-                            <TextInput style={styles.input} placeholder="Localisation" value={localisation}  onChangeText={value => setLocalisation(value)}/>
-                        </View>
-                        <View style={styles.list}>
-                            <Text style={styles.title}>Niveau d'études</Text>
-                            <FlatList 
-                                keyExtractor={(item) => item.key}
-                                numColumns= {2}
-                                data={etude}
-                                renderItem={({item}) => (
-                                    <FiltreItem item={item} pressHandler={pressHandler}/>
-                                    )}
-                                />
-                            
-                            <Text style={styles.title}>Niveau d'expériences</Text>
-                            <FlatList 
-                                keyExtractor={(item) => item.key}
-                                numColumns= {2}
-                                data={experience}
-                                renderItem={({item}) => (
-                                    <FiltreItem item={item} pressHandler={pressHandler}/>
-                                    )}
-                                />
-                            <Text style={styles.title}>Mission</Text>
-                            <TextInput 
+                <StatusBar barStyle="light-content"/>
+                <View style={styles.content}> 
+                        <TextInput 
+                            style={styles.input} 
+                            placeholder="Titre d'offre" 
+                            value={props.values.title}  
+                            onChangeText={props.handleChange('title')}/>
+                        <TextInput 
+                            style={styles.input} 
+                            placeholder="Nom d'entreprise" 
+                            value={props.values.nom}  
+                            onChangeText={props.handleChange('nom')}/>
+                        <TextInput 
+                            style={styles.input} 
+                            placeholder="Salaire Minimum" 
+                            value={props.values.salaireMin}  
+                            onChangeText={props.handleChange('salaireMin')}/>
+                        <TextInput 
+                            style={styles.input} 
+                            placeholder="Salaire Maximum" 
+                            value={props.values.salaireMax}  
+                            onChangeText={props.handleChange('salaireMax')}/>
+                        <TextInput 
+                            style={styles.input} 
+                            placeholder="Localisation" 
+                            value={props.values.location}  
+                            onChangeText={props.handleChange('location')}/>
+                        <Text style={styles.title}>Niveau d'études</Text>
+                        <Picker
+                            // passing value directly from formik
+                            selectedValue={props.values.étude}
+                            // changing value in formik
+                            onValueChange={itemValue => props.setFieldValue('étude', itemValue)}
+                        >
+                            <Picker.Item label="Niveau d'étude" value={props.values.étude} key={0} />
+                            <Picker.Item label='Peu importe' value="Peu importe" key={1} />
+                            <Picker.Item label='moins de bac +3' value="moins de bac +3" key={2} />
+                            <Picker.Item label='bac +3' value="bac +3" key={3} />
+                            <Picker.Item label='bac +4' value="bac +4" key={4} />
+                            <Picker.Item label='bac +5 ou plus' value="bac +5 ou plus" key={5} />
+                        </Picker>
+                        
+                        <Text style={styles.title}>Niveau d'expériences</Text>
+                        <Picker
+                            // passing value directly from formik
+                            selectedValue={props.values.expérience}
+                            // changing value in formik
+                            onValueChange={itemValue => props.setFieldValue('expérience', itemValue)}
+                        >
+                            <Picker.Item label="Niveau d'expérience" value={props.values.expérience} key={0} />
+                            <Picker.Item label='Stagiaire' value="Stagiaire" key={1} />
+                            <Picker.Item label='moins de 1 an' value="moins de 1 an" key={2} />
+                            <Picker.Item label='de 3 à 5 ans' value="de 3 à 5 ans" key={3} />
+                            <Picker.Item label='plus de 5 ans' value="plus de 5 ans" key={4} />
+                            <Picker.Item label='plus de 1 an' value="plus de 1 an" key={5} />
+                        </Picker>
+                        <Text style={styles.title}>Mission</Text>
+                        <TextInput 
                                 multiline={true} 
                                 style={styles.input_grand} 
-                                value={mission} 
-                                onChangeText={value => setMission(value)}/>
-                            <Text style={styles.title}>Technologie Requis</Text>
-                            <TextInput multiline={true} style={styles.input_grand} value={tech} onChangeText={value => setTech(value)}/>
-                            <Button 
-                                title='Appliquer' 
-                                buttonStyle={styles.button} 
-                                titleStyle={styles.appliquer} 
-                                />
-                        </View>
-                    </View>              
+                                value={props.values.mission} 
+                                onChangeText={props.handleChange('mission')}/>
+                        <Text style={styles.title}>Technologie Requis</Text>
+                        <TextInput 
+                            multiline={true} 
+                            style={styles.input_grand} 
+                            value={props.values.tech} 
+                            onChangeText={props.handleChange('tech')}/>
+                        <Button 
+                            title='Appliquer' 
+                            buttonStyle={styles.button} 
+                            titleStyle={styles.appliquer} 
+                            onPress={props.handleSubmit}
+                            />
+                    
+                </View>              
             </KeyboardAwareScrollView>
-            
-            </Formik>
-        </SafeAreaView>
+            </SafeAreaView>
+            )}
+        </Formik> 
     );
 };
 

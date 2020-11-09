@@ -1,11 +1,13 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import Constants from 'expo-constants';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+
 import { Firebase } from '../utils/Firebase';
-import {prefix} from '../utils/constant';
-import ValidationButton from '../components/ValidationButton';
+import {prefix} from '../utils/Constant';
+
 
 // Validation des champs du formulaire d'inscription de l'Utilisateur 
 const reviewSchema = Yup.object({
@@ -19,23 +21,36 @@ const reviewSchema = Yup.object({
     })
 });
 
+
+
 // Renvoie l'écran contenant les formulaires
-const RegisterUser = () => {
+const RegisterUser = ({ navigation }) => {
+
+    // Cette fonction permet de naviguer de cet écran à un autre en fonction du paramtètre donné 
+    // Quand elle sera appelée 
+    const pressHandler = () => {
+        navigation.goBack();
+        //navigation.push('Accueil');
+    };
 
     return (
         <Formik 
             initialValues = {{ email: '', password: '', confirmPassword: '' }}
             validationSchema={reviewSchema}
             onSubmit= {(values, actions) => {
-                
+                // Création du compte de l'utilisateur 
                 //const {email, password} = values;
-                Firebase.auth().createUserWithEmailAndPassword(values.email, values.password);
-                actions.resetForm();
+                Firebase
+                .auth()
+                .createUserWithEmailAndPassword(values.email, values.password)
+                .then( () => navigation.navigate('LoginUser') )
+                .catch(error => alert(error), actions.resetForm());
+
             }} 
         >
             {(props) => (
                 <View style={styles.container}>
-                    <Text style={styles.title}>AINDIA</Text>
+                    <Text style={styles.title}>Aindia</Text>
 
                     <TextInput 
                         style={styles.input} 
@@ -70,6 +85,9 @@ const RegisterUser = () => {
                     <TouchableOpacity style={styles.buttonStyle} onPress={props.handleSubmit}>
                         <Text style={styles.text}>Créer Mon Compte</Text>
                     </TouchableOpacity>
+
+                    <Text style={styles.textLogin} onPress={pressHandler}>Déjà inscrit(e) ? Se Connecter</Text>
+
                 </View>
             )}
 
@@ -77,28 +95,29 @@ const RegisterUser = () => {
     );
 }
 
-// Définition des Styles appliqués sur l'interface RegisterScreen
+// Définition des Styles appliqués sur l'interface RegisterUser
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: '#254151', 
+    backgroundColor: 'white', 
     marginTop: Constants.statusBarHeight, 
   },
   title: {
-      marginTop: 50,
-      marginBottom: 70,
-      color: "white",
-      fontSize: 50,
-      color: "#B490B9",
+    marginTop: 20,
+    marginBottom: 80,
+    color: "white",
+    fontSize: 45,
+    color: '#254151', 
+    fontWeight: "bold",
   },
   input: {
-      backgroundColor: "white",
-      padding: 16,
+      //backgroundColor: '#254151', 
+      //padding: 16,
       width: "90%",
-      borderRadius: 5,
-      marginBottom: 10,
+      borderBottomWidth: 1,
+      marginTop: 30,
   },
   text: {
     color: 'white',
@@ -108,20 +127,26 @@ const styles = StyleSheet.create({
       width: "90%",
       color: 'red',
       marginLeft: 3,
-      marginTop: 1,
-      marginBottom: 8,
+      marginTop: 5,
+      
   },
   buttonStyle: {
-    backgroundColor: "#B490B9",
+    backgroundColor: '#254151', 
     padding: 16,
     width: "80%",
     borderRadius: 20,
-    marginTop: 10,
+    marginTop: 28,
     alignContent: "center",
     justifyContent: "center",
     alignItems: "center"
   },
+  textLogin: {
+    color: '#254151', 
+    fontSize: 20,
+    marginTop: 28,
+ }
   
 });
+
 
 export default RegisterUser;

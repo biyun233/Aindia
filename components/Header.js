@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {SafeAreaView, View, StyleSheet, TextInput, Text, StatusBar, TouchableOpacity} from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { prefix } from '../utils/constant';
+import { prefix } from '../utils/Constant';
 
 
 export default function Header({ navigation }) {

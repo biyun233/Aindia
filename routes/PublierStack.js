@@ -15,7 +15,7 @@ const screens = {
                 fontWeight: 'bold',
                 fontSize: 20
             },
-            headerLeft: null
+            headerLeft: () => null
         }
     }
     

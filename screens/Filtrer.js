@@ -59,7 +59,6 @@ export default function Filtrer() {
                 handle(item, salaire, setSalaire);
                 break;
         }
-        console.log("item: " + item.text + ", select = " + item.select);
     };
 
 
