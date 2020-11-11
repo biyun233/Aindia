@@ -1,26 +1,14 @@
-import { StatusBar } from "expo-status-bar";
-import React, { Component, useState } from "react";
-import Constants from "expo-constants";
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
   View,
-  TextInput,
   TouchableOpacity,
-  ScrollView,
-  Button,
   FlatList,
 } from "react-native";
 
 import { Title } from "react-native-paper";
-
-import CardUser from "../components/CardUser";
 import { Firebase } from "../utils/Firebase";
-import { prefix } from "../utils/Constant";
-
-import { Ionicons } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
-import { ListItem, Avatar } from "react-native-elements";
 
 class ProfilUser extends Component {
 
@@ -77,8 +65,8 @@ class ProfilUser extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-      <Button title="Profil" onPress={() => this.props.navigation.navigate("StudiesUser") }/>
+      <View style={styles.container}>
+        
         <View style={styles.infos}>
           <FlatList
             data={this.state.userData}
@@ -88,25 +76,29 @@ class ProfilUser extends Component {
                   this.props.navigation.navigate("EditUserProfil", item)
                 }
               >
-               <Title style={styles.infos}>{item.lastname} {item.firstname}</Title>
+                <Title style={styles.infos}>
+                  {item.lastname} {item.firstname}
+                </Title>
                 <Text style={styles.infos}>{item.status}</Text>
                 <Text style={styles.infos}>{item.address}</Text>
-                <Text style={styles.infos}>{item.postalCode}, {item.homeCity}, {item.country}</Text>
+                <Text style={styles.infos}>
+                  {item.postalCode}, {item.homeCity}, {item.country}
+                </Text>
               </TouchableOpacity>
             )}
           />
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "column",
+    //flex: 1,
+    //flexDirection: "column",
     backgroundColor: "white",
-    marginTop: Constants.statusBarHeight,
+    //marginTop: Constants.statusBarHeight,
   },
   details: {
     marginBottom: 8,

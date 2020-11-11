@@ -1,12 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import Constants from 'expo-constants';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-
 import { Firebase } from '../utils/Firebase';
-import {prefix} from '../utils/Constant';
 
 
 // Validation des champs du formulaire d'inscription de l'Utilisateur 
@@ -101,51 +98,49 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: 'white', 
-    marginTop: Constants.statusBarHeight, 
+    backgroundColor: "white",
+    marginTop: Constants.statusBarHeight,
   },
   title: {
-    marginTop: 20,
-    marginBottom: 80,
+    marginTop: 50,
+    marginBottom: 60,
     color: "white",
     fontSize: 45,
-    color: '#254151', 
+    color: "#254151",
     fontWeight: "bold",
   },
   input: {
-      //backgroundColor: '#254151', 
-      //padding: 16,
-      width: "90%",
-      borderBottomWidth: 1,
-      marginTop: 30,
+    //backgroundColor: '#254151',
+    //padding: 16,
+    width: 300,
+    borderBottomWidth: 1,
+    marginTop: 10,
   },
   text: {
-    color: 'white',
-    fontSize: 20
+    color: "white",
+    fontSize: 20,
   },
   errorInput: {
-      width: "90%",
-      color: 'red',
-      marginLeft: 3,
-      marginTop: 5,
-      
+    width: 300,
+    color: "red",
+    //marginLeft: 5,
+    marginTop: 10,
   },
   buttonStyle: {
-    backgroundColor: '#254151', 
+    backgroundColor: "#254151",
     padding: 16,
-    width: "80%",
+    width: "60%",
     borderRadius: 20,
     marginTop: 28,
     alignContent: "center",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   textLogin: {
-    color: '#254151', 
+    color: "#254151",
     fontSize: 20,
     marginTop: 28,
- }
-  
+  },
 });
 
 

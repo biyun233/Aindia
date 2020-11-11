@@ -1,6 +1,4 @@
-import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import Constants from "expo-constants";
 import {
   StyleSheet,
   Text,
@@ -9,11 +7,8 @@ import {
   TouchableOpacity,
   SafeAreaView
 } from "react-native";
-import { Formik } from "formik";
-import * as Yup from "yup";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Firebase } from "../utils/Firebase";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { addUser } from "../utils/API/UserApi";
 
 
 
@@ -66,8 +61,8 @@ class EditUserProfil extends Component {
       AuthId: this.state.AuthId,
     })
       .then((docRef) => {
-        
-        this.props.navigation.navigate("ProfilUser");
+        alert("Vos Modifications ont bien été prises en compte !")
+        this.props.navigation.navigate("ProfilScreen");
       })
       .catch((error) => {
         alert("Vos modifications n'ont pas été sauvegarder ! ");
@@ -80,89 +75,89 @@ class EditUserProfil extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <KeyboardAwareScrollView >
-        <Text style={styles.aindia}>Aindia</Text>
+        <KeyboardAwareScrollView>
+          <Text style={styles.aindia}>Aindia</Text>
 
-        <TextInput
-          style={styles.input}
-          placeholder="Nom"
-          value={this.state.firstname}
-          onChangeText={(value) => this.inputValueUpdate(value, "firstname")}
+          <TextInput
+            style={styles.input}
+            placeholder="Nom"
+            value={this.state.firstname}
+            onChangeText={(value) => this.inputValueUpdate(value, "firstname")}
 
-          //onBlur={props.handleBlur("firstname")}
-        />
+            //onBlur={props.handleBlur("firstname")}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Prénom"
-          value={this.state.lastname}
-          onChangeText={(value) => this.inputValueUpdate(value, "lastname")}
+          <TextInput
+            style={styles.input}
+            placeholder="Prénom"
+            value={this.state.lastname}
+            onChangeText={(value) => this.inputValueUpdate(value, "lastname")}
 
-          //onBlur={props.handleBlur("lastname")}
-        />
+            //onBlur={props.handleBlur("lastname")}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Statut"
-          value={this.state.status}
-          onChangeText={(value) => this.inputValueUpdate(value, "status")}
+          <TextInput
+            style={styles.input}
+            placeholder="Statut"
+            value={this.state.status}
+            onChangeText={(value) => this.inputValueUpdate(value, "status")}
 
-          //onBlur={props.handleBlur("status")}
-        />
+            //onBlur={props.handleBlur("status")}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Telephone"
-          value={this.state.phone}
-          onChangeText={(value) => this.inputValueUpdate(value, "phone")}
+          <TextInput
+            style={styles.input}
+            placeholder="Telephone"
+            value={this.state.phone}
+            onChangeText={(value) => this.inputValueUpdate(value, "phone")}
 
-          //onBlur={props.handleBlur("phone")}
-        />
+            //onBlur={props.handleBlur("phone")}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Ville"
-          value={this.state.homeCity}
-          onChangeText={(value) => this.inputValueUpdate(value, "homeCity")}
+          <TextInput
+            style={styles.input}
+            placeholder="Ville"
+            value={this.state.homeCity}
+            onChangeText={(value) => this.inputValueUpdate(value, "homeCity")}
 
-          //onBlur={props.handleBlur("homeCity")}
-        />
+            //onBlur={props.handleBlur("homeCity")}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Code Postal"
-          value={this.state.postalCode}
-          onChangeText={(value) => this.inputValueUpdate(value, "postalCode")}
+          <TextInput
+            style={styles.input}
+            placeholder="Code Postal"
+            value={this.state.postalCode}
+            onChangeText={(value) => this.inputValueUpdate(value, "postalCode")}
 
-          //onBlur={props.handleBlur("postalCode")}
-        />
+            //onBlur={props.handleBlur("postalCode")}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Adresse"
-          value={this.state.address}
-          onChangeText={(value) => this.inputValueUpdate(value, "address")}
+          <TextInput
+            style={styles.input}
+            placeholder="Adresse"
+            value={this.state.address}
+            onChangeText={(value) => this.inputValueUpdate(value, "address")}
 
-          //onBlur={props.handleBlur("address")}
-        />
+            //onBlur={props.handleBlur("address")}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Pays"
-          value={this.state.country}
-          onChangeText={(value) => this.inputValueUpdate(value, "country")}
+          <TextInput
+            style={styles.input}
+            placeholder="Pays"
+            value={this.state.country}
+            onChangeText={(value) => this.inputValueUpdate(value, "country")}
 
-          //onBlur={props.handleBlur("country")}
-        />
+            //onBlur={props.handleBlur("country")}
+          />
 
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={() => this.updateUser()}
-        >
-          <View style={styles.button}>
-            <Text style={styles.connexion}>VALIDER</Text>
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={() => this.updateUser()}
+          >
+            <View style={styles.button}>
+              <Text style={styles.connexion}>VALIDER</Text>
+            </View>
+          </TouchableOpacity>
         </KeyboardAwareScrollView>
       </SafeAreaView>
     );
@@ -177,13 +172,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: Constants.statusBarHeight,
+    //marginTop: Constants.statusBarHeight,
   },
   aindia: {
     textAlign: "center",
     color: "white",
     fontSize: 30,
-    marginTop: 2,
+    marginTop: 40,
+    marginBottom: 30,
     color: "#254151",
   },
   input: {
@@ -199,7 +195,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#254151",
     height: 50,
     width: 180,
-    marginTop: 20,
+    marginTop: 30,
+    marginLeft: 65,
     marginBottom: 20,
     borderRadius: 16,
   },

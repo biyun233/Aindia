@@ -1,23 +1,63 @@
-import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
-import ProfilUser from '../screens/ProfilUser';
-import EditUserProfil from '../screens/EditUserProfil';
 
+import EditUserProfil from '../screens/EditUserProfil';
+import ProfilScreen from '../screens/ProfilScreen';
+
+
+import ProfilUser from '../screens/ProfilUser';
+import UserStudies from "../screens/UserStudies";
+import ExperienceUser from '../screens/ExperienceUser';
+import GoalUser from '../screens/GoalUser';
 const screens = {
-    ProfilUser: {
-        screen: ProfilUser,
-        navigationOptions: {
-          //title: 'Mon Profil',
-          headerShown: false
-        },
+  ProfilScreen: {
+    screen: ProfilScreen,
+    navigationOptions: {
+            headerTitle: "Mon Profil",
+            headerStyle: {
+                backgroundColor: '#254151',
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+                fontSize: 20
+            },
+            headerLeft: () => null
     },
-    EditUserProfil: {
-        screen: EditUserProfil,
-        navigationOptions: {
-          title: "Edition De Profil",
-          
-        },
+  },
+  EditUserProfil: {
+      screen: EditUserProfil,
+      navigationOptions: {
+        title: "Edition De Profil",
+        
+      },
+  },
+  ProfilUser: {
+    screen: ProfilUser,
+    navigationOptions: {
+      //title: 'Mon Profil',
     },
+  },
+  GoalUser: {
+    screen: GoalUser,
+    navigationOptions: {
+      //headerLeft: null,
+      title: "Mon Objectif",
+      //headerStyle: {justifyContent: 'center',}
+    },
+  },
+  UserStudies: {
+    screen: UserStudies,
+    navigationOptions: {
+      //headerLeft: null,
+      //title: "Mes Formations",
+      //headerStyle: {justifyContent: 'center',}
+    },
+  },
+  ExperienceUser: {
+    screen: ExperienceUser,
+    navigationOptions: {
+    },
+  },  
     
 }
 
