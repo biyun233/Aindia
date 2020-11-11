@@ -45,7 +45,7 @@ const LoginUser = ({ navigation}) => {
 
         Firebase.auth()
           .signInWithEmailAndPassword(values.email, values.password)
-          .then(() => navigation.navigate("CreateProfilUser"))
+          .then(() => navigation.navigate("TabRoute_candidat"))
           .catch((error) =>
             alert("Le Mot de Passe ou l'email saisi est invalide !")
           );

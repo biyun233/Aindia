@@ -10,6 +10,8 @@ export default function Card({item}) {
         <View style={styles.card}>
             <View style={styles.line}>
                 <Text style={styles.cardContent}>{item.title}</Text>
+            </View>
+            <View style={styles.line_2}>
                 <Text style={styles.cardContent}>{salaire}</Text>
             </View>
             <View style={styles.infoline}>
@@ -23,7 +25,7 @@ export default function Card({item}) {
             <View style={styles.icon}>
                 <MaterialIcons name="person-outline" size={24} color="black" />
                 <Text style={styles.info}>{recruteur}</Text>
-                <Text>{item.date}</Text>
+                <Text >{item.date}</Text>
             </View>
         </View>
     )
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderRadius: 6,
         //elevation: 3,
-        height: 150,
+        height: 160,
         width: 350,
         backgroundColor: "white",
         //shadowOffset: {width:1, height:1},
@@ -46,23 +48,28 @@ const styles = StyleSheet.create({
     },
     line: {
         flexDirection: "row",
-        justifyContent: "space-around",
-        alignItems: "center",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
         marginHorizontal: 8,
-        marginVertical: 5
+    },
+    line_2: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        alignItems: "flex-start",
+        marginHorizontal: 8,
     },
     infoline: {
         flexDirection: "row",
         justifyContent: "flex-start",
-        alignItems: "stretch",
-        marginVertical: 5,  
+        alignItems: "center",
+        marginVertical: 3,  
     },
     icon: {
         flexDirection: "row",
         justifyContent: "flex-start",
-        alignItems: "stretch",
-        marginVertical: 5, 
+        alignItems: "center", 
         marginHorizontal: 5, 
+        
     },
     cardContent: {
         fontWeight: "bold",
@@ -72,7 +79,7 @@ const styles = StyleSheet.create({
     info: {
         fontSize: 15,
         color: "#254151",
-        marginHorizontal: 58,
+        marginHorizontal: 30,
         marginStart:18
     },
     item: {

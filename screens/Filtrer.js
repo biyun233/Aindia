@@ -1,116 +1,126 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import {SafeAreaView, View, Text, StyleSheet, FlatList, TextInput, StatusBar, LogBox } from "react-native";
 import FiltreItem from '../components/FiltreItem';
 import { Button } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import AsyncStorage from '@react-native-community/async-storage';
 
-LogBox.ignoreLogs(['Warning: ...']);
-LogBox.ignoreAllLogs();
-export default function Filtrer() {
-    const [etude, setEtude] = useState([
-        {text: 'Peu importe', key:'1', select: 'false', id: 'etude'},
-        {text: 'moins de bac +3', key:'2', select: 'false', id: 'etude'},
-        {text: 'bac +3 ', key:'3', select: 'false', id: 'etude'},
-        {text: 'bac +4', key:'4', select: 'false', id: 'etude'},
-        {text: 'bac +5 ou plus', key:'5', select: 'false', id: 'etude'},
-    ]);
+export default class Filtrer extends Component  {
+    constructor(props) {
+        super(props);
+        this.state = {
+            etude: [
+                {text: 'Peu importe', key:'1', select: 'false', id: 'etude'},
+                {text: '- de bac +3', key:'2', select: 'false', id: 'etude'},
+                {text: 'bac +3 ', key:'3', select: 'false', id: 'etude'},
+                {text: 'bac +4', key:'4', select: 'false', id: 'etude'},
+                {text: 'bac +5 ou +', key:'5', select: 'false', id: 'etude'},
+            ],
+            experience: [
+                {text: 'Stagiaire', key:'1', select: 'false', id: 'experience'},
+                {text: 'moins de 1 an', key:'2', select: 'false', id: 'experience'},
+                {text: 'plus de 1 an ', key:'3', select: 'false', id: 'experience'},
+                {text: 'de 3 à 5 ans', key:'4', select: 'false', id: 'experience'},
+                {text: 'plus de 5 ans', key:'5', select: 'false', id: 'experience'},
+            ],
+            location: '',
 
-    const [experience, setExperience] = useState([
-        {text: 'Stagiaire', key:'1', select: 'false', id: 'experience'},
-        {text: 'moins de 1 an', key:'2', select: 'false', id: 'experience'},
-        {text: 'plus de 1 an ', key:'3', select: 'false', id: 'experience'},
-        {text: 'de 3 à 5 ans', key:'4', select: 'false', id: 'experience'},
-        {text: 'plus de 5 ans', key:'5', select: 'false', id: 'experience'},
-    ]);
-
-    const [salaire, setSalaire] = useState([
-        {text: 'Peu importe', key:'1', select: 'false', id: 'salaire'},
-        {text: 'moins de 1000€', key:'2', select: 'false', id: 'salaire'}, 
-        {text: '1000-3000 € ', key:'3', select: 'false', id: 'salaire'},
-        {text: '3000-5000 €', key:'4', select: 'false', id: 'salaire'},
-        {text: 'plus de 5000€', key:'5', select: 'false', id: 'salaire'},
-    ]);
-
-    const [location, setLocation] = useState("");
-
-    const handle = (item, state, setState) => {
+        };
+        
+      }
+    
+    handle = (item, state) => {
         let prev = [...state];
-                for (let i = 0; i < prev.length; i++) {
-                    if (prev[i] === item ) {
-                        console.log("item:  " + prev[i].text + ", select is " + prev[i].select);
-                        if(prev[i].select == "false"){
-                            prev[i].select = "true";
-                        }else if(prev[i].select == "true"){
-                            prev[i].select = "false";
-                        }
-                    } 
+        for (let i = 0; i < prev.length; i++) {
+            if (prev[i] === item ) {
+                if(prev[i].select == "true"){
+                    prev[i].select = "false";
                 }
-                setState(prev);
+                else if(prev[i].select == "false"){
+                    prev[i].select = "true";
+                    for (let j = 0; j < prev.length; j++) {
+                        if (prev[j] !== item ) {
+                            prev[j].select = "false";
+                        }
+                    }
+                }
+                
+            } 
+        }
+        this.setState({state: prev});
     }
-    const pressHandler = (item) => {
+    pressHandler = (item) => {
         switch(item.id){
             case 'etude': 
-                handle(item, etude, setEtude);
+                this.handle(item, this.state.etude);
                 break;
             case 'experience': 
-                handle(item, experience, setExperience);
-                break;
-            case 'salaire': 
-                handle(item, salaire, setSalaire);
+                this.handle(item, this.state.experience);
                 break;
         }
     };
 
-
-    return (    
-        
-        <SafeAreaView style={styles.container}>
-            <KeyboardAwareScrollView >
-                    <StatusBar barStyle="dark-content"/>
-                    <View style={styles.content}>
-                        <View style={styles.list}>
-                            <Text style={styles.title}>Niveau d'études</Text>
-                            <FlatList 
-                                keyExtractor={(item) => item.key}
-                                numColumns= {2}
-                                data={etude}
-                                renderItem={({item}) => (
-                                    <FiltreItem item={item} pressHandler={pressHandler}/>
-                                    )}
-                                />
-                            
-                            <Text style={styles.title}>Niveau d'expériences</Text>
-                            <FlatList 
-                                keyExtractor={(item) => item.key}
-                                numColumns= {2}
-                                data={experience}
-                                renderItem={({item}) => (
-                                    <FiltreItem item={item} pressHandler={pressHandler}/>
-                                    )}
-                                />
-                            
-                        
-                            <Text style={styles.title}>Salaire par mois</Text>
-                            <FlatList 
-                                keyExtractor={(item) => item.key}
-                                numColumns= {2}
-                                data={salaire}
-                                renderItem={({item}) => (
-                                    <FiltreItem item={item} pressHandler={pressHandler}/>
-                                    )}
-                                />
-                            <Text style={styles.title}>Localisation</Text>
-                            <TextInput style={styles.input} value={location} onChangeText={value => setLocation(value)}/>
-                            <Button 
-                                title='Appliquer' 
-                                buttonStyle={styles.button} 
-                                titleStyle={styles.appliquer} 
-                                />
-                        </View>
-                    </View>              
-            </KeyboardAwareScrollView>
-        </SafeAreaView>
-    );
+    updateLocation = (value) => {
+        this.setState({location: value});
+    }   
+    onSubmit = async() => {
+        try{
+            for (let i = 0; i < this.state.etude.length; i++) {
+                if(this.state.etude[i].select == "true"){
+                    await AsyncStorage.setItem('etude', this.state.etude[i].text);
+                }
+                if(this.state.experience[i].select == "true"){
+                    await AsyncStorage.setItem('experience', this.state.experience[i].text);
+                }
+            }
+            await AsyncStorage.setItem('location', this.state.location);
+            this.props.navigation.goBack() 
+            this.props.navigation.state.params.refresh();
+        }catch (err) {
+            console.log(err);
+        }
+    }
+    render(){
+            return (    
+                <SafeAreaView style={styles.container}>
+                <KeyboardAwareScrollView >
+                        <StatusBar barStyle="dark-content"/>
+                        <View style={styles.content}>
+                            <View style={styles.list}>
+                                <Text style={styles.title}>Niveau d'études</Text>
+                                <FlatList 
+                                    keyExtractor={(item) => item.key}
+                                    numColumns= {2}
+                                    data={this.state.etude}
+                                    renderItem={({item}) => (
+                                        <FiltreItem item={item} pressHandler={this.pressHandler}/>
+                                        )}
+                                        />
+                                
+                                <Text style={styles.title}>Niveau d'expériences</Text>
+                                <FlatList 
+                                    keyExtractor={(item) => item.key}
+                                    numColumns= {2}
+                                    data={this.state.experience}
+                                    renderItem={({item}) => (
+                                        <FiltreItem item={item} pressHandler={this.pressHandler}/>
+                                        )}
+                                        />
+                                
+                                <Text style={styles.title}>Localisation</Text>
+                                <TextInput style={styles.input} value={this.state.location} onChangeText={this.updateLocation}/>
+                                <Button 
+                                    title='Appliquer' 
+                                    buttonStyle={styles.button} 
+                                    titleStyle={styles.appliquer} 
+                                    onPress={this.onSubmit}
+                                    />
+                            </View>
+                        </View>              
+                </KeyboardAwareScrollView>
+            </SafeAreaView>
+        );
+    }
 };
 
 const styles = StyleSheet.create({

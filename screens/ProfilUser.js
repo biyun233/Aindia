@@ -22,8 +22,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { ListItem, Avatar } from "react-native-elements";
 
-
-
 class ProfilUser extends Component {
 
   constructor(props) {

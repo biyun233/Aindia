@@ -8,14 +8,14 @@ const screens = {
         screen: ProfilUser,
         navigationOptions: {
           //title: 'Mon Profil',
-          header: null,
+          headerShown: false
         },
     },
     EditUserProfil: {
         screen: EditUserProfil,
         navigationOptions: {
           title: "Edition De Profil",
-          //header: null,
+          
         },
     },
     

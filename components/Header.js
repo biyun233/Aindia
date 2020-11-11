@@ -1,30 +1,40 @@
-import React, {useState} from "react";
+import React, {Component, useState} from "react";
 import {SafeAreaView, View, StyleSheet, TextInput, Text, StatusBar, TouchableOpacity} from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { prefix } from '../utils/Constant';
 
 
-export default function Header({ navigation }) {
-    const [search, setSearch] = useState("");
-    const pressHandler = () => {
-        navigation.navigate('TabRoute_recruteur');
+export default class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            query: ''
+        };
     }
-    return (  
-        <SafeAreaView style={styles.container}>
-            <StatusBar barStyle="light-content"/>
-            <View style={styles.searchbarContainer}>
-                <TextInput style={styles.input} placeholder="Chercher" placeholderTextColor="#254151" value={search} onChangeText={value => setSearch(value)}/>
-                <Ionicons style={styles.searchIcon} name={`${prefix}-search`}/>
-            </View>
-            <TouchableOpacity onPress = {pressHandler}>
-                <View style={styles.versionContainer}>
-                    <Text style={styles.version}>Candidat</Text>
-                    <Ionicons style={styles.downIcon} name={`${prefix}-arrow-down`}/>
+    handleSearch = (value) =>{
+        this.setState({query : value});
+        this.props.handle(value);
+    }
+    render(){
+        return (  
+            <SafeAreaView style={styles.container}>
+                <View style={styles.searchbarContainer}>
+                    <TextInput style={styles.input} 
+                        placeholder="Chercher" 
+                        placeholderTextColor="#254151" 
+                        value={this.state.text} 
+                        onChangeText={this.handleSearch}/>
+                    <Ionicons style={styles.searchIcon} name={`${prefix}-search`}/>
                 </View>
-            </TouchableOpacity>
-            
-        </SafeAreaView>
-    )
+                <TouchableOpacity onPress = {() => this.props.navigation.navigate('TabRoute_recruteur')}>
+                    <View style={styles.versionContainer}>
+                        <Text style={styles.version}>Candidat</Text>
+                        <Ionicons style={styles.downIcon} name={`${prefix}-arrow-down`}/>
+                    </View>
+                    </TouchableOpacity>
+            </SafeAreaView>
+        );
+    }
 };
 
 const styles = StyleSheet.create({

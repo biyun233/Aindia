@@ -1,5 +1,4 @@
 import * as Google from "expo-google-app-auth";
-import Constants from "expo-constants";
 
 
 const config = {

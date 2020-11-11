@@ -7,15 +7,13 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  SafeAreaView
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
-
 import { Firebase } from "../utils/Firebase";
-import { prefix } from "../utils/Constant";
-
-
-import { addUser } from "../utils/UserApi";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { addUser } from "../utils/API/UserApi";
 
 
 
@@ -81,7 +79,8 @@ class EditUserProfil extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <KeyboardAwareScrollView >
         <Text style={styles.aindia}>Aindia</Text>
 
         <TextInput
@@ -164,7 +163,8 @@ class EditUserProfil extends Component {
             <Text style={styles.connexion}>VALIDER</Text>
           </View>
         </TouchableOpacity>
-      </View>
+        </KeyboardAwareScrollView>
+      </SafeAreaView>
     );
   }
 }

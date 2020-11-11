@@ -69,15 +69,12 @@ const CreateProfilUser = ({ navigation }) => {
         // Création du compte de l'utilisateur
         //const {email, password} = values;
         addUser(values); // On enregistre les Données dans la Base De Données
-
         navigation.navigate("ProfilUser");
       }}
     >
       {(props) => (
         <SafeAreaView style={styles.container}>
-            <KeyboardAwareScrollView >
-
-            
+          <KeyboardAwareScrollView >
           <Text style={styles.aindia}>Je Crée Mon Profil</Text>
 
           <TextInput

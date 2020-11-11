@@ -1,64 +1,204 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
-import Constants from 'expo-constants';
+import React, { Component, useState, useEffect } from 'react';
+import { View, StatusBar, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView, SafeAreaView } from "react-native";
 import { Button } from 'react-native-elements';
 import Card from '../components/Card';
+import { Firebase } from "../utils/Firebase";
+import _ from 'lodash';
+import Header from '../components/Header';
+import AsyncStorage from '@react-native-community/async-storage';
 
-
-export default function Candidat({ navigation }) { 
-    const [offre, setOffre] = useState([
-        {title:'Développeur Web(H/F)',
-         nom:'Thales', location:'Bordeaux', 
-         salaireMin:'800', salaireMax:'1000',
-         expérience:'+ de 3 ans', étude:'bac +3',
-         date:'10-10-2020', recruteur:'WANG Biyun',
-         poste:'Manager', mission:'1. Analyser et/ou développer les composants techniques communs.\n2. Assurer la maintenance corrective et évolutive des développements. \n3. Tester, identifier et traiter les dysfonctionnements éventuels.\n',
-         tech:'— Framework Spring, Hibernate, React JS, Angular, Vue.js\n— PostgreSQL, Elasticsearch, Go, Docker, Kubernetes, AWS, Google Cloud', key: '1'}
-    ]);
-    const pressHandler = () => {
-        navigation.navigate('Filtrer');
-    }
-    return (
-        <View style={styles.container}>
-            <View>
-                <Button 
-                title='Filtrer' 
-                buttonStyle={styles.button} 
-                titleStyle={styles.filtrer} 
-                onPress={pressHandler}/>
-
-                {/*tuto26 custom card component*/}
-                
-            </View>
-            <View>
-                <FlatList 
-                        data={offre}
-                        renderItem={({item}) => (
-                            <TouchableOpacity onPress={() => navigation.navigate('OffreDetails', item)}>
-                                <Card item={item} />
-                            </TouchableOpacity>
-                        )}
-                />
-            </View>
+class Candidat extends Component { 
+    constructor(props) {
+        super(props);
+        this.OfferDetails = Firebase.firestore().collection("OfferDetails").orderBy('date', "desc");
+        this.state = {
+            isLoading: true,
+            offerList: [],
+            dataSearch: [],
+            query: '',
+            étude: '',
+            expérience: '',
+            location: '',
+        };
+      }
+    getData = async() => {
+        try {
+             const value = await AsyncStorage.getItem('location');
+             const etude = await AsyncStorage.getItem('etude');
+             const experience = await AsyncStorage.getItem('experience');
+            this.setState({location: value});
+            this.setState({étude: etude});
+            this.setState({expérience: experience});
             
-        </View>
-
+             await AsyncStorage.clear();
+             console.log("études est : " + this.state.étude);
+             console.log("experience est : " + this.state.expérience);
+             console.log("location est : " + this.state.location);
+             if(this.state.étude != null){
+                this.handleEtudes();
+                if(this.state.expérience != null){
+                    this.handleExperience();
+                }
+                else if(this.state.location != null){
+                    this.handleLocation();
+                }
+            }
+        }catch (err) {
+ 
+        }
+    }
+    componentDidMount() {
+        this.unsubscribe = this.OfferDetails.onSnapshot(this.getCollection); 
+    }
+    componentWillUnmount() {
+        this.unsubscribe();
         
-    );
+    }
+    getCollection = (querySnapshot) => {
+        const offerList = [];
+        querySnapshot.forEach((res) => {
+            offerList.push(res.data());
+        });
+    
+        this.setState({ offerList, dataSearch: offerList, isLoading: false });
+      }
+   _renderItem = ({item, index}) => {
+       return (
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('OffreDetails', item)}>
+            <Card item={item} />
+        </TouchableOpacity>
+       );
+   }
+   _refresh=()=>{
+        this.getData();
+        this.handleSearch();
+   }
+   
+    handle = (value) =>{
+        this.setState({query: value});
+        this.handleSearch();
+    }
+    handleEtudes = () => {
+        var data = this.state.dataSearch;
+        var étude = this.state.étude;
+        const niveau_étude = étude.toLowerCase();
+        console.log("niveau étude: " + niveau_étude);
+        console.log("Filtrer études!");
+        if(étude !== 'Peu importe'){
+            data = data.filter(item => 
+                item.étude.toLowerCase().includes(niveau_étude)
+                );
+        }
+        this.setState({dataSearch: data});
+    }
+    handleExperience = () => {
+        var data = this.state.dataSearch;
+        console.log("Filtrer expérience!");
+        var expérience = this.state.expérience;
+        const niveau_expérience = expérience.toLowerCase();
+        console.log("niveau expérience: " + niveau_expérience);
+            data = data.filter(item => 
+                item.expérience.toLowerCase().match(niveau_expérience)
+            );
+    
+        this.setState({dataSearch: data});
+    }
+    handleLocation = () => {
+        var data = this.state.dataSearch;
+        console.log("location: " + this.state.location);
+        console.log("Filtrer Location!");
+        var location = this.state.location;
+        const niveau_location = location.toLowerCase();
+        console.log("niveau location: " + niveau_location);
+        data = data.filter(item => 
+                item.location.toLowerCase().match(niveau_location)
+        );
+        this.setState({dataSearch: data});
+    }
+
+    handleSearch = () =>{
+        var data = this.state.offerList;
+        var query = this.state.query;
+        const formattedQuerry = query.toLowerCase();
+        if(this.state.query == ''){
+            this.setState({dataSearch: data});
+        }
+        else{
+            data = data.filter(item => 
+                item.title.toLowerCase().includes(formattedQuerry)
+                );
+        }
+        this.setState({dataSearch: data});
+        /*
+        const formattedQuerry = value.toString().toLowerCase();
+        const niveau_étude = this.state.étude.toLowerCase();
+        if(this.state.query == ""){
+            this.setState({dataSearch: this.state.offerList});
+        }
+        else {
+            
+            data = data.filter(item => 
+                item.title.toLowerCase().includes(formattedQuerry)
+                & item.étude.toLowerCase().match(niveau_étude)
+            );
+            this.setState({dataSearch: data});
+        }
+        */
+        
+    }
+    render(){
+        return (
+            <SafeAreaView style={styles.container}>
+                <Header navigation={this.props.navigation} handle={this.handle}/>
+                <ScrollView>
+                <View style={styles.row}>
+                    <Button 
+                    title='Init' 
+                    buttonStyle={styles.button} 
+                    titleStyle={styles.filtrer} 
+                    onPress={() => {this.setState({dataSearch: this.state.offerList})}}
+                    />
+                    <Button 
+                    title='Filtrer' 
+                    buttonStyle={styles.button} 
+                    titleStyle={styles.filtrer} 
+                    onPress={() => {this.props.navigation.navigate('Filtrer',{
+                        refresh:()=>{
+                         this._refresh();
+                        },
+                    })}}
+                    />
+                    
+                </View>
+                <View>
+                    <FlatList 
+                            data={this.state.dataSearch}
+                            keyExtractor={(item,index) => index.toString()}
+                            renderItem={this._renderItem}
+                            />
+                </View> 
+                </ScrollView>  
+            </SafeAreaView> 
+        );
+    }
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: "column",
         alignItems: "center",
         backgroundColor: "#EBEAEA",
         paddingBottom: 20
     },
+    row: {
+        paddingBottom: 10,
+        flexDirection: "row",
+        justifyContent: "space-around",
+    },
 
     button: {
         flexDirection: "column",
-        justifyContent: "flex-end",
+        justifyContent: "space-between",
         alignItems: "center",
         borderWidth: 1,
         borderRadius: 0,
@@ -67,12 +207,14 @@ const styles = StyleSheet.create({
         height: 38,
         width: 80,
         marginTop: 20,
-        marginLeft: 240
         
       },
     filtrer:{
         fontWeight: "bold",
         fontSize: 20,
-        color: "#254151"
+        color: "#254151",
+        alignItems: "center",
     },
 });
+
+export default Candidat;

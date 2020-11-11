@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
-import {SafeAreaView, View, Text, StyleSheet, TextInput, StatusBar, LogBox, Picker } from "react-native";
+import React from 'react';
+import {SafeAreaView, View, Text, StyleSheet, TextInput, StatusBar, Picker } from "react-native";
 import { Button } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Formik } from 'formik';
-export default function Publer_offre() {
+import { Firebase } from "../utils/Firebase";
+import ProfilUser from './ProfilUser';
+export default function Publer_offre({ navigation }) {
 
     const date = new Date().getDate();
     const month = new Date().getMonth()+1;
     const year = new Date().getFullYear();
     var time = date + '/' + month + '/' + year;
-    console.log(time);
+        
     function addOffre(offre) {
-        offre.recruteur = Firebase.auth().currentUser.uid; 
-        offre.date = time;
+        offre.key = Math.random().toString();
+        offre.AuthId = Firebase.auth().currentUser.uid; 
+        offre.recruteur = Firebase.auth().currentUser.firstname + ' ' + Firebase.auth().currentUser.lastname; 
         Firebase.firestore()
         .collection('OfferDetails')
         .add(offre)
-        .then(res => alert('OK'))
+        .then(res => alert("L'Offre a été bien crée!"))
         .catch((error) => console.log(error));
     }
     
@@ -26,12 +29,13 @@ export default function Publer_offre() {
             nom:'', location:'', 
             salaireMin:'', salaireMax:'',
             expérience:'', étude:'',
-            date: '', recruteur:'',
+            date: time, recruteur:'',
             poste:'manager', mission:'',
             tech:''}}
-            onSubmit={(values) => {
-                console.log(values);
+            onSubmit={(values, actions) => {
                 addOffre(values);
+                actions.resetForm();
+                navigation.navigate("Recruteur");
             }}
         >
         {(props) => (
@@ -73,10 +77,10 @@ export default function Publer_offre() {
                         >
                             <Picker.Item label="Niveau d'étude" value={props.values.étude} key={0} />
                             <Picker.Item label='Peu importe' value="Peu importe" key={1} />
-                            <Picker.Item label='moins de bac +3' value="moins de bac +3" key={2} />
+                            <Picker.Item label='- de bac +3' value="- de bac +3" key={2} />
                             <Picker.Item label='bac +3' value="bac +3" key={3} />
                             <Picker.Item label='bac +4' value="bac +4" key={4} />
-                            <Picker.Item label='bac +5 ou plus' value="bac +5 ou plus" key={5} />
+                            <Picker.Item label='bac +5 ou +' value="bac +5 ou +" key={5} />
                         </Picker>
                         
                         <Text style={styles.title}>Niveau d'expériences</Text>

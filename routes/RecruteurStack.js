@@ -7,7 +7,7 @@ const RecruteurStack = createStackNavigator({
     Recruteur: {
         screen: Recruteur,
         navigationOptions: ({navigation}) => ({
-            header: <Header_recruteur navigation= {navigation} />,
+            header: () => <Header_recruteur navigation= {navigation} />,
           })
         
     },
