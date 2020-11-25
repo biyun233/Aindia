@@ -1,17 +1,35 @@
-import React from 'react';
-import {SafeAreaView, View, Text, StyleSheet, TextInput, StatusBar, Picker } from "react-native";
+import React, { useState } from 'react';
+import {SafeAreaView, View, Text, StyleSheet, TextInput, StatusBar, Picker, FlatList } from "react-native";
 import { Button } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Formik } from 'formik';
 import { Firebase } from "../utils/Firebase";
 import ProfilUser from './ProfilUser';
+import FiltreItem from '../components/FiltreItem';
 export default function Publer_offre({ navigation }) {
 
     const date = new Date().getDate();
     const month = new Date().getMonth()+1;
     const year = new Date().getFullYear();
     var time = date + '/' + month + '/' + year;
-        
+
+    const [study, setStudy] = useState('');
+    const [exp, setExp] = useState('');
+    const [etude, setEtude] = useState([
+        {text: 'Peu importe', key:'1', select: 'false', id: 'etude'},
+        {text: '- de bac +3', key:'2', select: 'false', id: 'etude'},
+        {text: 'bac +3 ', key:'3', select: 'false', id: 'etude'},
+        {text: 'bac +4', key:'4', select: 'false', id: 'etude'},
+        {text: 'bac +5 ou +', key:'5', select: 'false', id: 'etude'},
+    ]);
+    const [experience, setExperience] = useState([
+        {text: 'Stagiaire', key:'1', select: 'false', id: 'experience'},
+        {text: 'moins de 1 an', key:'2', select: 'false', id: 'experience'},
+        {text: 'plus de 1 an ', key:'3', select: 'false', id: 'experience'},
+        {text: 'de 3 à 5 ans', key:'4', select: 'false', id: 'experience'},
+        {text: 'plus de 5 ans', key:'5', select: 'false', id: 'experience'},
+    ]);
+
     function addOffre(offre) {
         offre.key = Math.random().toString();
         offre.AuthId = Firebase.auth().currentUser.uid; 
@@ -22,7 +40,47 @@ export default function Publer_offre({ navigation }) {
         .then(res => alert("L'Offre a été bien crée!"))
         .catch((error) => console.log(error));
     }
-    
+
+    function reset(state, setState){
+        let prev = [...state];
+        for (let i = 0; i < prev.length; i++) {
+            prev[i].select = "false";
+        }
+        setState(prev);
+    }
+    function handle(item, state, setState){
+        let prev = [...state];
+        for (let i = 0; i < prev.length; i++) {
+            if (prev[i] === item ) {
+                if(prev[i].select == "true"){
+                    prev[i].select = "false";
+                }
+                else if(prev[i].select == "false"){
+                    prev[i].select = "true";
+                    for (let j = 0; j < prev.length; j++) {
+                        if (prev[j] !== item ) {
+                            prev[j].select = "false";
+                        }
+                    }
+                }
+                
+            } 
+        }
+        setState(prev);
+    }
+    function pressHandler(item) {
+        switch(item.id){
+            case 'etude': 
+                handle(item, etude, setEtude);
+                
+                break;
+            case 'experience': 
+                handle(item, experience, setExperience);
+                break;
+        }
+        
+        
+    };
     return (   
         <Formik
             initialValues={{ title:'',
@@ -33,8 +91,20 @@ export default function Publer_offre({ navigation }) {
             poste:'manager', mission:'',
             tech:''}}
             onSubmit={(values, actions) => {
+                for (let i = 0; i < etude.length; i++) {
+                    if(etude[i].select == "true"){
+                        setStudy(etude[i].text);
+                    }
+                    if(experience[i].select == "true"){
+                        setExp(experience[i].text);
+                    }
+                }
+                values.expérience = exp;
+                values.étude = study;
                 addOffre(values);
                 actions.resetForm();
+                reset(etude, setEtude);
+                reset(experience, setExperience);
                 navigation.navigate("Recruteur");
             }}
         >
@@ -69,34 +139,25 @@ export default function Publer_offre({ navigation }) {
                             value={props.values.location}  
                             onChangeText={props.handleChange('location')}/>
                         <Text style={styles.title}>Niveau d'études</Text>
-                        <Picker
-                            // passing value directly from formik
-                            selectedValue={props.values.étude}
-                            // changing value in formik
-                            onValueChange={itemValue => props.setFieldValue('étude', itemValue)}
-                        >
-                            <Picker.Item label="Niveau d'étude" value={props.values.étude} key={0} />
-                            <Picker.Item label='Peu importe' value="Peu importe" key={1} />
-                            <Picker.Item label='- de bac +3' value="- de bac +3" key={2} />
-                            <Picker.Item label='bac +3' value="bac +3" key={3} />
-                            <Picker.Item label='bac +4' value="bac +4" key={4} />
-                            <Picker.Item label='bac +5 ou +' value="bac +5 ou +" key={5} />
-                        </Picker>
-                        
+                        <FlatList 
+                                    keyExtractor={(item) => item.key}
+                                    numColumns= {2}
+                                    data={etude}
+                                    renderItem={({item}) => (
+                                        <FiltreItem item={item} pressHandler={pressHandler}/>
+                                        )}
+                                        />
+                       
                         <Text style={styles.title}>Niveau d'expériences</Text>
-                        <Picker
-                            // passing value directly from formik
-                            selectedValue={props.values.expérience}
-                            // changing value in formik
-                            onValueChange={itemValue => props.setFieldValue('expérience', itemValue)}
-                        >
-                            <Picker.Item label="Niveau d'expérience" value={props.values.expérience} key={0} />
-                            <Picker.Item label='Stagiaire' value="Stagiaire" key={1} />
-                            <Picker.Item label='moins de 1 an' value="moins de 1 an" key={2} />
-                            <Picker.Item label='de 3 à 5 ans' value="de 3 à 5 ans" key={3} />
-                            <Picker.Item label='plus de 5 ans' value="plus de 5 ans" key={4} />
-                            <Picker.Item label='plus de 1 an' value="plus de 1 an" key={5} />
-                        </Picker>
+                        <FlatList 
+                                    keyExtractor={(item) => item.key}
+                                    numColumns= {2}
+                                    data={experience}
+                                    renderItem={({item}) => (
+                                        <FiltreItem item={item} pressHandler={pressHandler}/>
+                                        )}
+                                        />
+                       
                         <Text style={styles.title}>Mission</Text>
                         <TextInput 
                                 multiline={true} 

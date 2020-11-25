@@ -1,31 +1,24 @@
-import React from 'react';
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons'; 
 export default function Card({item}) {
-    const salaire = item.salaireMin + '-' + item.salaireMax + '€';
-    const expérience = 'Expérience: ' + item.expérience;
-    const étude = 'Étude: ' + item.étude;
-    const recruteur = item.recruteur + '-' + item.poste;
+    const poste = 'Poste: ' + item.wantedJob;
+    const expérience = 'Expérience: ' + item.workingTime;
+    //const étude = 'Étude: ' + item.étude;
+    const disponibilité = 'Disponible: ' + item.availability;
     return (
         <View style={styles.card}>
             <View style={styles.line}>
-                <Text style={styles.cardContent}>{item.title}</Text>
-            </View>
-            <View style={styles.line_2}>
-                <Text style={styles.cardContent}>{salaire}</Text>
+                <Text style={styles.cardContent}>{item.domaine}</Text>
             </View>
             <View style={styles.infoline}>
-                <Text style={styles.info}>{item.nom}</Text>
-                <Text style={styles.info}>-{item.location}</Text>
+                <Text style={styles.item}>{poste}</Text>
             </View>
             <View style={styles.infoline}>
                 <Text style={styles.item}>{expérience}</Text>
-                <Text style={styles.item}>{étude}</Text>
             </View>
-            <View style={styles.icon}>
-                <MaterialIcons name="person-outline" size={24} color="black" />
-                <Text style={styles.info}>{recruteur}</Text>
-                <Text >{item.date}</Text>
+            <View style={styles.infoline}>
+                <Text style={styles.item}>{disponibilité}</Text>
             </View>
         </View>
     )

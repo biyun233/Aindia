@@ -1,13 +1,18 @@
-import React from 'react';
+
 import { createStackNavigator } from 'react-navigation-stack';
 import Recruteur from '../screens/Recruteur';
-import Header_recruteur from '../components/Header_recruteur';
+import Constants from "expo-constants";
 
 const RecruteurStack = createStackNavigator({
     Recruteur: {
         screen: Recruteur,
         navigationOptions: ({navigation}) => ({
-            header: () => <Header_recruteur navigation= {navigation} />,
+            //header: () => <Header_recruteur navigation= {navigation} />,
+            headerStyle: {
+                backgroundColor: '#254151',
+                height: Constants.statusBarHeight + 1,
+            },
+            headerLeft: null
           })
         
     },

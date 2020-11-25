@@ -66,7 +66,7 @@ class ProfilUser extends Component {
   render() {
     return (
       <View style={styles.container}>
-        
+         
         <View style={styles.infos}>
           <FlatList
             data={this.state.userData}

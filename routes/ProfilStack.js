@@ -1,9 +1,6 @@
 import { createStackNavigator } from 'react-navigation-stack';
-
 import EditUserProfil from '../screens/EditUserProfil';
 import ProfilScreen from '../screens/ProfilScreen';
-
-
 import ProfilUser from '../screens/ProfilUser';
 import UserStudies from "../screens/UserStudies";
 import ExperienceUser from '../screens/ExperienceUser';

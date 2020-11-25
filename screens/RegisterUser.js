@@ -40,7 +40,7 @@ const RegisterUser = ({ navigation }) => {
                 Firebase
                 .auth()
                 .createUserWithEmailAndPassword(values.email, values.password)
-                .then( () => navigation.navigate('LoginUser') )
+                .then( () => navigation.navigate('CreateProfilUser'))
                 .catch(error => alert(error), actions.resetForm());
 
             }} 

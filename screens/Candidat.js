@@ -3,6 +3,7 @@ import { View, StatusBar, Text, StyleSheet, TouchableOpacity, FlatList, ScrollVi
 import { Button } from 'react-native-elements';
 import Card from '../components/Card';
 import { Firebase } from "../utils/Firebase";
+import firebase from 'firebase';
 import _ from 'lodash';
 import Header from '../components/Header';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -10,11 +11,11 @@ import AsyncStorage from '@react-native-community/async-storage';
 class Candidat extends Component { 
     constructor(props) {
         super(props);
-        this.OfferDetails = Firebase.firestore().collection("OfferDetails").orderBy('date', "desc");
-        this.state = {
+        this.OfferDetails = Firebase.firestore().collection("OfferDetails").orderBy('date', "desc");        this.state = {
             isLoading: true,
             offerList: [],
             dataSearch: [],
+            userList: [],
             query: '',
             étude: '',
             expérience: '',
@@ -52,7 +53,6 @@ class Candidat extends Component {
     }
     componentWillUnmount() {
         this.unsubscribe();
-        
     }
     getCollection = (querySnapshot) => {
         const offerList = [];
@@ -61,7 +61,8 @@ class Candidat extends Component {
         });
     
         this.setState({ offerList, dataSearch: offerList, isLoading: false });
-      }
+    }
+   
    _renderItem = ({item, index}) => {
        return (
         <TouchableOpacity onPress={() => this.props.navigation.navigate('OffreDetails', item)}>
@@ -129,27 +130,13 @@ class Candidat extends Component {
                 );
         }
         this.setState({dataSearch: data});
-        /*
-        const formattedQuerry = value.toString().toLowerCase();
-        const niveau_étude = this.state.étude.toLowerCase();
-        if(this.state.query == ""){
-            this.setState({dataSearch: this.state.offerList});
-        }
-        else {
-            
-            data = data.filter(item => 
-                item.title.toLowerCase().includes(formattedQuerry)
-                & item.étude.toLowerCase().match(niveau_étude)
-            );
-            this.setState({dataSearch: data});
-        }
-        */
         
     }
     render(){
         return (
             <SafeAreaView style={styles.container}>
-                <Header navigation={this.props.navigation} handle={this.handle}/>
+                
+                <Header  style={{backgroundColor:'#254151'}} navigation={this.props.navigation} handle={this.handle}/>
                 <ScrollView>
                 <View style={styles.row}>
                     <Button 

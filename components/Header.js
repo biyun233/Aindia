@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import {SafeAreaView, View, StyleSheet, TextInput, Text, StatusBar, TouchableOpacity} from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { prefix } from '../utils/Constant';
@@ -18,11 +18,16 @@ export default class Header extends Component {
     render(){
         return (  
             <SafeAreaView style={styles.container}>
+                
                 <View style={styles.searchbarContainer}>
+                <StatusBar
+                    backgroundColor="#254151"
+                    barStyle="light-content"
+                />
                     <TextInput style={styles.input} 
                         placeholder="Chercher" 
                         placeholderTextColor="#254151" 
-                        value={this.state.text} 
+                        value={this.state.query} 
                         onChangeText={this.handleSearch}/>
                     <Ionicons style={styles.searchIcon} name={`${prefix}-search`}/>
                 </View>
@@ -90,4 +95,8 @@ const styles = StyleSheet.create({
         color: "#F8F2F2"
     }
 });
+
+
+
+
 
