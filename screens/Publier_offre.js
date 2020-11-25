@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
-import {SafeAreaView, View, Text, StyleSheet, TextInput, StatusBar, Picker, FlatList } from "react-native";
+import React, { useState} from 'react';
+import {SafeAreaView, View, Text, StyleSheet, TextInput, StatusBar, FlatList } from "react-native";
 import { Button } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Formik } from 'formik';
 import { Firebase } from "../utils/Firebase";
 import ProfilUser from './ProfilUser';
 import FiltreItem from '../components/FiltreItem';
+import Global from '../utils/Global';
+
 export default function Publer_offre({ navigation }) {
 
     const date = new Date().getDate();
     const month = new Date().getMonth()+1;
     const year = new Date().getFullYear();
     var time = date + '/' + month + '/' + year;
+
 
     const [study, setStudy] = useState('');
     const [exp, setExp] = useState('');
@@ -29,11 +32,11 @@ export default function Publer_offre({ navigation }) {
         {text: 'de 3 à 5 ans', key:'4', select: 'false', id: 'experience'},
         {text: 'plus de 5 ans', key:'5', select: 'false', id: 'experience'},
     ]);
-
+ 
     function addOffre(offre) {
         offre.key = Math.random().toString();
         offre.AuthId = Firebase.auth().currentUser.uid; 
-        offre.recruteur = Firebase.auth().currentUser.firstname + ' ' + Firebase.auth().currentUser.lastname; 
+        offre.recruteur = Global.name;
         Firebase.firestore()
         .collection('OfferDetails')
         .add(offre)
@@ -87,7 +90,7 @@ export default function Publer_offre({ navigation }) {
             nom:'', location:'', 
             salaireMin:'', salaireMax:'',
             expérience:'', étude:'',
-            date: time, recruteur:'',
+            date: time, recruteur: '',
             poste:'manager', mission:'',
             tech:''}}
             onSubmit={(values, actions) => {

@@ -9,6 +9,7 @@ import {
 
 import { Title } from "react-native-paper";
 import { Firebase } from "../utils/Firebase";
+import Global from '../utils/Global';
 
 class ProfilUser extends Component {
 
@@ -18,6 +19,7 @@ class ProfilUser extends Component {
     this.state = {
       isLoading: true,
       userData: [],
+      
     };
   }
 
@@ -60,7 +62,6 @@ class ProfilUser extends Component {
     });
 
     this.setState({ userData, isLoading: false });
-
   }
 
   render() {
@@ -69,7 +70,7 @@ class ProfilUser extends Component {
          
         <View style={styles.infos}>
           <FlatList
-            data={this.state.userData}
+            data={Global.user}
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() =>

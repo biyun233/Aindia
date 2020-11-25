@@ -7,11 +7,13 @@ import firebase from 'firebase';
 import _ from 'lodash';
 import Header from '../components/Header';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import Global from '../utils/Global';
 class Candidat extends Component { 
     constructor(props) {
         super(props);
-        this.OfferDetails = Firebase.firestore().collection("OfferDetails").orderBy('date', "desc");        this.state = {
+        this.OfferDetails = Firebase.firestore().collection("OfferDetails").orderBy('date', "desc");
+        this.user = Firebase.firestore().collection("UsersInfos").where("AuthId", "==", Firebase.auth().currentUser.uid); 
+        this.state = {
             isLoading: true,
             offerList: [],
             dataSearch: [],
@@ -50,8 +52,10 @@ class Candidat extends Component {
     }
     componentDidMount() {
         this.unsubscribe = this.OfferDetails.onSnapshot(this.getCollection); 
+        this.unsubscribe_1 = this.user.onSnapshot(this.getCollection_1); 
     }
     componentWillUnmount() {
+        this.unsubscribe_1();
         this.unsubscribe();
     }
     getCollection = (querySnapshot) => {
@@ -61,6 +65,16 @@ class Candidat extends Component {
         });
     
         this.setState({ offerList, dataSearch: offerList, isLoading: false });
+    }
+    getCollection_1 = (querySnapshot) => {
+        const userInfo = [];
+        querySnapshot.forEach((res) => {
+            userInfo.push(res.data());
+        });
+    
+        this.setState({ user:userInfo });
+        Global.name = userInfo[0].firstname + ' ' + userInfo[0].lastname;
+        Global.user = userInfo;
     }
    
    _renderItem = ({item, index}) => {
