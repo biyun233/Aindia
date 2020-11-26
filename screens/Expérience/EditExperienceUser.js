@@ -8,7 +8,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Firebase } from "../utils/Firebase";
+import { Firebase } from "../../utils/Firebase";
 
 
 class EditExperienceUser extends Component {

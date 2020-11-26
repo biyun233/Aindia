@@ -1,6 +1,6 @@
 
 import { createStackNavigator } from 'react-navigation-stack';
-import Recruteur from '../screens/Recruteur';
+import Recruteur from '../screens/Accueil/Recruteur';
 import Constants from "expo-constants";
 
 const RecruteurStack = createStackNavigator({

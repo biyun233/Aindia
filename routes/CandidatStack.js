@@ -1,6 +1,6 @@
 
 import { createStackNavigator } from 'react-navigation-stack';
-import Candidat from '../screens/Candidat';
+import Candidat from '../screens/Accueil/Candidat';
 import Constants from "expo-constants";
 
 const CandidatStack = createStackNavigator({

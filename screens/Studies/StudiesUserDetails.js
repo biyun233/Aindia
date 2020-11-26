@@ -5,7 +5,7 @@ import {
   StyleSheet,
 } from "react-native";
 import Constants from "expo-constants";
-import CardUser from "../components/CardUser";
+import CardUser from "../../components/CardUser";
 
 export default function StudiesUserDetails({ navigation }) {
     return (

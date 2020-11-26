@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {  View, StyleSheet, TouchableOpacity, FlatList, ScrollView, SafeAreaView } from "react-native";
-import { Firebase } from "../utils/Firebase";
+import { Firebase } from "../../utils/Firebase";
 import _ from 'lodash';
-import Header_recruteur from '../components/Header_recruteur';
-import CardCandidat from '../components/CardCandidat';
+import Header_recruteur from '../../components/Header_recruteur';
+import CardCandidat from '../../components/CardCandidat';
 
 export default class Recruteur extends Component { 
     constructor(props) {

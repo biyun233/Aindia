@@ -11,7 +11,8 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Firebase } from "../utils/Firebase";
+import { Firebase } from "../../utils/Firebase";
+import Global from '../../utils/Global';
 
 // Validation des champs du formulaire
 const reviewSchema = Yup.object({
@@ -33,6 +34,7 @@ const CreateGoalUser = ({ navigation }) => {
   function addGoalUser(goal) {
     goal.AuthId = Firebase.auth().currentUser.uid;
     goal.createdAt = Firebase.firestore.FieldValue.serverTimestamp();
+    goal.name = Global.name;
     Firebase.firestore()
       .collection("goalUsers")
       .add(goal)

@@ -7,26 +7,19 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Firebase } from "../utils/Firebase";
-
-
-class EditStudiesUser extends Component {
-  // Cette fonction permet de naviguer de cet écran à un autre en fonction du paramtètre donné
-  // Quand elle sera appelée
-  //const pressHandler = () => {
-  //navigation.goBack();
-  //navigation.push('Accueil');
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { Firebase } from "../../utils/Firebase";
+class EditOffre extends Component {
 
   constructor(props) {
     super();
     this.state = {
       key: props.navigation.state.params.key,
       domaine: props.navigation.state.params.domaine,
-      level: props.navigation.state.params.level,
-      name: props.navigation.state.params.name,
-      school: props.navigation.state.params.school,
-      date: props.navigation.state.params.date,
+      wantedJob: props.navigation.state.params.wantedJob,
+      availability: props.navigation.state.params.availability,
+      workingTime: props.navigation.state.params.workingTime,
+      description: props.navigation.state.params.description,
       AuthId: props.navigation.state.params.AuthId,
       isLoading: true,
     };
@@ -42,15 +35,15 @@ class EditStudiesUser extends Component {
     this.setState({ isLoading: true });
 
     const UpdateDBRef = Firebase.firestore()
-      .collection("studiesUsers")
+      .collection("goalUsers")
       .doc(this.state.key);
 
     UpdateDBRef.set({
       domaine: this.state.domaine,
-      level: this.state.level,
-      name: this.state.name,
-      school: this.state.school,
-      date: this.state.date,
+      wantedJob: this.state.wantedJob,
+      availability: this.state.availability,
+      workingTime: this.state.workingTime,
+      description: this.state.description,
       AuthId: this.state.AuthId,
     })
       .then((docRef) => {
@@ -69,7 +62,7 @@ class EditStudiesUser extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <KeyboardAwareScrollView>
-          <Text style={styles.aindia}>J'édite Mon Parcours</Text>
+          <Text style={styles.aindia}>J'édite Mon Objectif</Text>
 
           <TextInput
             style={styles.input}
@@ -80,30 +73,38 @@ class EditStudiesUser extends Component {
 
           <TextInput
             style={styles.input}
-            placeholder="Niveau"
-            value={this.state.level}
-            onChangeText={(value) => this.inputValueUpdate(value, "level")}
+            placeholder="wantedJob"
+            value={this.state.wantedJob}
+            onChangeText={(value) => this.inputValueUpdate(value, "wantedJob")}
           />
 
           <TextInput
             style={styles.input}
-            placeholder="name"
-            value={this.state.name}
-            onChangeText={(value) => this.inputValueUpdate(value, "name")}
+            placeholder="Disponibilité"
+            value={this.state.availability}
+            onChangeText={(value) =>
+              this.inputValueUpdate(value, "availability")
+            }
           />
 
           <TextInput
             style={styles.input}
-            placeholder="Établissement"
-            value={this.state.school}
-            onChangeText={(value) => this.inputValueUpdate(value, "school")}
+            placeholder="workingTime"
+            value={this.state.workingTime}
+            onChangeText={(value) =>
+              this.inputValueUpdate(value, "workingTime")
+            }
           />
 
           <TextInput
             style={styles.input}
-            placeholder="Année(s)"
-            value={this.state.date}
-            onChangeText={(value) => this.inputValueUpdate(value, "date")}
+            multiline={true}
+            numberOfLines={18}
+            placeholder="Description"
+            value={this.state.description}
+            onChangeText={(value) =>
+              this.inputValueUpdate(value, "description")
+            }
           />
 
           <TouchableOpacity
@@ -129,6 +130,7 @@ const styles = StyleSheet.create({
     //justifyContent: "center",
     alignItems: "center",
     //marginTop: Constants.statusBarHeight,
+    //backgroundColor: "red",
   },
   aindia: {
     textAlign: "center",
@@ -140,9 +142,9 @@ const styles = StyleSheet.create({
   },
   input: {
     borderBottomWidth: 1,
-    width: 288,
-    //height: 30,
-    marginTop: 30,
+    width: 278,
+    //height: 40,
+    marginTop: 20,
   },
   button: {
     flexDirection: "column",
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     width: 180,
     marginTop: 30,
     marginLeft: 60,
-    marginBottom: 20,
+    marginBottom: 0,
     borderRadius: 16,
   },
 
@@ -162,11 +164,11 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   errorInput: {
-    width: 293,
+    width: 278,
     color: "red",
     //marginLeft: 8,
     marginTop: 10,
   },
 });
 
-export default EditStudiesUser;
+export default EditOffre;

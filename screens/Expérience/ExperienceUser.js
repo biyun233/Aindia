@@ -7,7 +7,7 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
-import { Firebase } from "../utils/Firebase";
+import { Firebase } from "../../utils/Firebase";
 import { Entypo } from "@expo/vector-icons";
 
 //import CreateAboutUser from "./CreateAboutUser";

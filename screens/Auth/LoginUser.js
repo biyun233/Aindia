@@ -11,8 +11,8 @@ import Constants from "expo-constants";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Firebase } from "../utils/Firebase";
-import { auth } from "../utils/GoogleAuth";
+import { Firebase } from "../../utils/Firebase";
+import { auth } from "../../utils/GoogleAuth";
 
 
 

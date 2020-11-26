@@ -6,10 +6,10 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import ProfilUser from './ProfilUser';
-import UserStudies from "./UserStudies";
-import ExperienceUser from "./ExperienceUser";
-import GoalUser from "./GoalUser";
+import ProfilUser from '../Profil/ProfilUser';
+import UserStudies from "../Studies/UserStudies";
+import ExperienceUser from "../Expérience/ExperienceUser";
+import GoalUser from "../Goal/GoalUser";
 
 class ProfilScreen extends Component {
   render() {

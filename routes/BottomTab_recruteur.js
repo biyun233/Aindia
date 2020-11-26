@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Fontisto } from '@expo/vector-icons'; 
 import { MaterialIcons } from '@expo/vector-icons'; 
-import ProfilStack from './ProfilStack';
+import ProfilRecruStack from './ProfilRecruStack';
 import RecruteurStack from './RecruteurStack';
 import MessageStack from './MessageStack';
 import PublierStack from './PublierStack';
@@ -41,10 +41,10 @@ const BottomTabNavigator = createBottomTabNavigator({
     },
 
     MonProfil: {
-        screen: ProfilStack,
+        screen: ProfilRecruStack,
         navigationOptions: {
             headerShown: false,
-            tabBarLabel:"Mon Profil",
+            tabBarLabel:"Mon Compte",
             tabBarIcon: ({ tintColor }) => (
                 <Fontisto name="person" size={24} color={tintColor} />
               )

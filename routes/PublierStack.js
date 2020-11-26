@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
-import Publier_offre from '../screens/Publier_offre';
+import Publier_offre from '../screens/Offres/Publier_offre';
 
 const screens = {
     Publier: {

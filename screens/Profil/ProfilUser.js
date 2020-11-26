@@ -8,60 +8,13 @@ import {
 } from "react-native";
 
 import { Title } from "react-native-paper";
-import { Firebase } from "../utils/Firebase";
-import Global from '../utils/Global';
+import Global from '../../utils/Global';
 
 class ProfilUser extends Component {
 
   constructor(props) {
     super();
-    this.userInfos = Firebase.firestore().collection("UsersInfos").where("AuthId", "==", Firebase.auth().currentUser.uid);
-    this.state = {
-      isLoading: true,
-      userData: [],
-      
-    };
-  }
-
-  componentDidMount() {
-    this.unsubscribe = this.userInfos.onSnapshot(this.getCollection); 
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
-  getCollection = (querySnapshot) => {
-    const userData = [];
-    querySnapshot.forEach((res) => {
-      const {
-        firstname,
-        lastname,
-        status,
-        phone,
-        homeCity,
-        postalCode,
-        address,
-        country,
-        AuthId,
-      } = res.data();
-
-        userData.push({
-          key: res.id,
-          res,
-          firstname,
-          lastname,
-          status,
-          phone,
-          homeCity,
-          postalCode,
-          address,
-          country,
-          AuthId,
-        });
-    });
-
-    this.setState({ userData, isLoading: false });
+    
   }
 
   render() {

@@ -39,7 +39,7 @@ export default class Filtrer extends Component  {
                 else if(prev[i].select == "false"){
                     prev[i].select = "true";
                     for (let j = 0; j < prev.length; j++) {
-                        if (prev[j] !== item ) {
+                        if (j != i ) {
                             prev[j].select = "false";
                         }
                     }
@@ -107,10 +107,10 @@ export default class Filtrer extends Component  {
                                         )}
                                         />
                                 
-                                <Text style={styles.title}>Localisation</Text>
+                                <Text style={styles.title}>Ville</Text>
                                 <TextInput style={styles.input} value={this.state.location} onChangeText={this.updateLocation}/>
                                 <Button 
-                                    title='Appliquer' 
+                                    title='Filtrer' 
                                     buttonStyle={styles.button} 
                                     titleStyle={styles.appliquer} 
                                     onPress={this.onSubmit}

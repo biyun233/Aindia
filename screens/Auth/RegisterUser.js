@@ -3,7 +3,7 @@ import Constants from 'expo-constants';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { Firebase } from '../utils/Firebase';
+import { Firebase } from '../../utils/Firebase';
 
 
 // Validation des champs du formulaire d'inscription de l'Utilisateur 

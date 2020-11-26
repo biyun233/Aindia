@@ -3,10 +3,10 @@ import {SafeAreaView, View, Text, StyleSheet, TextInput, StatusBar, FlatList } f
 import { Button } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Formik } from 'formik';
-import { Firebase } from "../utils/Firebase";
-import ProfilUser from './ProfilUser';
-import FiltreItem from '../components/FiltreItem';
-import Global from '../utils/Global';
+import { Firebase } from "../../utils/Firebase";
+import ProfilUser from '../Profil/ProfilUser';
+import FiltreItem from '../../components/FiltreItem';
+import Global from '../../utils/Global';
 
 export default function Publer_offre({ navigation }) {
 
@@ -15,9 +15,6 @@ export default function Publer_offre({ navigation }) {
     const year = new Date().getFullYear();
     var time = date + '/' + month + '/' + year;
 
-
-    const [study, setStudy] = useState('');
-    const [exp, setExp] = useState('');
     const [etude, setEtude] = useState([
         {text: 'Peu importe', key:'1', select: 'false', id: 'etude'},
         {text: '- de bac +3', key:'2', select: 'false', id: 'etude'},
@@ -33,6 +30,7 @@ export default function Publer_offre({ navigation }) {
         {text: 'plus de 5 ans', key:'5', select: 'false', id: 'experience'},
     ]);
  
+
     function addOffre(offre) {
         offre.key = Math.random().toString();
         offre.AuthId = Firebase.auth().currentUser.uid; 
@@ -40,7 +38,10 @@ export default function Publer_offre({ navigation }) {
         Firebase.firestore()
         .collection('OfferDetails')
         .add(offre)
-        .then(res => alert("L'Offre a été bien crée!"))
+        .then(res => {
+            alert("L'Offre a été bien crée!");
+            console.log("Document written with ID: ", res.id);
+        })
         .catch((error) => console.log(error));
     }
 
@@ -60,8 +61,9 @@ export default function Publer_offre({ navigation }) {
                 }
                 else if(prev[i].select == "false"){
                     prev[i].select = "true";
+                    console.log(prev[i].text);
                     for (let j = 0; j < prev.length; j++) {
-                        if (prev[j] !== item ) {
+                        if (j != i) {
                             prev[j].select = "false";
                         }
                     }
@@ -75,7 +77,6 @@ export default function Publer_offre({ navigation }) {
         switch(item.id){
             case 'etude': 
                 handle(item, etude, setEtude);
-                
                 break;
             case 'experience': 
                 handle(item, experience, setExperience);
@@ -96,14 +97,14 @@ export default function Publer_offre({ navigation }) {
             onSubmit={(values, actions) => {
                 for (let i = 0; i < etude.length; i++) {
                     if(etude[i].select == "true"){
-                        setStudy(etude[i].text);
+                        console.log(etude[i].text);
+                        values.étude = etude[i].text;
                     }
                     if(experience[i].select == "true"){
-                        setExp(experience[i].text);
+                        console.log(experience[i].text);
+                        values.expérience = experience[i].text;
                     }
                 }
-                values.expérience = exp;
-                values.étude = study;
                 addOffre(values);
                 actions.resetForm();
                 reset(etude, setEtude);

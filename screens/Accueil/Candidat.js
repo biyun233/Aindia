@@ -1,13 +1,12 @@
 import React, { Component, useState, useEffect } from 'react';
 import { View, StatusBar, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView, SafeAreaView } from "react-native";
 import { Button } from 'react-native-elements';
-import Card from '../components/Card';
-import { Firebase } from "../utils/Firebase";
-import firebase from 'firebase';
+import Card from '../../components/Card';
+import { Firebase } from "../../utils/Firebase";
 import _ from 'lodash';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 import AsyncStorage from '@react-native-community/async-storage';
-import Global from '../utils/Global';
+import Global from '../../utils/Global';
 class Candidat extends Component { 
     constructor(props) {
         super(props);
@@ -75,6 +74,7 @@ class Candidat extends Component {
         this.setState({ user:userInfo });
         Global.name = userInfo[0].firstname + ' ' + userInfo[0].lastname;
         Global.user = userInfo;
+        console.log(Global.user);
     }
    
    _renderItem = ({item, index}) => {
@@ -154,7 +154,7 @@ class Candidat extends Component {
                 <ScrollView>
                 <View style={styles.row}>
                     <Button 
-                    title='Init' 
+                    title='Effacer' 
                     buttonStyle={styles.button} 
                     titleStyle={styles.filtrer} 
                     onPress={() => {this.setState({dataSearch: this.state.offerList})}}
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
         borderColor: "#254151",
         backgroundColor: "white",
         height: 38,
-        width: 80,
+        width: 90,
         marginTop: 20,
         
       },

@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   StyleSheet,
@@ -10,33 +11,37 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Firebase } from "../utils/Firebase";
+import { Firebase } from "../../utils/Firebase";
 
 
-// Validation des champs du formulaire d'inscription de l'Utilisateur
+// Validation des champs du formulaire 
 const reviewSchema = Yup.object({
-  domaine: Yup.string().required("Renseigner un Nom est Obligatoire"),
-  level: Yup.string().required("Renseigner un Prénom est Obligatoire"),
-  name: Yup.string().required("Renseigner un Statut est Obligatoire"),
-  //school: Yup.string().min(1).max(50),
-  //date: Yup.string().notRequired("Ce champ n'est pas obligatoire"),
+  domaine: Yup.string().required("Renseigner un Domaine est Obligatoire"),
+  responsability: Yup.string().required("Renseigner une Résponsabiilité est Obligatoire"),
+  organization: Yup.string().required("L'indication de la durée est Obligatoire"),
+  duration: Yup.string().required("Renseigner l'organisme d'accueil est Obligatoire"),
+  //description: Yup.string().required("La Description n'est Obligatoire"),
+  //date: Yup.string().required("La date n'est pas obligatoire"),
 });
 
 // Renvoie l'écran contenant les formulaires
-const CreateStudiesUser = ({ navigation }) => {
+const CreateExperienceUser = ({ navigation }) => {
   // Cette fonction permet de naviguer de cet écran à un autre en fonction du paramtètre donné
   // Quand elle sera appelée
   //const pressHandler = () => {
   //navigation.goBack();
   //navigation.push('Accueil');
 
-  function addStudiesUser(studies) {
-    studies.AuthId = Firebase.auth().currentUser.uid;
-    studies.createdAt = Firebase.firestore.FieldValue.serverTimestamp();
+  function addExperienceUser(experience) {
+    experience.AuthId = Firebase.auth().currentUser.uid;
+    experience.createdAt = Firebase.firestore.FieldValue.serverTimestamp();
     Firebase.firestore()
-      .collection("studiesUsers")
-      .add(studies)
-      .then((res) => alert("Votre Parcours a bien été créé !"))
+      .collection("experienceUsers")
+      .add(experience)
+      .then((res) => {
+        alert("Votre Expèrience a bien été créé !");
+        this.props.navigation.navigate("ProfilScreen");
+      })
       .catch((error) => console.log(error));
   }
 
@@ -45,26 +50,27 @@ const CreateStudiesUser = ({ navigation }) => {
       initialValues={{
         AuthId: "",
         domaine: "",
-        level: "",
-        name: "",
-        school: "",
+        responsability: "",
+        organization: "",
+        duration: "",
+        description: "",
         date: "",
       }}
       validationSchema={reviewSchema}
       onSubmit={(values, actions) => {
-        addStudiesUser(values); // On enregistre les Données dans la Base De Données
+        addExperienceUser(values); // On enregistre les Données dans la Base De Données
 
-        navigation.navigate("ProfilUser");
+        navigation.navigate("ProfilScreen");
       }}
     >
       {(props) => (
         <SafeAreaView style={styles.container}>
           <KeyboardAwareScrollView>
-            <Text style={styles.aindia}>Je Crée Mon Parcours</Text>
+            <Text style={styles.aindia}>Je Crée Mon Expérience</Text>
 
             <TextInput
               style={styles.input}
-              placeholder="Domaine (ex: Informaticien, ...)"
+              placeholder="Domaine (ex: Boulangérie, ...)"
               onChangeText={props.handleChange("domaine")}
               value={props.values.domaine}
               onBlur={props.handleBlur("domaine")}
@@ -75,40 +81,53 @@ const CreateStudiesUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Niveau (ex: Licence 3, ...)"
-              onChangeText={props.handleChange("level")}
-              value={props.values.level}
-              onBlur={props.handleBlur("level")}
+              placeholder="Responsabilité (ex: Développeur Web, ...)"
+              onChangeText={props.handleChange("responsability")}
+              value={props.values.responsability}
+              onBlur={props.handleBlur("responsability")}
             />
             <Text style={styles.errorInput}>
-              {props.touched.level && props.errors.level}
+              {props.touched.responsability && props.errors.responsability}
             </Text>
 
             <TextInput
               style={styles.input}
-              placeholder="Intitulé (ex: Web Informatique et Connaissances)"
-              onChangeText={props.handleChange("name")}
-              value={props.values.name}
-              onBlur={props.handleBlur("name")}
+              placeholder="Organisation (ex: Google New York, ...)"
+              onChangeText={props.handleChange("organization")}
+              value={props.values.organization}
+              onBlur={props.handleBlur("organization")}
             />
             <Text style={styles.errorInput}>
-              {props.touched.name && props.errors.name}
+              {props.touched.organization && props.errors.organization}
             </Text>
 
             <TextInput
               style={styles.input}
-              placeholder="Etablissement (ex: Université Grenoble Alpes)"
-              onChangeText={props.handleChange("school")}
-              value={props.values.school}
-              onBlur={props.handleBlur("school")}
+              placeholder="Durée (ex: 6 mois, ...)"
+              onChangeText={props.handleChange("duration")}
+              value={props.values.duration}
+              onBlur={props.handleBlur("duration")}
             />
             <Text style={styles.errorInput}>
-              {props.touched.school && props.errors.school}
+              {props.touched.duration && props.errors.duration}
+            </Text>
+
+            <TextInput
+              style={styles.description}
+              multiline={true}
+              numberOfLines={15}
+              placeholder="Description (ex: j'ai developpé une ..., ...)"
+              onChangeText={props.handleChange("description")}
+              value={props.values.description}
+              onBlur={props.handleBlur("description")}
+            />
+            <Text style={styles.errorInput}>
+              {props.touched.description && props.errors.description}
             </Text>
 
             <TextInput
               style={styles.input}
-              placeholder="Année(s) (ex: 2020/2021)"
+              placeholder="Année(s) (ex: 2020, ...)"
               onChangeText={props.handleChange("date")}
               value={props.values.date}
               onBlur={props.handleBlur("date")}
@@ -146,15 +165,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontSize: 30,
-    marginTop: 40,
-    marginBottom: 30,
+    marginTop: 30,
+    marginBottom: 20,
     color: "#254151",
   },
   input: {
     borderBottomWidth: 1,
-    width: 288,
-    //height: 30,
-    marginTop: 30,
+    width: 293,
+    //height: 20,
+    marginTop: 10,
+  },
+  description: {
+    borderBottomWidth: 1,
+    width: 293,
+    //height: 20,
+    marginTop: 10,
+    padding: 5,
   },
   button: {
     flexDirection: "column",
@@ -174,11 +200,10 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   errorInput: {
-    width: 293,
+     width: 293,
     color: "red",
-    //marginLeft: 8,
     marginTop: 10,
   },
 });
 
-export default CreateStudiesUser;
+export default CreateExperienceUser;

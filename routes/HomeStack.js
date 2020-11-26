@@ -1,25 +1,25 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import Filtrer from '../screens/Filtrer';
-import RegisterUser from '../screens/RegisterUser';
-import Login from '../screens/LoginUser';
+import RegisterUser from '../screens/Auth/RegisterUser';
+import Login from '../screens/Auth/LoginUser';
 import BottomTab_candidat from './BottomTab_candidat';
 import BottomTab_recruteur from './BottomTab_recruteur';
-import OffreDetails from '../screens/OffreDetails';
-import CreateProfilUser from '../screens/CreateProfilUser';
+import OffreDetails from '../screens/Offres/OffreDetails';
+import CreateProfilUser from '../screens/Profil/CreateProfilUser';
 
-import StudiesUserDetails from '../screens/StudiesUserDetails';
-import StudiesUserEdit from '../screens/StudiesUserEdit';
+import StudiesUserDetails from '../screens/Studies/StudiesUserDetails';
+import StudiesUserEdit from '../screens/Studies/StudiesUserEdit';
 import UpdateUser from '../screens/UpdateUser';
-import ExperienceUserEdit from "../screens/ExperienceUserEdit";
+import ExperienceUserEdit from "../screens/Expérience/ExperienceUserEdit";
 import CreateAboutUser from '../screens/CreateAboutUser';
 import EditAboutUser from '../screens/EditAboutUser';
-import CreateStudiesUser from '../screens/CreateStudiesUser';
-import EditStudiesUser from "../screens/EditStudiesUser";
-import CreateExperienceUser from "../screens/CreateExperienceUser";
-import EditExperienceUser from '../screens/EditExperienceUser';
-import CreateGoalUser from "../screens/CreateGoalUser";
-import EditGoalUser from '../screens/EditGoalUser';
+import CreateStudiesUser from '../screens/Studies/CreateStudiesUser';
+import EditStudiesUser from "../screens/Studies/EditStudiesUser";
+import CreateExperienceUser from "../screens/Expérience/CreateExperienceUser";
+import EditExperienceUser from '../screens/Expérience/EditExperienceUser';
+import CreateGoalUser from "../screens/Goal/CreateGoalUser";
+import EditGoalUser from '../screens/Goal/EditGoalUser';
 
 const screens = {
     Login: {

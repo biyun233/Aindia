@@ -1,10 +1,10 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import EditUserProfil from '../screens/EditUserProfil';
-import ProfilScreen from '../screens/ProfilScreen';
-import ProfilUser from '../screens/ProfilUser';
-import UserStudies from "../screens/UserStudies";
-import ExperienceUser from '../screens/ExperienceUser';
-import GoalUser from '../screens/GoalUser';
+import EditUserProfil from '../screens/Profil/EditUserProfil';
+import ProfilScreen from '../screens/Profil/ProfilScreen';
+import ProfilUser from '../screens/Profil/ProfilUser';
+import UserStudies from "../screens/Studies/UserStudies";
+import ExperienceUser from '../screens/Expérience/ExperienceUser';
+import GoalUser from '../screens/Goal/GoalUser';
 const screens = {
   ProfilScreen: {
     screen: ProfilScreen,

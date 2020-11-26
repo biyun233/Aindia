@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
-import { MaterialIcons } from '@expo/vector-icons'; 
+
 export default function Card({item}) {
     const poste = 'Poste: ' + item.wantedJob;
     const expérience = 'Expérience: ' + item.workingTime;
@@ -9,6 +9,7 @@ export default function Card({item}) {
     return (
         <View style={styles.card}>
             <View style={styles.line}>
+                <Text style={styles.cardContent}>{item.name}</Text>
                 <Text style={styles.cardContent}>{item.domaine}</Text>
             </View>
             <View style={styles.infoline}>
@@ -41,9 +42,9 @@ const styles = StyleSheet.create({
     },
     line: {
         flexDirection: "row",
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         alignItems: "flex-start",
-        marginHorizontal: 8,
+        marginHorizontal: 18,
     },
     line_2: {
         flexDirection: "row",

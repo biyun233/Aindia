@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet } from "react-native";
-import Candidat from './screens/Candidat';
+import Candidat from './screens/Accueil/Candidat';
 import * as Font from 'expo-font';
-import RegisterUser from './screens/RegisterUser';
-import Login from './screens/LoginUser';
+import RegisterUser from './screens/Auth/RegisterUser';
+import Login from './screens/Auth/LoginUser';
 import Filtrer from './screens/Filtrer';
 import Navigator from './routes/HomeStack';
 

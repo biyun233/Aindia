@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {SafeAreaView, View, StyleSheet, TextInput, Text, StatusBar, TouchableOpacity} from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { prefix } from '../utils/Constant';
+import { AntDesign } from '@expo/vector-icons'; 
 
 
 export default class Header_recruteur extends Component {
@@ -30,8 +31,8 @@ export default class Header_recruteur extends Component {
                 </View>
                 <TouchableOpacity onPress = {() => this.props.navigation.navigate('TabRoute_candidat')}>
                     <View style={styles.versionContainer}>
-                        <Text style={styles.version}>Recruteur</Text>
-                        <Ionicons style={styles.downIcon} name={`${prefix}-arrow-down`}/>
+                        <AntDesign style={styles.Icon} name="arrowright" />
+                        <Text style={styles.version}>Candidat</Text>
                     </View>
                 </TouchableOpacity>
                 
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: "#254151"
     },
-    downIcon: {
+    Icon: {
         fontSize: 30,
         color: "white"
     },
