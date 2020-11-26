@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   StyleSheet,
@@ -12,7 +11,9 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Firebase } from "../../utils/Firebase";
-import Global from '../../utils/Global';
+
+import Global from "../../utils/Global";
+
 
 // Validation des champs du formulaire
 const reviewSchema = Yup.object({
@@ -34,11 +35,14 @@ const CreateGoalUser = ({ navigation }) => {
   function addGoalUser(goal) {
     goal.AuthId = Firebase.auth().currentUser.uid;
     goal.createdAt = Firebase.firestore.FieldValue.serverTimestamp();
-    goal.name = Global.name;
+    goal.userName = Global.name; 
     Firebase.firestore()
       .collection("goalUsers")
       .add(goal)
-      .then((res) => alert("Votre Objectif a bien été créé !"))
+      .then((res) => {
+        alert("Votre Objectif a bien été créé !");
+        navigation.navigate("ProfilScreen");
+      })
       .catch((error) => console.log(error));
   }
 
@@ -135,7 +139,6 @@ const CreateGoalUser = ({ navigation }) => {
     </Formik>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {

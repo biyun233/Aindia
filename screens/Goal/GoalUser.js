@@ -10,12 +10,17 @@ import {
 import { Firebase } from "../../utils/Firebase";
 import { Entypo } from "@expo/vector-icons";
 
+import Global from "../../utils/Global";
+
 //import CreateAboutUser from "./CreateAboutUser";
 
 class GoalUser extends Component {
   constructor(props) {
     super();
     this.userInfos = Firebase.firestore()
+      .collection("UsersInfos")
+      .where("AuthId", "==", Firebase.auth().currentUser.uid);
+    this.userGoalInfos = Firebase.firestore()
       .collection("goalUsers")
       .where("AuthId", "==", Firebase.auth().currentUser.uid);
     this.state = {
@@ -25,7 +30,8 @@ class GoalUser extends Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = this.userInfos.onSnapshot(this.getCollection);
+    this.unsubscribe = this.userGoalInfos.onSnapshot(this.getCollection);
+    this.unsubscribe_1 = this.userInfos.onSnapshot(this.getCollection_1);
   }
 
   componentWillUnmount() {
@@ -59,6 +65,17 @@ class GoalUser extends Component {
     this.setState({ userData, isLoading: false });
   };
 
+  getCollection_1 = (querySnapshot) => {
+    const userInfos = [];
+    querySnapshot.forEach((res) => {
+      userInfos.push(res.data());
+    });
+
+    this.setState({ userInfos: userInfos });
+    Global.name = userInfos[0].firstname + " " + userInfos[0].lastname;
+    Global.user = userInfos;
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -68,25 +85,42 @@ class GoalUser extends Component {
             renderItem={({ item }) => (
               <View>
                 <View style={styles.row}>
-                  <Text style={styles.details}>Mon Objectif : </Text>
+                  <Text style={styles.goal}>Mon Objectif </Text>
                   <TouchableOpacity>
-                    <Entypo
-                      style={styles.iconStudies}
-                      name="edit"
-                      size={17}
-                      color="black"
-                      onPress={() =>
-                        this.props.navigation.navigate("EditGoalUser", item)
-                      }
-                    />
+                    <Text style={styles.iconStudies}></Text>
                   </TouchableOpacity>
                 </View>
-                <View>
-                  <Text style={styles.item}>Domaine : {item.domaine}</Text>
-                  <Text style={styles.item}>Poste Recherché : {item.wantedJob}</Text>
-                  <Text style={styles.item}>Disponibilité : {item.availability}</Text>
-                  <Text style={styles.item}>Durée De Travail Souhaitée :{item.workingTime}</Text>
-                  <Text style={styles.item}>Description : {item.description}</Text>
+                <View style={styles.separator}>
+                  <View style={styles.row}>
+                    <View style={styles.details}>
+                      <Text style={styles.item}>Domaine : {item.domaine}</Text>
+                      <Text style={styles.item}>
+                        Poste Recherché : {item.wantedJob}
+                      </Text>
+                      <Text style={styles.item}>
+                        Disponibilité : {item.availability}
+                      </Text>
+                      <Text style={styles.item}>
+                        Durée De Travail Souhaitée : {item.workingTime}
+                      </Text>
+                      <Text style={styles.item}>
+                        Description : {item.description}
+                      </Text>
+                    </View>
+                    <View style={styles.iconStudies}>
+                      <TouchableOpacity>
+                        <Entypo
+                          style={styles.iconStudies}
+                          name="edit"
+                          size={17}
+                          color="black"
+                          onPress={() =>
+                            this.props.navigation.navigate("EditGoalUser", item)
+                          }
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
                 </View>
               </View>
             )}
@@ -117,6 +151,15 @@ const styles = StyleSheet.create({
   addAbout: {
     fontWeight: "bold",
   },
+  goal: {
+    //flexDirection: "row",
+    marginTop: 2,
+    marginLeft: 4,
+    width: "80%",
+    marginBottom: 2,
+    fontWeight: "bold",
+    alignItems: "flex-start",
+  },
   details: {
     //flexDirection: "row",
     marginTop: 3,
@@ -141,6 +184,7 @@ const styles = StyleSheet.create({
   },
   iconStudies: {
     marginTop: 3,
+    fontWeight: "bold",
     //marginLeft: "90%",
   },
   studiesContent: {

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet } from "react-native";
 
 export default function Card({item}) {
     const poste = 'Poste: ' + item.wantedJob;
@@ -9,11 +9,13 @@ export default function Card({item}) {
     return (
         <View style={styles.card}>
             <View style={styles.line}>
-                <Text style={styles.cardContent}>{item.name}</Text>
+                <Text style={styles.cardContent}>{item.userName}</Text>
+            </View>
+            <View style={styles.line_2}>
                 <Text style={styles.cardContent}>{item.domaine}</Text>
             </View>
             <View style={styles.infoline}>
-                <Text style={styles.item}>{poste}</Text>
+                <Text style={styles.item}>{poste}</Text> 
             </View>
             <View style={styles.infoline}>
                 <Text style={styles.item}>{expérience}</Text>
@@ -56,7 +58,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
-        marginVertical: 3,  
     },
     icon: {
         flexDirection: "row",

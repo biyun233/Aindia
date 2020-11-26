@@ -1,96 +1,124 @@
-import React from 'react';
-import Constants from 'expo-constants';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import {Formik} from 'formik';
-import * as Yup from 'yup';
-import { Firebase } from '../../utils/Firebase';
+import React from "react";
+import Constants from "expo-constants";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { Firebase } from "../../utils/Firebase";
 
-
-// Validation des champs du formulaire d'inscription de l'Utilisateur 
+// Validation des champs du formulaire d'inscription de l'Utilisateur
 const reviewSchema = Yup.object({
-    email: Yup.string().email('Cette Adresse Email est Invalide !').required("L'adresse mail est Obligatoire !"),
-    password: Yup.string().required('Le Mot de Passe est Obligatoire !')
-    .min(5, 'Le nombre de caractères doit être égal ou supérieur à 5 !')
-    .max(10, 'Le nombre de caractère ne doit pas dépasser 10 !'),
-    confirmPassword: Yup.string().required('La Confirmation du Mot de Passe est Obligatoire ! ')
-    .test('Les mots de passes entrer correspondent', 'Les mots de passes doivent correspondre !', function(value) {
+  email: Yup.string()
+    .email("Cette Adresse Email est Invalide !")
+    .required("L'adresse mail est Obligatoire !"),
+  password: Yup.string()
+    .required("Le Mot de Passe est Obligatoire !")
+    .min(5, "Le nombre de caractères doit être égal ou supérieur à 5 !")
+    .max(10, "Le nombre de caractère ne doit pas dépasser 10 !"),
+  confirmPassword: Yup.string()
+    .required("La Confirmation du Mot de Passe est Obligatoire ! ")
+    .test(
+      "Les mots de passes entrer correspondent",
+      "Les mots de passes doivent correspondre !",
+      function (value) {
         return this.parent.password === value;
-    })
+      }
+    ),
 });
-
-
 
 // Renvoie l'écran contenant les formulaires
 const RegisterUser = ({ navigation }) => {
+  // Cette fonction permet de naviguer de cet écran à un autre en fonction du paramtètre donné
+  // Quand elle sera appelée
+  const pressHandler = () => {
+    navigation.goBack();
+    //navigation.push('Accueil');
+  };
 
-    // Cette fonction permet de naviguer de cet écran à un autre en fonction du paramtètre donné 
-    // Quand elle sera appelée 
-    const pressHandler = () => {
-        navigation.goBack();
-        //navigation.push('Accueil');
-    };
+  // AddUser : Fonction permettant d'initialiser les informations personnelles de l'Utilisateur
+ 
+  // Fin de AddUser
 
-    return (
-        <Formik 
-            initialValues = {{ email: '', password: '', confirmPassword: '' }}
-            validationSchema={reviewSchema}
-            onSubmit= {(values, actions) => {
-                // Création du compte de l'utilisateur 
-                //const {email, password} = values;
-                Firebase
-                .auth()
-                .createUserWithEmailAndPassword(values.email, values.password)
-                .then( () => navigation.navigate('CreateProfilUser'))
-                .catch(error => alert(error), actions.resetForm());
+  return (
+    <Formik
+      initialValues={{ email: "", password: "", confirmPassword: "" }}
+      validationSchema={reviewSchema}
+      onSubmit={(values, actions) => {
+        // Création du compte de l'utilisateur
+        //const {email, password} = values;
+        Firebase.auth()
+          .createUserWithEmailAndPassword(values.email, values.password)
+          .then(() => {
+            Firebase.auth()
+              .signInWithEmailAndPassword(values.email, values.password)
+              .then(() => {
+                navigation.navigate("CreateProfilUser");
+              })
+              .catch((error) => alert("Connexion Impossible !"));
+          })
+          .catch((error) => alert(error), actions.resetForm());
+      }}
+    >
+      {(props) => (
+        <View style={styles.container}>
+          <Text style={styles.title}>Aindia</Text>
 
-            }} 
-        >
-            {(props) => (
-                <View style={styles.container}>
-                    <Text style={styles.title}>Aindia</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Adresse Email"
+            keyboardType={"email-address"}
+            onChangeText={props.handleChange("email")}
+            value={props.values.email}
+            onBlur={props.handleBlur("email")}
+          />
+          <Text style={styles.errorInput}>
+            {props.touched.email && props.errors.email}
+          </Text>
 
-                    <TextInput 
-                        style={styles.input} 
-                        placeholder="Adresse Email" 
-                        keyboardType={'email-address'}
-                        onChangeText={props.handleChange('email')}
-                        value={props.values.email}
-                        onBlur={props.handleBlur('email')}
-                    />
-                    <Text style={styles.errorInput}>{ props.touched.email && props.errors.email }</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Mot de Passe"
+            secureTextEntry
+            onChangeText={props.handleChange("password")}
+            value={props.values.password}
+            onBlur={props.handleBlur("password")}
+          />
+          <Text style={styles.errorInput}>
+            {props.touched.password && props.errors.password}
+          </Text>
 
-                    <TextInput 
-                        style={styles.input} 
-                        placeholder="Mot de Passe"
-                        secureTextEntry
-                        onChangeText={props.handleChange('password')}
-                        value={props.values.password}
-                        onBlur={props.handleBlur('password')}
-                    />
-                    <Text style={styles.errorInput}>{ props.touched.password && props.errors.password }</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Confirmation du Mot de Passe"
+            secureTextEntry
+            onChangeText={props.handleChange("confirmPassword")}
+            value={props.values.confirmPassword}
+            onBlur={props.handleBlur("confirmPassword")}
+          />
+          <Text style={styles.errorInput}>
+            {props.touched.confirmPassword && props.errors.confirmPassword}
+          </Text>
 
-                    <TextInput 
-                        style={styles.input} 
-                        placeholder="Confirmation du Mot de Passe"
-                        secureTextEntry
-                        onChangeText={props.handleChange('confirmPassword')}
-                        value={props.values.confirmPassword}
-                        onBlur={props.handleBlur('confirmPassword')}
-                    />
-                    <Text style={styles.errorInput}>{ props.touched.confirmPassword && props.errors.confirmPassword}</Text>
-                    
-                    <TouchableOpacity style={styles.buttonStyle} onPress={props.handleSubmit}>
-                        <Text style={styles.text}>Créer Mon Compte</Text>
-                    </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={props.handleSubmit}
+          >
+            <Text style={styles.text}>Créer Mon Compte</Text>
+          </TouchableOpacity>
 
-                    <Text style={styles.textLogin} onPress={pressHandler}>Déjà inscrit(e) ? Se Connecter</Text>
-
-                </View>
-            )}
-
-        </Formik>
-    );
-}
+          <Text style={styles.textLogin} onPress={pressHandler}>
+            Déjà inscrit(e) ? Se Connecter
+          </Text>
+        </View>
+      )}
+    </Formik>
+  );
+};
 
 // Définition des Styles appliqués sur l'interface RegisterUser
 const styles = StyleSheet.create({
@@ -142,6 +170,5 @@ const styles = StyleSheet.create({
     marginTop: 28,
   },
 });
-
 
 export default RegisterUser;

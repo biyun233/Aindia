@@ -38,7 +38,7 @@ const CreateProfilUser = ({ navigation }) => {
     .add(user)
     .then(res => {
       alert("Votre Profil a bien été créé !");
-      navigation.navigate("ProfilScreen");
+      navigation.navigate("CreateGoalUser");
     })
     .catch((error) => console.log(error));
 
@@ -62,7 +62,7 @@ const CreateProfilUser = ({ navigation }) => {
         // Création du compte de l'utilisateur
         //const {email, password} = values;
         addUser(values); // On enregistre les Données dans la Base De Données
-        navigation.navigate("ProfilUser");
+        // navigation.navigate("ProfilUser");
       }}
     >
       {(props) => (

@@ -12,10 +12,16 @@ import ExperienceUser from "../Expérience/ExperienceUser";
 import GoalUser from "../Goal/GoalUser";
 
 class ProfilScreen extends Component {
+  constructor(props){
+    super();
+    this.state = {
+      isLoading: true,
+    }; 
+  }
   render() {
     return (
       <ScrollView>
-        <View>
+        <View style={styles.container}>
           <ProfilUser navigation={this.props.navigation} />
           <GoalUser navigation={this.props.navigation} />
           <UserStudies navigation={this.props.navigation} />
@@ -28,10 +34,10 @@ class ProfilScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "column",
+    //flex: 1,
+    //flexDirection: "column",
     backgroundColor: "white",
-    marginTop: Constants.statusBarHeight,
+    //marginTop: Constants.statusBarHeight,
   },
   details: {
     marginBottom: 8,
