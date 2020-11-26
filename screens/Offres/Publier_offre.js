@@ -61,7 +61,6 @@ export default function Publer_offre({ navigation }) {
                 }
                 else if(prev[i].select == "false"){
                     prev[i].select = "true";
-                    console.log(prev[i].text);
                     for (let j = 0; j < prev.length; j++) {
                         if (j != i) {
                             prev[j].select = "false";
@@ -97,11 +96,9 @@ export default function Publer_offre({ navigation }) {
             onSubmit={(values, actions) => {
                 for (let i = 0; i < etude.length; i++) {
                     if(etude[i].select == "true"){
-                        console.log(etude[i].text);
                         values.étude = etude[i].text;
                     }
                     if(experience[i].select == "true"){
-                        console.log(experience[i].text);
                         values.expérience = experience[i].text;
                     }
                 }
@@ -175,7 +172,7 @@ export default function Publer_offre({ navigation }) {
                             value={props.values.tech} 
                             onChangeText={props.handleChange('tech')}/>
                         <Button 
-                            title='Appliquer' 
+                            title='valider' 
                             buttonStyle={styles.button} 
                             titleStyle={styles.appliquer} 
                             onPress={props.handleSubmit}

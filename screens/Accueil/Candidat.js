@@ -11,7 +11,7 @@ class Candidat extends Component {
     constructor(props) {
         super(props);
         this.OfferDetails = Firebase.firestore().collection("OfferDetails").orderBy('date', "desc");
-        this.user = Firebase.firestore().collection("UsersInfos").where("AuthId", "==", Firebase.auth().currentUser.uid); 
+        // this.user = Firebase.firestore().collection("UsersInfos").where("AuthId", "==", Firebase.auth().currentUser.uid); 
         this.state = {
             isLoading: true,
             offerList: [],
@@ -33,9 +33,6 @@ class Candidat extends Component {
             this.setState({expérience: experience});
             
              await AsyncStorage.clear();
-             console.log("études est : " + this.state.étude);
-             console.log("experience est : " + this.state.expérience);
-             console.log("location est : " + this.state.location);
              if(this.state.étude != null){
                 this.handleEtudes();
                 if(this.state.expérience != null){
@@ -51,10 +48,10 @@ class Candidat extends Component {
     }
     componentDidMount() {
         this.unsubscribe = this.OfferDetails.onSnapshot(this.getCollection); 
-        this.unsubscribe_1 = this.user.onSnapshot(this.getCollection_1); 
+        // this.unsubscribe_1 = this.user.onSnapshot(this.getCollection_1); 
     }
     componentWillUnmount() {
-        this.unsubscribe_1();
+        // this.unsubscribe_1();
         this.unsubscribe();
     }
     getCollection = (querySnapshot) => {
@@ -65,17 +62,17 @@ class Candidat extends Component {
     
         this.setState({ offerList, dataSearch: offerList, isLoading: false });
     }
-    getCollection_1 = (querySnapshot) => {
-        const userInfo = [];
-        querySnapshot.forEach((res) => {
-            userInfo.push(res.data());
-        });
+    // getCollection_1 = (querySnapshot) => {
+    //     const userInfo = [];
+    //     querySnapshot.forEach((res) => {
+    //         userInfo.push(res.data());
+    //     });
     
-        this.setState({ user:userInfo });
-        Global.name = userInfo[0].firstname + ' ' + userInfo[0].lastname;
-        Global.user = userInfo;
-        console.log(Global.user);
-    }
+    //     this.setState({ user:userInfo });
+    //     Global.name = userInfo[0].firstname + ' ' + userInfo[0].lastname;
+    //     Global.user = userInfo;
+    //     console.log(Global.user);
+    // }
    
    _renderItem = ({item, index}) => {
        return (
@@ -97,8 +94,6 @@ class Candidat extends Component {
         var data = this.state.dataSearch;
         var étude = this.state.étude;
         const niveau_étude = étude.toLowerCase();
-        console.log("niveau étude: " + niveau_étude);
-        console.log("Filtrer études!");
         if(étude !== 'Peu importe'){
             data = data.filter(item => 
                 item.étude.toLowerCase().includes(niveau_étude)
@@ -108,10 +103,8 @@ class Candidat extends Component {
     }
     handleExperience = () => {
         var data = this.state.dataSearch;
-        console.log("Filtrer expérience!");
         var expérience = this.state.expérience;
         const niveau_expérience = expérience.toLowerCase();
-        console.log("niveau expérience: " + niveau_expérience);
             data = data.filter(item => 
                 item.expérience.toLowerCase().match(niveau_expérience)
             );
@@ -120,11 +113,8 @@ class Candidat extends Component {
     }
     handleLocation = () => {
         var data = this.state.dataSearch;
-        console.log("location: " + this.state.location);
-        console.log("Filtrer Location!");
         var location = this.state.location;
         const niveau_location = location.toLowerCase();
-        console.log("niveau location: " + niveau_location);
         data = data.filter(item => 
                 item.location.toLowerCase().match(niveau_location)
         );

@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "flex-start",
         marginHorizontal: 18,
+        marginTop: 3
     },
     line_2: {
         flexDirection: "row",
@@ -59,30 +60,17 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "center",
     },
-    icon: {
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        alignItems: "center", 
-        marginHorizontal: 5, 
-        
-    },
     cardContent: {
         fontWeight: "bold",
         fontSize: 20,
         color: "#254151",
-    },
-    info: {
-        fontSize: 15,
-        color: "#254151",
-        marginHorizontal: 30,
-        marginStart:18
     },
     item: {
         padding: 5,
         borderWidth: 1,
         borderColor: "#254151",
         marginHorizontal: 15,
-        marginVertical: 5,
+        marginVertical: 2,
     },
 
 });

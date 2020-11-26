@@ -39,8 +39,6 @@ const LoginUser = ({ navigation}) => {
       initialValues={{ email: "", password: "" }}
       validationSchema={reviewSchema}
       onSubmit={(values, actions) => {
-        console.log(values.email, values.password);
-
         Firebase.auth()
           .signInWithEmailAndPassword(values.email, values.password)
           .then(() => navigation.navigate("TabRoute_candidat"))

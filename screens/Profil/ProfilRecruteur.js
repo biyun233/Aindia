@@ -25,12 +25,35 @@ class ProfilRecruteur extends Component {
     getCollection = (querySnapshot) => {
         const offres = [];
         querySnapshot.forEach((res) => {
-            offres.push(res.data());
-        });
+          const {
+            AuthId,
+            title,
+            nom, location, 
+            salaireMin, salaireMax,
+            expérience, étude,
+            date, recruteur,
+            poste, mission,
+            tech,
+          } = res.data();
     
+          offres.push({
+            key: res.id,
+            res,
+            title,
+            nom, location, 
+            salaireMin, salaireMax,
+            expérience, étude,
+            date, recruteur,
+            poste, mission,
+            tech,
+            AuthId,
+          });
+        });
+
         this.setState({ offres, isLoading: false });
       }
     _renderItem = ({item, index}) => {
+
         return (
          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditOffre', item)}>
              <CardMesOffres item={item} />

@@ -10,10 +10,6 @@ import CreateProfilUser from '../screens/Profil/CreateProfilUser';
 
 import StudiesUserDetails from '../screens/Studies/StudiesUserDetails';
 import StudiesUserEdit from '../screens/Studies/StudiesUserEdit';
-import UpdateUser from '../screens/UpdateUser';
-import ExperienceUserEdit from "../screens/Expérience/ExperienceUserEdit";
-import CreateAboutUser from '../screens/CreateAboutUser';
-import EditAboutUser from '../screens/EditAboutUser';
 import CreateStudiesUser from '../screens/Studies/CreateStudiesUser';
 import EditStudiesUser from "../screens/Studies/EditStudiesUser";
 import CreateExperienceUser from "../screens/Expérience/CreateExperienceUser";
@@ -95,30 +91,7 @@ const screens = {
           //headerStyle: {justifyContent: 'center',}
         },
     },
-    UpdateUser: {
-        screen: UpdateUser,
-        navigationOptions: {
-          //headerLeft: null,
-          title: "Mes Informations",
-          //headerStyle: {justifyContent: 'center',}
-        },
-    },
-    CreateAboutUser: {
-        screen: CreateAboutUser,
-        navigationOptions: {
-          //headerLeft: null,
-          title: "À Propos",
-          //headerStyle: {justifyContent: 'center',}
-        },
-    },
-    EditAboutUser: {
-        screen: EditAboutUser,
-        navigationOptions: {
-          //headerLeft: null,
-          title: "À Propos Édition",
-          //headerStyle: {justifyContent: 'center',}
-        },
-    },
+   
     CreateStudiesUser: {
         screen: CreateStudiesUser,
         navigationOptions: {
@@ -157,15 +130,6 @@ const screens = {
         navigationOptions: {
           //headerLeft: null,
           title: "Mes Expériences",
-          //header: null,
-          //headerStyle: {justifyContent: 'center',}
-        },
-    },
-    ExperienceUserEdit: {
-        screen: ExperienceUserEdit,
-        navigationOptions: {
-          //headerLeft: null,
-          title: "Édition Du Stage",
           //header: null,
           //headerStyle: {justifyContent: 'center',}
         },
