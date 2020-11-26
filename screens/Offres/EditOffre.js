@@ -79,7 +79,7 @@ class EditOffre extends Component {
     })
       .then((docRef) => {
         alert("Vos modifications ont bien été Sauvegarder ! ");
-        this.props.navigation.navigate("ProfilScreen");
+        this.props.navigation.navigate("ProfilRecruteur");
       })
       .catch((error) => {
         alert("Vos modifications n'ont pas été sauvegarder ! ");
