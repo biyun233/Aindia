@@ -11,7 +11,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Firebase } from "../../utils/Firebase";
-
+import Global from '../../utils/Global';
 
 
 
@@ -59,10 +59,10 @@ const CreateProfilUser = ({ navigation }) => {
       }}
       validationSchema={reviewSchema}
       onSubmit={(values, actions) => {
-        // Création du compte de l'utilisateur
-        //const {email, password} = values;
+        
         addUser(values); // On enregistre les Données dans la Base De Données
-        // navigation.navigate("ProfilUser");
+        Global.name = values.firstname + ' ' + values.lastname;
+        console.log(Global.name);
       }}
     >
       {(props) => (

@@ -46,6 +46,8 @@ const CreateGoalUser = ({ navigation }) => {
       .catch((error) => console.log(error));
   }
 
+  console.log(Global.name);
+
   return (
     <Formik
       initialValues={{
@@ -60,7 +62,7 @@ const CreateGoalUser = ({ navigation }) => {
       onSubmit={(values, actions) => {
         addGoalUser(values); // On enregistre les Données dans la Base De Données
 
-        navigation.navigate("ProfilUser");
+        
       }}
     >
       {(props) => (

@@ -32,7 +32,7 @@ export default class Recruteur extends Component {
       }
     _renderItem = ({item, index}) => {
         return (
-         <TouchableOpacity>
+         <TouchableOpacity onPress= { () => this.props.navigation.navigate("ProfilUserRecruiter", item) }>
              <CardCandidat item={item} />
          </TouchableOpacity>
         );
