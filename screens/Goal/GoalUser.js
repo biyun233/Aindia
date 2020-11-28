@@ -72,8 +72,7 @@ class GoalUser extends Component {
     });
 
     this.setState({ userInfos: userInfos });
-    Global.name = userInfos[0].firstname + " " + userInfos[0].lastname;
-    Global.user = userInfos;
+
   };
 
   render() {

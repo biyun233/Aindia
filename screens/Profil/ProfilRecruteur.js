@@ -2,10 +2,11 @@
 import React, { Component } from "react";
 import Constants from "expo-constants";
 import {
-    View, StatusBar, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView, SafeAreaView
+    View, StatusBar, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView, SafeAreaView,Alert
 } from "react-native";
 import CardMesOffres from '../../components/CardMesOffres';
 import { Firebase } from "../../utils/Firebase";
+import Swipeout from 'react-native-swipeout';
 
 class ProfilRecruteur extends Component {
     constructor(props) {
@@ -53,26 +54,52 @@ class ProfilRecruteur extends Component {
         this.setState({ offres, isLoading: false });
       }
     _renderItem = ({item, index}) => {
-
+      let swipeBtns = [
+        {
+          text: 'Editer',
+          backgroundColor: 'lightgrey',
+          onPress: () =>  this.props.navigation.navigate('EditOffre', item) 
+       },
+        {
+          text: 'Supprimer',
+          backgroundColor: 'red',
+          onPress: () => { 
+            Alert.alert(
+              '',
+              'Voulez-vous supprimer cette offre?',
+              [
+                {
+                  text: 'Annuler',
+                  onPress: () => console.log('annuler'),
+                  style: 'cancel'
+                },
+                {
+                  text: 'Oui',
+                  onPress: () => Firebase.firestore()
+                  .collection("OfferDetails")
+                  .doc(item.key).delete()
+                  .catch((error) => console.log(error)),
+                },
+              ],
+            );
+           }
+       }
+      ];
         return (
-         <TouchableOpacity onPress={() => this.props.navigation.navigate('EditOffre', item)}>
-             <CardMesOffres item={item} />
-         </TouchableOpacity>
+          <Swipeout right={swipeBtns} backgroundColor= 'transparent'>
+            <CardMesOffres item={item} />
+          </Swipeout>
         );
     }
 
     render(){
           return (
             <SafeAreaView style={styles.container}>
-                <ScrollView>
-                    <View>
-                        <FlatList 
-                                data={this.state.offres}
-                                keyExtractor={(item,index) => index.toString()}
-                                renderItem={this._renderItem}
-                                />
-                    </View> 
-                </ScrollView>  
+              <FlatList 
+                data={this.state.offres}
+                keyExtractor={(item,index) => index.toString()}
+                renderItem={this._renderItem}
+                />
             </SafeAreaView> 
         );
     }
@@ -85,40 +112,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "white",
     marginTop: Constants.statusBarHeight,
-  },
-  details: {
-    marginBottom: 8,
-    fontWeight: "bold",
-  },
-  studiesContent: {
-    borderRadius: 1,
-    elevation: 3,
-    backgroundColor: "#254151",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.4,
-    shadowColor: "white",
-    shadowRadius: 2,
-    marginHorizontal: 4,
-    marginVertical: 6,
-  },
-  title: {
-    textAlign: "center",
-    color: "white",
-    fontSize: 20,
-    marginTop: 2,
-  },
-  infos: {
-    marginLeft: 6,
-    fontWeight: "bold",
-  },
-  description: {
-    backgroundColor: "white",
-    borderRadius: 8,
-    //padding: 2,
-    //marginBottom: 2
-  },
-  separator: {
-    borderBottomWidth: 1,
   },
 });
 

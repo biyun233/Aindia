@@ -54,7 +54,7 @@ const CreateStudiesUser = ({ navigation }) => {
       onSubmit={(values, actions) => {
         addStudiesUser(values); // On enregistre les Données dans la Base De Données
 
-        navigation.navigate("ProfilUser");
+        navigation.navigate("ProfilScreen");
       }}
     >
       {(props) => (

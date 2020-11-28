@@ -6,11 +6,10 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  Alert
 } from "react-native";
 import { Firebase } from "../../utils/Firebase";
-import { Entypo } from "@expo/vector-icons";
-
-//import CreateAboutUser from "./CreateAboutUser";
+import Swipeout from 'react-native-swipeout';
 
 class ExperienceUser extends Component {
   constructor(props) {
@@ -52,7 +51,60 @@ class ExperienceUser extends Component {
 
     this.setState({ userData, isLoading: false });
   };
+  deleteItem(item){
+    Alert.alert(
+      '',
+      'Voulez-vous supprimer cette expérience?',
+      [
+        {
+          text: 'Annuler',
+          onPress: () => console.log('annuler'),
+          style: 'cancel'
+        },
+        {
+          text: 'Oui',
+          onPress: () => Firebase.firestore()
+          .collection("experienceUsers")
+          .doc(item.key).delete()
+          .catch((error) => console.log(error)),
+        },
+      ],
+    );
 
+  }
+
+  _renderItem = ({item, index}) =>{
+    let swipeBtns = [
+      {
+        text: 'Editer',
+        backgroundColor: 'lightgrey',
+        onPress: () =>  this.props.navigation.navigate("EditExperienceUser",item)
+      },
+      {
+        text: 'Supprimer',
+        backgroundColor: 'red',
+        onPress: () =>  this.deleteItem(item)
+      },
+    ]
+    return(
+      <Swipeout right={swipeBtns} backgroundColor= 'transparent'>
+        <View style={styles.separator}>
+            <View style={styles.details}>
+              <Text style={styles.item}>Domaine : {item.domaine}</Text>
+              <Text style={styles.item}>
+                Responsabilité : {item.responsability}
+              </Text>
+              <Text style={styles.item}>
+                Organisation d'Accueil: {item.organization}
+              </Text>
+              <Text style={styles.item}>Durée : {item.duration}</Text>
+              <Text style={styles.item}>Date : {item.date}</Text>
+              <Text style={styles.item}>Description : {item.description}</Text>
+            </View>     
+        </View>
+      </Swipeout>
+    );
+  }
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -69,40 +121,7 @@ class ExperienceUser extends Component {
           </View>
           <FlatList
             data={this.state.userData}
-            renderItem={({ item }) => (
-              <View style={styles.separator}>
-                <View style={styles.row}>
-                  <View style={styles.details}>
-                    <Text style={styles.item}>Domaine : {item.domaine}</Text>
-                    <Text style={styles.item}>
-                      Responsabilité : {item.responsability}
-                    </Text>
-                    <Text style={styles.item}>
-                      Organisation d'Accueil: {item.organization}
-                    </Text>
-                    <Text style={styles.item}>Durée : {item.duration}</Text>
-                    <Text style={styles.item}>Date : {item.date}</Text>
-                    <Text style={styles.item}>Description : {item.description}</Text>
-                  </View>
-                  <View style={styles.iconStudies}>
-                    <TouchableOpacity>
-                      <Entypo
-                        style={styles.iconStudies}
-                        name="edit"
-                        size={17}
-                        color="black"
-                        onPress={() =>
-                          this.props.navigation.navigate(
-                            "EditExperienceUser",
-                            item
-                          )
-                        }
-                      />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </View>
-            )}
+            renderItem={this._renderItem}
           />
         </View>
       </ScrollView>
