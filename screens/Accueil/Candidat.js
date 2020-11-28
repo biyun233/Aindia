@@ -184,12 +184,13 @@ const styles = StyleSheet.create({
     row: {
         paddingBottom: 10,
         flexDirection: "row",
-        justifyContent: "space-around",
+        justifyContent: "center",
+        alignItems: "center",
     },
 
     button: {
         flexDirection: "column",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         alignItems: "center",
         borderWidth: 1,
         borderRadius: 0,
@@ -198,6 +199,8 @@ const styles = StyleSheet.create({
         height: 38,
         width: 90,
         marginTop: 20,
+        marginEnd: 40,
+        marginLeft: 30
         
       },
     filtrer:{

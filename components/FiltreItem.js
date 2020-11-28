@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         borderColor: "#254151",
         marginHorizontal: 15,
         marginVertical: 5,
+        width: 100
     },
 
     itemSelected: {
@@ -26,6 +27,7 @@ const styles = StyleSheet.create({
         color: "white",
         marginHorizontal: 15,
         marginVertical: 5,
+        width: 100
     }
 });
 
