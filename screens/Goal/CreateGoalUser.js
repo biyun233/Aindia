@@ -115,9 +115,8 @@ const CreateGoalUser = ({ navigation }) => {
             </Text>
 
             <TextInput
-              style={styles.input}
+              style={styles.description}
               multiline
-              numberOfLines={14}
               placeholder="Description (ex: Je recherche un poste de CDI, ...)"
               onChangeText={props.handleChange("description")}
               value={props.values.description}
@@ -153,17 +152,28 @@ const styles = StyleSheet.create({
   },
   aindia: {
     textAlign: "center",
-    color: "white",
     fontSize: 30,
-    marginTop: 40,
-    marginBottom: 30,
+    marginTop: 30,
+    marginBottom: 10,
     color: "#254151",
   },
   input: {
     borderBottomWidth: 1,
-    width: 272,
-    //height: 30,
-    marginTop: 10,
+    width: 278,
+    //height: 40,
+    marginTop: 20,
+    fontSize: 17,
+    padding: 2,
+  },
+  description: {
+    borderBottomWidth: 1,
+    width: 278,
+    marginTop: 15,
+    borderWidth: 1,
+    height: 150,
+    padding: 4,
+    backgroundColor: "white",
+    fontSize: 17,
   },
   button: {
     flexDirection: "column",

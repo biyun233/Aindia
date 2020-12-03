@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { Firebase } from "../../utils/Firebase";
+import Global from "../../utils/Global";
 class EditGoalUser extends Component {
 
   constructor(props) {
@@ -20,7 +21,8 @@ class EditGoalUser extends Component {
       availability: props.navigation.state.params.availability,
       workingTime: props.navigation.state.params.workingTime,
       description: props.navigation.state.params.description,
-      AuthId: props.navigation.state.params.AuthId,
+      userName: Global.name,
+    AuthId: props.navigation.state.params.AuthId,
       isLoading: true,
     };
   }
@@ -44,6 +46,7 @@ class EditGoalUser extends Component {
       availability: this.state.availability,
       workingTime: this.state.workingTime,
       description: this.state.description,
+      userName: Global.name,
       AuthId: this.state.AuthId,
     })
       .then((docRef) => {
@@ -73,7 +76,7 @@ class EditGoalUser extends Component {
 
           <TextInput
             style={styles.input}
-            placeholder="wantedJob"
+            placeholder="Emploi Recherché"
             value={this.state.wantedJob}
             onChangeText={(value) => this.inputValueUpdate(value, "wantedJob")}
           />
@@ -89,7 +92,7 @@ class EditGoalUser extends Component {
 
           <TextInput
             style={styles.input}
-            placeholder="workingTime"
+            placeholder="Durée De Travail Souhaitée"
             value={this.state.workingTime}
             onChangeText={(value) =>
               this.inputValueUpdate(value, "workingTime")
@@ -97,9 +100,8 @@ class EditGoalUser extends Component {
           />
 
           <TextInput
-            style={styles.input}
+            style={styles.description}
             multiline={true}
-            numberOfLines={18}
             placeholder="Description"
             value={this.state.description}
             onChangeText={(value) =>
@@ -130,14 +132,13 @@ const styles = StyleSheet.create({
     //justifyContent: "center",
     alignItems: "center",
     //marginTop: Constants.statusBarHeight,
-    //backgroundColor: "red",
+    //borderWidth: 1,
   },
   aindia: {
     textAlign: "center",
-    color: "white",
     fontSize: 30,
-    marginTop: 60,
-    marginBottom: 30,
+    marginTop: 30,
+    marginBottom: 10,
     color: "#254151",
   },
   input: {
@@ -145,6 +146,18 @@ const styles = StyleSheet.create({
     width: 278,
     //height: 40,
     marginTop: 20,
+    fontSize: 17,
+    padding: 2,
+  },
+  description: {
+    borderBottomWidth: 1,
+    width: 278,
+    marginTop: 15,
+    borderWidth: 1,
+    height: 220,
+    padding: 2,
+    backgroundColor: "white",
+    fontSize: 17,
   },
   button: {
     flexDirection: "column",
@@ -152,10 +165,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#254151",
     height: 50,
-    width: 180,
-    marginTop: 30,
-    marginLeft: 60,
-    marginBottom: 0,
+    //width: 180,
+    marginTop: 20,
+    marginLeft: 65,
+    marginRight: 65,
+    marginBottom: 20,
     borderRadius: 16,
   },
 
@@ -167,7 +181,7 @@ const styles = StyleSheet.create({
     width: 278,
     color: "red",
     //marginLeft: 8,
-    marginTop: 10,
+    marginTop: 5,
   },
 });
 

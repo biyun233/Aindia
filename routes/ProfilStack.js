@@ -3,7 +3,7 @@ import EditUserProfil from '../screens/Profil/EditUserProfil';
 import ProfilScreen from '../screens/Profil/ProfilScreen';
 import ProfilUser from '../screens/Profil/ProfilUser';
 import UserStudies from "../screens/Studies/UserStudies";
-import ExperienceUser from '../screens/Expérience/ExperienceUser';
+import ExperienceUser from '../screens/Experience/ExperienceUser';
 import GoalUser from '../screens/Goal/GoalUser';
 const screens = {
   ProfilScreen: {

@@ -70,6 +70,7 @@ const CreateExperienceUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Domaine (ex: Boulangérie, ...)"
               onChangeText={props.handleChange("domaine")}
               value={props.values.domaine}
@@ -81,6 +82,7 @@ const CreateExperienceUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Responsabilité (ex: Développeur Web, ...)"
               onChangeText={props.handleChange("responsability")}
               value={props.values.responsability}
@@ -92,6 +94,7 @@ const CreateExperienceUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Organisation (ex: Google New York, ...)"
               onChangeText={props.handleChange("organization")}
               value={props.values.organization}
@@ -103,6 +106,7 @@ const CreateExperienceUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Durée (ex: 6 mois, ...)"
               onChangeText={props.handleChange("duration")}
               value={props.values.duration}
@@ -115,7 +119,6 @@ const CreateExperienceUser = ({ navigation }) => {
             <TextInput
               style={styles.description}
               multiline={true}
-              numberOfLines={15}
               placeholder="Description (ex: j'ai developpé une ..., ...)"
               onChangeText={props.handleChange("description")}
               value={props.values.description}
@@ -163,24 +166,29 @@ const styles = StyleSheet.create({
   },
   aindia: {
     textAlign: "center",
-    color: "white",
     fontSize: 30,
-    marginTop: 30,
-    marginBottom: 20,
+    marginTop: 18,
+    marginBottom: 10,
     color: "#254151",
   },
   input: {
     borderBottomWidth: 1,
-    width: 293,
-    //height: 20,
-    marginTop: 10,
+    width: 278,
+    height: 40,
+    marginTop: 8,
+    fontSize: 16,
+    padding: 2,
+    //borderWidth: 1,
   },
   description: {
     borderBottomWidth: 1,
-    width: 293,
-    //height: 20,
-    marginTop: 10,
-    padding: 5,
+    width: 278,
+    marginTop: 15,
+    borderWidth: 1,
+    height: 150,
+    padding: 2,
+    backgroundColor: "white",
+    fontSize: 16,
   },
   button: {
     flexDirection: "column",
@@ -200,9 +208,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   errorInput: {
-     width: 293,
+    width: 278,
     color: "red",
-    marginTop: 10,
+    marginTop: 3,
   },
 });
 

@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
   infos: {
     marginLeft: 6,
     fontWeight: "bold",
+    fontSize: 18,
   },
   description: {
     backgroundColor: "white",

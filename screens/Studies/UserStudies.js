@@ -68,13 +68,20 @@ class UserStudies extends Component {
               <View style={styles.separator}>
                 <View style={styles.row}>
                   <View style={styles.details}>
-                    <Text style={styles.item}>Domaine : {item.domaine}</Text>
-                    <Text style={styles.item}>Niveau : {item.level}</Text>
-                    <Text style={styles.item}>Intitulé : {item.name}</Text>
-                    <Text style={styles.item}>
-                      Établissement : {item.school}
-                    </Text>
-                    <Text style={styles.item}>Date : {item.date}</Text>
+                    <Text style={styles.item}>Domaine</Text>
+                    <Text style={styles.itemStyle}>{item.domaine}</Text>
+
+                    <Text style={styles.item}>Niveau</Text>
+                    <Text style={styles.itemStyle}>{item.level}</Text>
+
+                    <Text style={styles.item}>Intitulé</Text>
+                    <Text style={styles.itemStyle}>{item.name}</Text>
+
+                    <Text style={styles.item}>Établissement</Text>
+                    <Text style={styles.itemStyle}>{item.school}</Text>
+                    
+                    <Text style={styles.item}>Date</Text>
+                    <Text style={styles.itemStyle}>{item.date}</Text>
                   </View>
                   <View style={styles.iconStudies}>
                     <TouchableOpacity>
@@ -140,6 +147,14 @@ const styles = StyleSheet.create({
   item: {
     marginLeft: 4,
     margin: 2,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textDecorationLine: "underline",
+  },
+  itemStyle: {
+    marginLeft: 10,
+    margin: 2,
+    fontSize: 16,
   },
   icon: {
     //flexDirection: "row",

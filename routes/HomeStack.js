@@ -9,15 +9,16 @@ import OffreDetails from '../screens/Offres/OffreDetails';
 import CreateProfilUser from '../screens/Profil/CreateProfilUser';
 
 
-import StudiesUserEdit from '../screens/Studies/StudiesUserEdit';
+
 import CreateStudiesUser from '../screens/Studies/CreateStudiesUser';
 import EditStudiesUser from "../screens/Studies/EditStudiesUser";
-import CreateExperienceUser from "../screens/Expérience/CreateExperienceUser";
-import EditExperienceUser from '../screens/Expérience/EditExperienceUser';
+import CreateExperienceUser from "../screens/Experience/CreateExperienceUser";
+import EditExperienceUser from '../screens/Experience/EditExperienceUser';
 import CreateGoalUser from "../screens/Goal/CreateGoalUser";
 import EditGoalUser from '../screens/Goal/EditGoalUser';
 
 import ProfilUserRecruiter from '../screens/Accueil/ProfilUserRecruiter';
+
 
 
 const screens = {
@@ -82,19 +83,15 @@ const screens = {
     screen: ProfilUserRecruiter,
     navigationOptions: {
       title: "Mon Profil",
-      //header: null,
+      headerTintColor: "#254151",
+      headerTitleStyle: {
+        fontWeight: "bold",
+        fontSize: 20,
+      },
+      headerBackTitle: "Retour",
+
     },
   },
-
-  StudiesUserEdit: {
-    screen: StudiesUserEdit,
-    navigationOptions: {
-      //headerLeft: null,
-      title: "Mes Études",
-      //headerStyle: {justifyContent: 'center',}
-    },
-  },
-
   CreateStudiesUser: {
     screen: CreateStudiesUser,
     navigationOptions: {
@@ -116,23 +113,32 @@ const screens = {
     navigationOptions: {
       //headerLeft: null,
       title: "Mon Objectif",
-      //headerStyle: {justifyContent: 'center',}
+      headerTintColor: "#254151",
+      headerTitleStyle: {
+        fontWeight: "bold",
+        fontSize: 20,
+      },
+      headerBackTitle: "Retour",
     },
   },
 
   EditStudiesUser: {
     screen: EditStudiesUser,
     navigationOptions: {
-      //headerLeft: null,
-      //title: "Mes Formations",
-      //headerStyle: {justifyContent: 'center',}
+      title: "Mon Parcours",
+      headerTintColor: "#254151",
+      headerTitleStyle: {
+        fontWeight: "bold",
+        fontSize: 20,
+      },
+      headerBackTitle: "Retour",
     },
   },
   CreateExperienceUser: {
     screen: CreateExperienceUser,
     navigationOptions: {
       //headerLeft: null,
-      title: "Mes Expériences",
+      title: "Mon Expérience",
       //header: null,
       //headerStyle: {justifyContent: 'center',}
     },
@@ -142,9 +148,13 @@ const screens = {
     screen: EditExperienceUser,
     navigationOptions: {
       //headerLeft: null,
-      title: "Mes Expériences",
-      //header: null,
-      //headerStyle: {justifyContent: 'center',}
+      title: "Mon Expérience",
+      headerTintColor: "#254151",
+      headerTitleStyle: {
+        fontWeight: "bold",
+        fontSize: 20,
+      },
+      //headerBackTitle: "Retour",
     },
   },
 };

@@ -73,16 +73,21 @@ class ExperienceUser extends Component {
               <View style={styles.separator}>
                 <View style={styles.row}>
                   <View style={styles.details}>
-                    <Text style={styles.item}>Domaine : {item.domaine}</Text>
-                    <Text style={styles.item}>
-                      Responsabilité : {item.responsability}
-                    </Text>
-                    <Text style={styles.item}>
-                      Organisation d'Accueil: {item.organization}
-                    </Text>
-                    <Text style={styles.item}>Durée : {item.duration}</Text>
-                    <Text style={styles.item}>Date : {item.date}</Text>
-                    <Text style={styles.item}>Description : {item.description}</Text>
+
+                    <Text style={styles.item}>Domaine</Text>
+                    <Text style={styles.itemStyle}>{item.responsability}</Text>
+
+                    <Text style={styles.item}>Organisation</Text>
+                    <Text style={styles.itemStyle}>{item.organization}</Text>
+
+                    <Text style={styles.item}>Durée</Text>
+                    <Text style={styles.itemStyle}>{item.duration}</Text>
+
+                    <Text style={styles.item}>Date</Text>
+                    <Text style={styles.itemStyle}>{item.date}</Text>
+
+                    <Text style={styles.item}>Description</Text>
+                    <Text style={styles.itemStyle}>{item.description}</Text>
                   </View>
                   <View style={styles.iconStudies}>
                     <TouchableOpacity>
@@ -149,6 +154,14 @@ const styles = StyleSheet.create({
   item: {
     marginLeft: 4,
     margin: 2,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textDecorationLine: "underline",
+  },
+  itemStyle: {
+    marginLeft: 10,
+    margin: 2,
+    fontSize: 16,
   },
   icon: {
     //flexDirection: "row",

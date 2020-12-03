@@ -54,7 +54,7 @@ const CreateStudiesUser = ({ navigation }) => {
       onSubmit={(values, actions) => {
         addStudiesUser(values); // On enregistre les Données dans la Base De Données
 
-        navigation.navigate("ProfilUser");
+        navigation.navigate("ProfilScreen");
       }}
     >
       {(props) => (
@@ -64,6 +64,7 @@ const CreateStudiesUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Domaine (ex: Informaticien, ...)"
               onChangeText={props.handleChange("domaine")}
               value={props.values.domaine}
@@ -75,6 +76,7 @@ const CreateStudiesUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Niveau (ex: Licence 3, ...)"
               onChangeText={props.handleChange("level")}
               value={props.values.level}
@@ -86,6 +88,7 @@ const CreateStudiesUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Intitulé (ex: Web Informatique et Connaissances)"
               onChangeText={props.handleChange("name")}
               value={props.values.name}
@@ -97,6 +100,7 @@ const CreateStudiesUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Etablissement (ex: Université Grenoble Alpes)"
               onChangeText={props.handleChange("school")}
               value={props.values.school}
@@ -108,6 +112,7 @@ const CreateStudiesUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Année(s) (ex: 2020/2021)"
               onChangeText={props.handleChange("date")}
               value={props.values.date}
@@ -144,28 +149,31 @@ const styles = StyleSheet.create({
   },
   aindia: {
     textAlign: "center",
-    color: "white",
     fontSize: 30,
-    marginTop: 40,
-    marginBottom: 30,
+    marginTop: 30,
+    marginBottom: 10,
     color: "#254151",
   },
   input: {
     borderBottomWidth: 1,
-    width: 288,
-    //height: 30,
-    marginTop: 30,
+    width: 278,
+    height: 40,
+    marginTop: 8,
+    fontSize: 16,
+    padding: 2,
   },
+
   button: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#254151",
     height: 50,
-    width: 180,
+    //width: 180,
     marginTop: 20,
-    marginLeft: 60,
-    marginBottom: 20,
+    marginLeft: 65,
+    marginRight: 65,
+    marginBottom: 5,
     borderRadius: 16,
   },
 

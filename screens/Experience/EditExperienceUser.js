@@ -76,6 +76,7 @@ class EditExperienceUser extends Component {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Domaine"
               value={this.state.domaine}
               onChangeText={(value) => this.inputValueUpdate(value, "domaine")}
@@ -83,6 +84,7 @@ class EditExperienceUser extends Component {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Résponsabilité"
               value={this.state.responsability}
               onChangeText={(value) =>
@@ -92,6 +94,7 @@ class EditExperienceUser extends Component {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Organisation"
               value={this.state.organization}
               onChangeText={(value) =>
@@ -101,6 +104,7 @@ class EditExperienceUser extends Component {
 
             <TextInput
               style={styles.input}
+              multiline={true}
               placeholder="Durée"
               value={this.state.duration}
               onChangeText={(value) => this.inputValueUpdate(value, "duration")}
@@ -109,7 +113,6 @@ class EditExperienceUser extends Component {
             <TextInput
               style={styles.description}
               multiline={true}
-              numberOfLines={15}
               placeholder="Description"
               value={this.state.description}
               onChangeText={(value) =>
@@ -150,24 +153,28 @@ const styles = StyleSheet.create({
   },
   aindia: {
     textAlign: "center",
-    color: "white",
     fontSize: 30,
-    marginTop: 20,
-    marginBottom: 30,
+    marginTop: 15,
+    marginBottom: 20,
     color: "#254151",
   },
   input: {
     borderBottomWidth: 1,
-    width: 300,
-    height: 30,
-    marginTop: 10,
+    width: 278,
+    height: 40,
+    marginTop: 8,
+    fontSize: 16,
+    padding: 2,
   },
   description: {
     borderBottomWidth: 1,
-    width: 293,
-    //height: 20,
-    marginTop: 10,
-    padding: 5,
+    width: 278,
+    marginTop: 15,
+    borderWidth: 1,
+    height: 150,
+    padding: 2,
+    backgroundColor: "white",
+    fontSize: 16,
   },
   button: {
     flexDirection: "column",
@@ -176,8 +183,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#254151",
     height: 50,
     width: 180,
-    marginTop: 30,
-    marginBottom: 220,
+    marginTop: 20,
+    //marginLeft: 60,
+    marginBottom: 20,
     borderRadius: 16,
   },
 

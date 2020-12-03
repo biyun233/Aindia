@@ -185,16 +185,17 @@ const styles = StyleSheet.create({
   },
   aindia: {
     textAlign: "center",
-    color: "white",
     fontSize: 30,
-    marginTop: 2,
+    marginTop: 15,
+    marginBottom: 5,
     color: "#254151",
   },
   input: {
     borderBottomWidth: 1,
-    width: 300,
-    //height: 30,
-    marginTop: 8,
+    width: 278,
+    //height: 40,
+    marginTop: 20,
+    fontSize: 17,
   },
   button: {
     flexDirection: "column",

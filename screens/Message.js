@@ -1,22 +1,49 @@
-import React from 'react';
-import { View, Text, StyleSheet } from "react-native";
+import React, {Component} from 'react';
+import { View, Text, StyleSheet, KeyboardAvoidingView, SafeAreaView, Platform } from "react-native";
 import { Button } from 'react-native-elements';
+import { GiftedChat } from "react-native-gifted-chat";
+import ChatFirebase from '../utils/ChatFirebase';
+import Global from "../utils/Global";
 
+export default class Message extends Component {
+    state = {
+        messages: [],
+    };
 
-export default function Message() { 
+    get user() {
+        return {
+            _id: ChatFirebase._id,
+            name: Global.name,
+        }
+    }
 
-    return (
-        <View style={styles.container}>
-            <View>
-                <Text style={styles.text}> Message</Text>
-            </View>
-        </View>
+    componentDidMount() {
+        ChatFirebase.get(message => this.setState(prev => ({
+            messages: GiftedChat.append(prev.messages, message),
+        })))
+    }
 
-        
-    );
+    componentWillUnmount() {
+        ChatFirebase.off();
+    }
+
+    render() {
+        const chat = <GiftedChat messages={this.state.messages} onSend={ChatFirebase.sendMessage} user={this.user}/>;
+
+        if (Platform.OS === "android" || Platform.OS === "ios") {
+            return (
+                <KeyboardAvoidingView style={{flex: 1}} behavior="padding" keyboardVerticalOffset={30} enabled>
+                    {chat}
+                </KeyboardAvoidingView>
+            );
+        }
+
+        return <SafeAreaView style={{flex: 1}}>{chat}</SafeAreaView>;
+    };
+
 };
 
-const styles = StyleSheet.create({
+    const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
@@ -30,3 +57,5 @@ const styles = StyleSheet.create({
         color: "#254151"
     },
 });
+
+

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import ProfilUser from '../Profil/ProfilUser';
 import UserStudies from "../Studies/UserStudies";
-import ExperienceUser from "../Expérience/ExperienceUser";
+import ExperienceUser from "../Experience/ExperienceUser";
 import GoalUser from "../Goal/GoalUser";
 
 class ProfilScreen extends Component {

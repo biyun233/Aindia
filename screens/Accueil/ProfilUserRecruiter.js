@@ -209,20 +209,40 @@ class ProfilUserRecruiter extends Component {
                   <View>
                     <View style={styles.row}>
                       <View style={styles.details}>
+
                         <Text style={styles.item}>
-                          Domaine : {item.domaine}
+                          Domaine
                         </Text>
-                        <Text style={styles.item}>
-                          Poste Recherché : {item.wantedJob}
+                        <Text style={styles.itemStyle}>
+                          {item.domaine}
                         </Text>
+
                         <Text style={styles.item}>
-                          Disponibilité : {item.availability}
+                          Poste Recherché
                         </Text>
-                        <Text style={styles.item}>
-                          Durée De Travail Souhaitée : {item.workingTime}
+                        <Text style={styles.itemStyle}>
+                          {item.wantedJob}
                         </Text>
+
                         <Text style={styles.item}>
-                          Description : {item.description}
+                          Disponibilité
+                        </Text>
+                        <Text style={styles.itemStyle}>
+                          {item.availability}
+                        </Text>
+
+                        <Text style={styles.item}>
+                          Durée De Travail Souhaitée
+                        </Text>
+                        <Text style={styles.itemStyle}>
+                          {item.workingTime}
+                        </Text>
+
+                        <Text style={styles.item}>
+                          Description
+                        </Text>
+                        <Text style={styles.itemStyle}>
+                          {item.description}
                         </Text>
                       </View>
                     </View>
@@ -242,13 +262,21 @@ class ProfilUserRecruiter extends Component {
                 <View>
                   <View style={styles.row}>
                     <View style={styles.details}>
-                      <Text style={styles.item}>Domaine : {item.domaine}</Text>
-                      <Text style={styles.item}>Niveau : {item.level}</Text>
-                      <Text style={styles.item}>Intitulé : {item.name}</Text>
-                      <Text style={styles.item}>
-                        Établissement : {item.school}
-                      </Text>
-                      <Text style={styles.item}>Date : {item.date}</Text>
+
+                      <Text style={styles.item}>Domaine</Text>
+                      <Text style={styles.itemStyle}>{item.domaine}</Text>
+
+                      <Text style={styles.item}>Niveau</Text>
+                      <Text style={styles.itemStyle}>{item.level}</Text>
+
+                      <Text style={styles.item}>Intitulé</Text>
+                      <Text style={styles.itemStyle}>{item.name}</Text>
+
+                      <Text style={styles.item}>Établissement</Text>
+                      <Text style={styles.itemStyle}>{item.school}</Text>
+
+                      <Text style={styles.item}>Date</Text>
+                      <Text style={styles.itemStyle}>{item.date}</Text>
                     </View>
                   </View>
                 </View>
@@ -266,17 +294,21 @@ class ProfilUserRecruiter extends Component {
                 <View>
                   <View style={styles.row}>
                     <View style={styles.details}>
-                      <Text style={styles.item}>
-                        Responsabilité : {item.responsability}
-                      </Text>
-                      <Text style={styles.item}>
-                        Organisation d'Accueil: {item.organization}
-                      </Text>
-                      <Text style={styles.item}>Durée : {item.duration}</Text>
-                      <Text style={styles.item}>Date : {item.date}</Text>
-                      <Text style={styles.item}>
-                        Description : {item.description}
-                      </Text>
+
+                      <Text style={styles.item}>Responsabilité</Text>
+                      <Text style={styles.itemStyle}>{item.responsability}</Text>
+
+                      <Text style={styles.item}>Organisation</Text>
+                      <Text style={styles.itemStyle}>{item.organization}</Text>
+
+                      <Text style={styles.item}>Durée</Text>
+                      <Text style={styles.itemStyle}>{item.duration}</Text>
+
+                      <Text style={styles.item}>Date</Text>
+                      <Text style={styles.itemStyle}>{item.date}</Text>
+
+                      <Text style={styles.item}>Description</Text>
+                      <Text style={styles.itemStyle}>{item.description}</Text>
                     </View>
                   </View>
                 </View>
@@ -329,6 +361,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     alignItems: "flex-end",
     //marginLeft: "55%",
+  },
+  item: {
+    marginLeft: 4,
+    margin: 2,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textDecorationLine: "underline",
+  },
+  itemStyle: {
+    marginLeft: 10,
+    margin: 2,
+    fontSize: 16,
   },
   user: {},
   details: {

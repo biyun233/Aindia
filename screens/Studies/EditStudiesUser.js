@@ -72,21 +72,24 @@ class EditStudiesUser extends Component {
           <Text style={styles.aindia}>J'édite Mon Parcours</Text>
 
           <TextInput
-            style={styles.input}
-            placeholder="Domaine"
-            value={this.state.domaine}
-            onChangeText={(value) => this.inputValueUpdate(value, "domaine")}
+              multiline={true}
+              style={styles.input}
+              placeholder="Domaine"
+              value={this.state.domaine}
+              onChangeText={(value) => this.inputValueUpdate(value, "domaine")}
+          />
+
+          <TextInput
+              multiline={true}
+              style={styles.input}
+              placeholder="Niveau"
+              value={this.state.level}
+              onChangeText={(value) => this.inputValueUpdate(value, "level")}
           />
 
           <TextInput
             style={styles.input}
-            placeholder="Niveau"
-            value={this.state.level}
-            onChangeText={(value) => this.inputValueUpdate(value, "level")}
-          />
-
-          <TextInput
-            style={styles.input}
+            multiline={true}
             placeholder="name"
             value={this.state.name}
             onChangeText={(value) => this.inputValueUpdate(value, "name")}
@@ -94,6 +97,7 @@ class EditStudiesUser extends Component {
 
           <TextInput
             style={styles.input}
+            multiline={true}
             placeholder="Établissement"
             value={this.state.school}
             onChangeText={(value) => this.inputValueUpdate(value, "school")}
@@ -132,17 +136,18 @@ const styles = StyleSheet.create({
   },
   aindia: {
     textAlign: "center",
-    color: "white",
     fontSize: 30,
-    marginTop: 60,
-    marginBottom: 30,
+    marginTop: 30,
+    marginBottom: 10,
     color: "#254151",
   },
   input: {
     borderBottomWidth: 1,
-    width: 288,
-    //height: 30,
-    marginTop: 30,
+    width: 278,
+    height: 40,
+    marginTop: 8,
+    fontSize: 16,
+    padding: 2,
   },
   button: {
     flexDirection: "column",

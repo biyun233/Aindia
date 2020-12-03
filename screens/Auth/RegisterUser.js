@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Constants from "expo-constants";
 import {
   StyleSheet,
@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { showMessage, hideMessage } from "react-native-flash-message";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Firebase } from "../../utils/Firebase";
@@ -33,6 +34,9 @@ const reviewSchema = Yup.object({
 
 // Renvoie l'écran contenant les formulaires
 const RegisterUser = ({ navigation }) => {
+  
+  const [notification, setNotification] = useState(false);
+
   // Cette fonction permet de naviguer de cet écran à un autre en fonction du paramtètre donné
   // Quand elle sera appelée
   const pressHandler = () => {
@@ -57,6 +61,9 @@ const RegisterUser = ({ navigation }) => {
             Firebase.auth()
               .signInWithEmailAndPassword(values.email, values.password)
               .then(() => {
+                //
+
+                //
                 navigation.navigate("CreateProfilUser");
               })
               .catch((error) => alert("Connexion Impossible !"));
@@ -132,26 +139,29 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 50,
     marginBottom: 60,
-    color: "white",
     fontSize: 45,
     color: "#254151",
     fontWeight: "bold",
   },
   input: {
-    //backgroundColor: '#254151',
-    //padding: 16,
-    width: 300,
     borderBottomWidth: 1,
-    marginTop: 10,
+    width: 278,
+    //height: 40,
+    marginTop: 20,
+    fontSize: 18,
   },
   text: {
     color: "white",
     fontSize: 20,
   },
   errorInput: {
-    width: 300,
+    width: 278,
+    //height: 40,
+    //marginTop: 20,
+    fontSize: 17,
+    //width: 300,
     color: "red",
-    //marginLeft: 5,
+    marginLeft: 3,
     marginTop: 10,
   },
   buttonStyle: {
@@ -163,11 +173,13 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 30
   },
   textLogin: {
     color: "#254151",
-    fontSize: 20,
+    fontSize: 22,
     marginTop: 28,
+
   },
 });
 

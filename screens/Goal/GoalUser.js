@@ -93,18 +93,37 @@ class GoalUser extends Component {
                 <View style={styles.separator}>
                   <View style={styles.row}>
                     <View style={styles.details}>
-                      <Text style={styles.item}>Domaine : {item.domaine}</Text>
+
+                      <Text style={styles.item}>Domaine</Text>
+                      <Text style={styles.itemStyle}>{item.domaine}</Text>
+
                       <Text style={styles.item}>
-                        Poste Recherché : {item.wantedJob}
+                        Poste Recherché
                       </Text>
-                      <Text style={styles.item}>
-                        Disponibilité : {item.availability}
+                      <Text style={styles.itemStyle}>
+                        {item.wantedJob}
                       </Text>
+
                       <Text style={styles.item}>
-                        Durée De Travail Souhaitée : {item.workingTime}
+                        Disponibilité
                       </Text>
+                      <Text style={styles.itemStyle}>
+                        {item.availability}
+                      </Text>
+
                       <Text style={styles.item}>
-                        Description : {item.description}
+                        Durée De Travail Souhaitée
+                      </Text>
+                      <Text style={styles.itemStyle}>
+                        {item.workingTime}
+                      </Text>
+
+
+                      <Text style={styles.item}>
+                        Description
+                      </Text>
+                      <Text style={styles.itemStyle}>
+                        {item.description}
                       </Text>
                     </View>
                     <View style={styles.iconStudies}>
@@ -173,6 +192,14 @@ const styles = StyleSheet.create({
   item: {
     marginLeft: 4,
     margin: 2,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textDecorationLine: "underline",
+  },
+  itemStyle: {
+    marginLeft: 10,
+    margin: 2,
+    fontSize: 16,
   },
   icon: {
     //flexDirection: "row",

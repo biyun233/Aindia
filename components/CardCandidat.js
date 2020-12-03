@@ -2,27 +2,33 @@ import React from 'react';
 import { View, Text, StyleSheet } from "react-native";
 
 export default function Card({item}) {
-    const poste = 'Poste: ' + item.wantedJob;
-    const expérience = 'Expérience: ' + item.workingTime;
-    //const étude = 'Étude: ' + item.étude;
-    const disponibilité = 'Disponible: ' + item.availability;
     return (
         <View style={styles.card}>
             <View style={styles.line}>
                 <Text style={styles.cardContent}>{item.userName}</Text>
             </View>
-            <View style={styles.line_2}>
-                <Text style={styles.cardContent}>{item.domaine}</Text>
+
+            <View style={styles.row}>
+                <Text style={styles.itemS}>Domaine</Text>
+                <Text style={styles.itemStyle}>{item.domaine}</Text>
             </View>
-            <View style={styles.infoline}>
-                <Text style={styles.item}>{poste}</Text> 
+
+            <View style={styles.row}>
+                <Text style={styles.itemJob}>Poste Recherché</Text>
+                <Text style={styles.itemStyleJob}>{item.wantedJob}</Text>
             </View>
-            <View style={styles.infoline}>
-                <Text style={styles.item}>{expérience}</Text>
+
+
+            <View style={styles.row}>
+                <Text style={styles.itemJob}>Durée Souhaitée</Text>
+                <Text style={styles.itemStyleJob}>{item.workingTime}</Text>
             </View>
-            <View style={styles.infoline}>
-                <Text style={styles.item}>{disponibilité}</Text>
+
+            <View style={styles.row}>
+                <Text style={styles.itemDate}>Disponibilité</Text>
+                <Text style={styles.itemStyleDtae}>{item.availability}</Text>
             </View>
+
         </View>
     )
 }
@@ -32,8 +38,8 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderRadius: 6,
         //elevation: 3,
-        height: 160,
-        width: 350,
+        height: "100%",
+        width: "98%",
         backgroundColor: "white",
         //shadowOffset: {width:1, height:1},
         shadowColor: '#333',
@@ -46,8 +52,9 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        marginHorizontal: 18,
-        marginTop: 3
+        marginHorizontal: 10,
+        marginTop: 3,
+        marginBottom: 4,
     },
     line_2: {
         flexDirection: "row",
@@ -72,5 +79,67 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         marginVertical: 2,
     },
+
+    row: {
+        flexDirection: "row",
+        //justifyContent: "space-between",
+        width: '88%'
+    },
+    itemS: {
+        //marginLeft: 20,
+        flexDirection: "column",
+        //marginTop: 10,
+        marginLeft: 10,
+        marginBottom: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
+        textDecorationLine: "underline",
+        //width: '44%',
+    },
+    itemStyle: {
+        //flexDirection: "column",
+        //margin: 10,
+        fontSize: 16,
+        marginLeft: 75,
+        //marginLeft: '29%',
+        width: "62%"
+    },
+
+    itemJob: {
+        //marginLeft: 20,
+        flexDirection: "column",
+        marginTop: 10,
+        marginLeft: 10,
+        marginBottom: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
+        textDecorationLine: "underline",
+        //width: '48%',
+    },
+    itemStyleJob: {
+        margin: 10,
+        marginLeft: 13,
+        fontSize: 16,
+        //marginLeft: '29%',
+        width: "62%"
+    },
+
+    itemDate: {
+        //marginLeft: 20,
+        flexDirection: "column",
+        marginTop: 10,
+        marginLeft: 10,
+        marginBottom: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
+        textDecorationLine: "underline",
+        //width: '48%',
+    },
+    itemStyleDtae: {
+        margin: 10,
+        marginLeft: 44,
+        fontSize: 16,
+        width: "62%"
+    }
 
 });

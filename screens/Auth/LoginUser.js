@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import Constants from "expo-constants";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { showMessage, hideMessage } from "react-native-flash-message";
 import { Firebase } from "../../utils/Firebase";
 import { auth } from "../../utils/GoogleAuth";
 
@@ -28,6 +29,10 @@ const reviewSchema = Yup.object({
 });
 
 const LoginUser = ({ navigation}) => {
+
+  const [notification, setNotification] = useState(false);
+  const t = true;
+
   const pressHandler = () => {
     navigation.navigate("RegisterUser");
   };
@@ -41,7 +46,12 @@ const LoginUser = ({ navigation}) => {
       onSubmit={(values, actions) => {
         Firebase.auth()
           .signInWithEmailAndPassword(values.email, values.password)
-          .then(() => navigation.navigate("TabRoute_candidat"))
+          .then(() => {
+            //
+
+            //
+            navigation.navigate("TabRoute_candidat");
+          })
           .catch((error) =>
             alert("Le Mot de Passe ou l'email saisi est invalide !")
           );
@@ -122,20 +132,24 @@ const styles = StyleSheet.create({
     color: "#254151",
     fontSize: 45,
     fontWeight: "bold",
-    marginTop: 20,
+    marginTop: 50,
+    marginBottom: 20
   },
   email: {
     borderBottomWidth: 1,
-    width: 300,
-    //height: 30,
-    marginTop: 100,
+    width: 278,
+    //height: 40,
+    marginTop: 20,
+    fontSize: 17,
   },
   passeword: {
     borderBottomWidth: 1,
-    width: 300,
-    //height: 30,
+    width: 278,
+    //height: 40,
     marginTop: 20,
+    fontSize: 17,
   },
+
 
   oublier: {
     textDecorationLine: "underline",
@@ -163,11 +177,12 @@ const styles = StyleSheet.create({
   gmail: {
     color: "white",
     fontSize: 20,
+    marginBottom: 10
   },
 
   nouveau: {
     color: "#254151",
-    fontSize: 20,
+    fontSize: 22,
     marginTop: 30,
   },
 
@@ -175,10 +190,14 @@ const styles = StyleSheet.create({
     color: "#254151",
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 30,
+    marginBottom: 43,
   },
   errorInput: {
-    width: 300,
+    width: 278,
+    //height: 40,
+    //marginTop: 20,
+    fontSize: 17,
+    //width: 300,
     color: "red",
     marginLeft: 3,
     marginTop: 10,

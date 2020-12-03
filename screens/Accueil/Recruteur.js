@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {  View, StyleSheet, TouchableOpacity, FlatList, ScrollView, SafeAreaView } from "react-native";
+import {View, StyleSheet, TouchableOpacity, FlatList, ScrollView, SafeAreaView, Text} from "react-native";
 import { Firebase } from "../../utils/Firebase";
-import _ from 'lodash';
+//import _ from 'lodash';
 import Header_recruteur from '../../components/Header_recruteur';
 import CardCandidat from '../../components/CardCandidat';
+import Global from "../../utils/Global";
 
 export default class Recruteur extends Component { 
     constructor(props) {
@@ -16,6 +17,9 @@ export default class Recruteur extends Component {
             query: '',
         };
       }
+
+
+
     componentDidMount() {
         this.unsubscribe = this.goalUsers.onSnapshot(this.getCollection); 
     }
@@ -68,6 +72,7 @@ export default class Recruteur extends Component {
                                 keyExtractor={(item,index) => index.toString()}
                                 renderItem={this._renderItem}
                                 />
+
                     </View> 
                 </ScrollView>  
             </SafeAreaView> 
