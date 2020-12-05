@@ -79,7 +79,7 @@ class GoalUser extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.studiesContent}>
+        <View style={styles.card}>
           <FlatList
             data={this.state.userData}
             renderItem={({ item }) => (
@@ -90,7 +90,7 @@ class GoalUser extends Component {
                     <Text style={styles.iconStudies}></Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.separator}>
+                <View style={styles.card}>
                   <View style={styles.row}>
                     <View style={styles.details}>
 
@@ -156,6 +156,21 @@ const styles = StyleSheet.create({
     //flex: 1,
     backgroundColor: "white",
   },
+  card: {
+    flex: 1,
+    borderWidth: 1,
+    borderRadius: 6,
+    //elevation: 3,
+    height: "100%",
+    width: "98%",
+    backgroundColor: "white",
+    //shadowOffset: {width:1, height:1},
+    shadowColor: "#333",
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    marginHorizontal: 4,
+    marginVertical: 6,
+  },
   separator: {
     borderTopWidth: 1,
   },
@@ -169,6 +184,7 @@ const styles = StyleSheet.create({
   },
   addAbout: {
     fontWeight: "bold",
+    fontSize: 17,
   },
   goal: {
     //flexDirection: "row",
@@ -192,14 +208,14 @@ const styles = StyleSheet.create({
   item: {
     marginLeft: 4,
     margin: 2,
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontWeight: "bold",
     textDecorationLine: "underline",
   },
   itemStyle: {
     marginLeft: 10,
     margin: 2,
-    fontSize: 16,
+    fontSize: 17,
   },
   icon: {
     //flexDirection: "row",

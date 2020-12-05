@@ -28,7 +28,7 @@ export default class Message extends Component {
     }
 
     render() {
-        const chat = <GiftedChat messages={this.state.messages} onSend={ChatFirebase.sendMessage} user={this.user}/>;
+        const chat = <GiftedChat messages={this.state.messages} onSend={ChatFirebase.send} user={this.user}/>;
 
         if (Platform.OS === "android" || Platform.OS === "ios") {
             return (

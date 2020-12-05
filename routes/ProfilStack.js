@@ -5,28 +5,28 @@ import ProfilUser from '../screens/Profil/ProfilUser';
 import UserStudies from "../screens/Studies/UserStudies";
 import ExperienceUser from '../screens/Experience/ExperienceUser';
 import GoalUser from '../screens/Goal/GoalUser';
+
 const screens = {
   ProfilScreen: {
     screen: ProfilScreen,
     navigationOptions: {
-            headerTitle: "Mon Profil",
-            headerStyle: {
-                backgroundColor: '#254151',
-            },
-            headerTintColor: 'white',
-            headerTitleStyle: {
-                fontWeight: 'bold',
-                fontSize: 20
-            },
-            headerLeft: () => null
+      headerTitle: "Mon Profil",
+      headerStyle: {
+        backgroundColor: "#254151",
+      },
+      headerTintColor: "white",
+      headerTitleStyle: {
+        fontWeight: "bold",
+        fontSize: 20,
+      },
+      headerLeft: () => null,
     },
   },
   EditUserProfil: {
-      screen: EditUserProfil,
-      navigationOptions: {
-        title: "Edition De Profil",
-        
-      },
+    screen: EditUserProfil,
+    navigationOptions: {
+      title: "Edition De Profil",
+    },
   },
   ProfilUser: {
     screen: ProfilUser,
@@ -52,11 +52,9 @@ const screens = {
   },
   ExperienceUser: {
     screen: ExperienceUser,
-    navigationOptions: {
-    },
-  },  
-    
-}
+    navigationOptions: {},
+  },
+};
 
 const ProfilStack = createStackNavigator(screens);
 

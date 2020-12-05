@@ -198,54 +198,29 @@ class ProfilUserRecruiter extends Component {
             />
           </View>
 
-          <View style={styles.contentView}>
+          <View>
             <FlatList
               data={this.state.userGoalData}
               renderItem={({ item }) => (
-                <View>
-                  <View style={styles.row1}>
+                <View style={styles.contentView}>
+                  <View>
                     <Text style={styles.content}>Mon Objectif </Text>
                   </View>
-                  <View>
-                    <View style={styles.row}>
-                      <View style={styles.details}>
+                  <View style={styles.contentView}>
+                    <Text style={styles.item}>Domaine</Text>
+                    <Text style={styles.itemStyle}>{item.domaine}</Text>
 
-                        <Text style={styles.item}>
-                          Domaine
-                        </Text>
-                        <Text style={styles.itemStyle}>
-                          {item.domaine}
-                        </Text>
+                    <Text style={styles.item}>Poste Recherché</Text>
+                    <Text style={styles.itemStyle}>{item.wantedJob}</Text>
 
-                        <Text style={styles.item}>
-                          Poste Recherché
-                        </Text>
-                        <Text style={styles.itemStyle}>
-                          {item.wantedJob}
-                        </Text>
+                    <Text style={styles.item}>Disponibilité</Text>
+                    <Text style={styles.itemStyle}>{item.availability}</Text>
 
-                        <Text style={styles.item}>
-                          Disponibilité
-                        </Text>
-                        <Text style={styles.itemStyle}>
-                          {item.availability}
-                        </Text>
+                    <Text style={styles.item}>Durée Souhaitée</Text>
+                    <Text style={styles.itemStyle}>{item.workingTime}</Text>
 
-                        <Text style={styles.item}>
-                          Durée De Travail Souhaitée
-                        </Text>
-                        <Text style={styles.itemStyle}>
-                          {item.workingTime}
-                        </Text>
-
-                        <Text style={styles.item}>
-                          Description
-                        </Text>
-                        <Text style={styles.itemStyle}>
-                          {item.description}
-                        </Text>
-                      </View>
-                    </View>
+                    <Text style={styles.item}>Description</Text>
+                    <Text style={styles.itemStyle}>{item.description}</Text>
                   </View>
                 </View>
               )}
@@ -253,64 +228,54 @@ class ProfilUserRecruiter extends Component {
           </View>
 
           <View style={styles.contentView}>
-            <View style={styles.row1}>
+            <View>
               <Text style={styles.content}>Formations </Text>
             </View>
             <FlatList
               data={this.state.userStudiesData}
               renderItem={({ item }) => (
-                <View>
-                  <View style={styles.row}>
-                    <View style={styles.details}>
+                <View style={styles.contentView}>
+                  <Text style={styles.item}>Domaine</Text>
+                  <Text style={styles.itemStyle}>{item.domaine}</Text>
 
-                      <Text style={styles.item}>Domaine</Text>
-                      <Text style={styles.itemStyle}>{item.domaine}</Text>
+                  <Text style={styles.item}>Niveau</Text>
+                  <Text style={styles.itemStyle}>{item.level}</Text>
 
-                      <Text style={styles.item}>Niveau</Text>
-                      <Text style={styles.itemStyle}>{item.level}</Text>
+                  <Text style={styles.item}>Intitulé</Text>
+                  <Text style={styles.itemStyle}>{item.name}</Text>
 
-                      <Text style={styles.item}>Intitulé</Text>
-                      <Text style={styles.itemStyle}>{item.name}</Text>
+                  <Text style={styles.item}>Établissement</Text>
+                  <Text style={styles.itemStyle}>{item.school}</Text>
 
-                      <Text style={styles.item}>Établissement</Text>
-                      <Text style={styles.itemStyle}>{item.school}</Text>
-
-                      <Text style={styles.item}>Date</Text>
-                      <Text style={styles.itemStyle}>{item.date}</Text>
-                    </View>
-                  </View>
+                  <Text style={styles.item}>Date</Text>
+                  <Text style={styles.itemStyle}>{item.date}</Text>
                 </View>
               )}
             />
           </View>
 
           <View style={styles.contentView}>
-            <View style={styles.row1}>
+            <View>
               <Text style={styles.content}>Expériences</Text>
             </View>
             <FlatList
               data={this.state.userExperiencesData}
               renderItem={({ item }) => (
-                <View>
-                  <View style={styles.row}>
-                    <View style={styles.details}>
+                <View style={styles.contentView}>
+                  <Text style={styles.item}>Responsabilité</Text>
+                  <Text style={styles.itemStyle}>{item.responsability}</Text>
 
-                      <Text style={styles.item}>Responsabilité</Text>
-                      <Text style={styles.itemStyle}>{item.responsability}</Text>
+                  <Text style={styles.item}>Organisation</Text>
+                  <Text style={styles.itemStyle}>{item.organization}</Text>
 
-                      <Text style={styles.item}>Organisation</Text>
-                      <Text style={styles.itemStyle}>{item.organization}</Text>
+                  <Text style={styles.item}>Durée</Text>
+                  <Text style={styles.itemStyle}>{item.duration}</Text>
 
-                      <Text style={styles.item}>Durée</Text>
-                      <Text style={styles.itemStyle}>{item.duration}</Text>
+                  <Text style={styles.item}>Date</Text>
+                  <Text style={styles.itemStyle}>{item.date}</Text>
 
-                      <Text style={styles.item}>Date</Text>
-                      <Text style={styles.itemStyle}>{item.date}</Text>
-
-                      <Text style={styles.item}>Description</Text>
-                      <Text style={styles.itemStyle}>{item.description}</Text>
-                    </View>
-                  </View>
+                  <Text style={styles.item}>Description</Text>
+                  <Text style={styles.itemStyle}>{item.description}</Text>
                 </View>
               )}
             />
@@ -336,7 +301,6 @@ const styles = StyleSheet.create({
   rowContent: {
     flexDirection: "row",
     width: "100%",
-    
   },
   row1: {
     flexDirection: "row",
@@ -346,13 +310,37 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginLeft: 4,
     fontWeight: "bold",
+    fontSize: 17,
+  },
+  card: {
+    flex: 1,
+    borderWidth: 1,
+    borderRadius: 6,
+    //elevation: 3,
+    height: "100%",
+    width: "98%",
+    backgroundColor: "white",
+    //shadowOffset: {width:1, height:1},
+    shadowColor: "#333",
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    marginHorizontal: 4,
+    marginVertical: 6,
   },
   contentView: {
-    padding: 0,
-    margin: 4,
-    borderRadius: 1,
+    flex: 1,
     borderWidth: 1,
-    borderColor: "black",
+    borderRadius: 6,
+    //elevation: 3,
+    height: "100%",
+    width: "98%",
+    backgroundColor: "white",
+    //shadowOffset: {width:1, height:1},
+    shadowColor: "#333",
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    marginHorizontal: 4,
+    marginVertical: 6,
   },
   icon: {
     //flexDirection: "row",
@@ -366,15 +354,15 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     margin: 2,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     textDecorationLine: "underline",
+    //fontStyle: "italic",
   },
   itemStyle: {
     marginLeft: 10,
     margin: 2,
     fontSize: 16,
   },
-  user: {},
   details: {
     //flexDirection: "row",
     marginTop: 2,
@@ -398,7 +386,10 @@ const styles = StyleSheet.create({
 
   infos: {
     marginLeft: 6,
-    fontWeight: "bold",
+    //fontWeight: "bold",
+    //fontStyle: "italic",
+    //fontFamily:"Century Gothic",
+    fontSize: 19,
   },
 
   separator: {

@@ -15,7 +15,7 @@ class ChatFirebase {
         });
     };
 
-    sendMessage = messages => {
+    send = messages => {
         messages.forEach(item => {
             const message = {
                 content: item.text,

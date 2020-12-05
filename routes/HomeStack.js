@@ -17,7 +17,7 @@ import EditExperienceUser from '../screens/Experience/EditExperienceUser';
 import CreateGoalUser from "../screens/Goal/CreateGoalUser";
 import EditGoalUser from '../screens/Goal/EditGoalUser';
 
-import ProfilUserRecruiter from '../screens/Accueil/ProfilUserRecruiter';
+import ProfilUserRecruiter from '../screens/Profil/ProfilUserRecruiter';
 
 
 
@@ -78,7 +78,6 @@ const screens = {
       //header: null,
     },
   },
-
   ProfilUserRecruiter: {
     screen: ProfilUserRecruiter,
     navigationOptions: {
@@ -89,7 +88,6 @@ const screens = {
         fontSize: 20,
       },
       headerBackTitle: "Retour",
-
     },
   },
   CreateStudiesUser: {
