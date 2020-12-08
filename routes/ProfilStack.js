@@ -25,7 +25,15 @@ const screens = {
   EditUserProfil: {
     screen: EditUserProfil,
     navigationOptions: {
-      title: "J'édite Mon Profil",
+      headerTitle: "J'édite Mon Profil",
+      headerStyle: {
+        backgroundColor: "#254151",
+      },
+      headerTintColor: "white",
+      headerTitleStyle: {
+        fontWeight: "bold",
+        fontSize: 22,
+      },
     },
     headerBackTitle: "Retour",
   },

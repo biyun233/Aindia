@@ -114,8 +114,11 @@ const screens = {
     screen: EditGoalUser,
     navigationOptions: {
       //headerLeft: null,
+      headerStyle: {
+        backgroundColor: "#254151",
+      },
       title: "Mon Objectif",
-      headerTintColor: "#254151",
+      headerTintColor: "white",
       headerTitleStyle: {
         fontWeight: "bold",
         fontSize: 20,
@@ -127,8 +130,11 @@ const screens = {
   EditStudiesUser: {
     screen: EditStudiesUser,
     navigationOptions: {
+      headerStyle: {
+        backgroundColor: "#254151",
+      },
       title: "J'édite Mon Parcours",
-      headerTintColor: "#254151",
+      headerTintColor: "white",
       headerTitleStyle: {
         fontWeight: "bold",
         fontSize: 20,
@@ -150,8 +156,11 @@ const screens = {
   EditExperienceUser: {
     screen: EditExperienceUser,
     navigationOptions: {
+      headerStyle: {
+        backgroundColor: "#254151",
+      },
       title: "J'édite Mon Expérience",
-      headerTintColor: "#254151",
+      headerTintColor: "white",
       headerTitleStyle: {
         fontWeight: "bold",
         fontSize: 20,
