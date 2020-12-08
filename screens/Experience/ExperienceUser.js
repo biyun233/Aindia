@@ -79,40 +79,24 @@ class ExperienceUser extends Component {
   }
 
   _renderItem = ({ item, index }) => {
-    let swipeBtns = [
-      {
-        text: "Editer",
-        backgroundColor: "lightgrey",
-        onPress: () =>
-          this.props.navigation.navigate("EditExperienceUser", item),
-      },
-      {
-        text: "Supprimer",
-        backgroundColor: "red",
-        onPress: () => this.deleteItem(item),
-      },
-    ];
     return (
-      <Swipeout right={swipeBtns} backgroundColor="transparent">
+      <TouchableOpacity onPress={() =>
+          this.props.navigation.navigate("EditExperienceUser", item)
+      }
+      >
         <View style={styles.card}>
           <View style={styles.details}>
-            <Text style={styles.item}>Domaine</Text>
-            <Text style={styles.itemStyle}>{item.responsability}</Text>
 
-            <Text style={styles.item}>Organisation</Text>
-            <Text style={styles.itemStyle}>{item.organization}</Text>
+            <Text style={styles.itemTitle}>{item.responsability}</Text>
 
-            <Text style={styles.item}>Description</Text>
+            <Text style={styles.itemStyle}>Chez {item.organization}</Text>
+
             <Text style={styles.itemStyle}>{item.description}</Text>
 
-            <Text style={styles.item}>Durée</Text>
-            <Text style={styles.itemStyle}>{item.duration}</Text>
-
-            <Text style={styles.item}>Date</Text>
-            <Text style={styles.itemStyle}>{item.date}</Text>
+            <Text style={styles.itemStyle}>Pendant {item.duration} -- {item.date}</Text>
           </View>
         </View>
-      </Swipeout>
+      </TouchableOpacity>
     );
   };
   render() {
@@ -165,14 +149,22 @@ const styles = StyleSheet.create({
   item: {
     marginLeft: 4,
     margin: 2,
+    marginTop: 4,
     fontSize: 18,
     fontWeight: "bold",
     textDecorationLine: "underline",
   },
-  itemStyle: {
-    marginLeft: 20,
+  itemTitle: {
+    marginLeft: 10,
     margin: 2,
     fontSize: 17,
+    fontWeight: "bold",
+  },
+  itemStyle: {
+    marginLeft: 10,
+    margin: 2,
+    fontSize: 17,
+    //width: "80%",
   },
   separator: {
     borderTopWidth: 1,
@@ -201,7 +193,7 @@ const styles = StyleSheet.create({
     //flexDirection: "row",
     marginTop: 2,
     marginLeft: 4,
-    width: "93%",
+    width: "98%",
     marginBottom: 2,
     fontWeight: "bold",
     alignItems: "flex-start",

@@ -18,11 +18,11 @@ class GoalUser extends Component {
   constructor(props) {
     super();
     this.userInfos = Firebase.firestore()
-      .collection("UsersInfos")
-      .where("AuthId", "==", Firebase.auth().currentUser.uid);
+        .collection("UsersInfos")
+        .where("AuthId", "==", Firebase.auth().currentUser.uid);
     this.userGoalInfos = Firebase.firestore()
-      .collection("goalUsers")
-      .where("AuthId", "==", Firebase.auth().currentUser.uid);
+        .collection("goalUsers")
+        .where("AuthId", "==", Firebase.auth().currentUser.uid);
     this.state = {
       isLoading: true,
       userData: [],
@@ -78,74 +78,54 @@ class GoalUser extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.card}>
-          <FlatList
-            data={this.state.userData}
-            renderItem={({ item }) => (
-              <View>
-                <View style={styles.row}>
-                  <Text style={styles.goal}>Mon Objectif </Text>
-                  <TouchableOpacity>
-                    <Text style={styles.iconStudies}></Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.card}>
-                  <View style={styles.row}>
-                    <View style={styles.details}>
+        <View style={styles.container}>
+          <View style={styles.card}>
+            <FlatList
+                data={this.state.userData}
+                renderItem={({ item }) => (
+                    <View>
+                      <View style={styles.row}>
+                        <Text style={styles.goal}>Mon Objectif </Text>
+                        <TouchableOpacity>
+                          <Text style={styles.iconStudies}></Text>
+                        </TouchableOpacity>
+                      </View>
+                      <View style={styles.card}>
+                        <View style={styles.row}>
+                          <View style={styles.details}>
+                            <TouchableOpacity onPress={() =>
+                                this.props.navigation.navigate("EditGoalUser", item)
+                            }
+                            >
+                              <Text style={styles.itemStyle}>Mon Secteur ->
+                                <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.domaine}</Text>
+                              </Text>
 
-                      <Text style={styles.item}>Domaine</Text>
-                      <Text style={styles.itemStyle}>{item.domaine}</Text>
+                              <Text style={styles.itemStyle}>Poste Recherché ->
+                                <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.wantedJob}</Text>
+                              </Text>
 
-                      <Text style={styles.item}>
-                        Poste Recherché
-                      </Text>
-                      <Text style={styles.itemStyle}>
-                        {item.wantedJob}
-                      </Text>
+                              <Text style={styles.itemStyle}>Disponibilité ->
+                                <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.availability}</Text>
+                              </Text>
 
-                      <Text style={styles.item}>
-                        Disponibilité
-                      </Text>
-                      <Text style={styles.itemStyle}>
-                        {item.availability}
-                      </Text>
+                              <Text style={styles.itemStyle}>Durée ->
+                                <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.workingTime}</Text>
+                              </Text>
 
-                      <Text style={styles.item}>
-                        Durée De Travail Souhaitée
-                      </Text>
-                      <Text style={styles.itemStyle}>
-                        {item.workingTime}
-                      </Text>
+                              <Text style={styles.itemDescription}>{item.description}</Text>
+                            </TouchableOpacity>
 
 
-                      <Text style={styles.item}>
-                        Description
-                      </Text>
-                      <Text style={styles.itemStyle}>
-                        {item.description}
-                      </Text>
+                          </View>
+
+                        </View>
+                      </View>
                     </View>
-                    <View style={styles.iconStudies}>
-                      <TouchableOpacity>
-                        <Entypo
-                          style={styles.iconStudies}
-                          name="edit"
-                          size={17}
-                          color="black"
-                          onPress={() =>
-                            this.props.navigation.navigate("EditGoalUser", item)
-                          }
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
-              </View>
-            )}
-          />
+                )}
+            />
+          </View>
         </View>
-      </View>
     );
   }
 }
@@ -170,6 +150,18 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     marginHorizontal: 4,
     marginVertical: 6,
+  },
+  itemStyle: {
+    marginLeft: 10,
+    margin: 2,
+    fontSize: 17,
+    fontWeight: "bold",
+    //width: "80%",
+  },
+  itemDescription: {
+     marginLeft: 10,
+    margin: 2,
+    fontSize: 17,
   },
   separator: {
     borderTopWidth: 1,
@@ -211,11 +203,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     textDecorationLine: "underline",
-  },
-  itemStyle: {
-    marginLeft: 10,
-    margin: 2,
-    fontSize: 17,
   },
   icon: {
     //flexDirection: "row",

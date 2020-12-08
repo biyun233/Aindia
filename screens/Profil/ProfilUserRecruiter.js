@@ -187,11 +187,12 @@ class ProfilUserRecruiter extends Component {
                     <Title style={styles.infos}>
                       {item.lastname} {item.firstname}
                     </Title>
+
                     <Text style={styles.infos}>{item.status}</Text>
+
                     <Text style={styles.infos}>{item.address}</Text>
-                    <Text style={styles.infos}>
-                      {item.postalCode}, {item.homeCity}, {item.country}
-                    </Text>
+
+                    <Text style={styles.infos}>{item.postalCode}, {item.homeCity}, {item.country}</Text>
                   </View>
                 </View>
               )}
@@ -206,22 +207,27 @@ class ProfilUserRecruiter extends Component {
                   <View>
                     <Text style={styles.content}>Mon Objectif </Text>
                   </View>
-                  <View style={styles.contentView}>
-                    <Text style={styles.item}>Domaine</Text>
-                    <Text style={styles.itemStyle}>{item.domaine}</Text>
 
-                    <Text style={styles.item}>Poste Recherché</Text>
-                    <Text style={styles.itemStyle}>{item.wantedJob}</Text>
+                  <View style={styles.card}>
+                    <Text style={styles.itemTitle}>Domaine ->
+                      <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.domaine}</Text>
+                    </Text>
 
-                    <Text style={styles.item}>Disponibilité</Text>
-                    <Text style={styles.itemStyle}>{item.availability}</Text>
+                    <Text style={styles.itemTitle}>Poste Recherché ->
+                      <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.wantedJob}</Text>
+                    </Text>
 
-                    <Text style={styles.item}>Durée Souhaitée</Text>
-                    <Text style={styles.itemStyle}>{item.workingTime}</Text>
+                    <Text style={styles.itemTitle}>Durée ->
+                      <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.workingTime}</Text>
+                    </Text>
 
-                    <Text style={styles.item}>Description</Text>
+                    <Text style={styles.itemTitle}>Disponibilité ->
+                      <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.availability}</Text>
+                    </Text>
+
                     <Text style={styles.itemStyle}>{item.description}</Text>
                   </View>
+
                 </View>
               )}
             />
@@ -234,22 +240,19 @@ class ProfilUserRecruiter extends Component {
             <FlatList
               data={this.state.userStudiesData}
               renderItem={({ item }) => (
-                <View style={styles.contentView}>
-                  <Text style={styles.item}>Domaine</Text>
-                  <Text style={styles.itemStyle}>{item.domaine}</Text>
+                  <View style={styles.card}>
 
-                  <Text style={styles.item}>Niveau</Text>
-                  <Text style={styles.itemStyle}>{item.level}</Text>
+                    <Text style={styles.itemTitle}>{item.school}</Text>
 
-                  <Text style={styles.item}>Intitulé</Text>
-                  <Text style={styles.itemStyle}>{item.name}</Text>
+                    <Text style={styles.itemTitle}>{item.level}</Text>
 
-                  <Text style={styles.item}>Établissement</Text>
-                  <Text style={styles.itemStyle}>{item.school}</Text>
+                    <Text style={styles.itemStyle}>{item.domaine}</Text>
 
-                  <Text style={styles.item}>Date</Text>
-                  <Text style={styles.itemStyle}>{item.date}</Text>
-                </View>
+                    <Text style={styles.itemStyle}>{item.name}</Text>
+
+                    <Text style={styles.itemTitle}>{item.date}</Text>
+                  </View>
+
               )}
             />
           </View>
@@ -261,21 +264,18 @@ class ProfilUserRecruiter extends Component {
             <FlatList
               data={this.state.userExperiencesData}
               renderItem={({ item }) => (
-                <View style={styles.contentView}>
-                  <Text style={styles.item}>Responsabilité</Text>
-                  <Text style={styles.itemStyle}>{item.responsability}</Text>
+                <View style={styles.card}>
 
-                  <Text style={styles.item}>Organisation</Text>
-                  <Text style={styles.itemStyle}>{item.organization}</Text>
+                  <Text style={styles.itemTitle}>{item.responsability}</Text>
 
-                  <Text style={styles.item}>Durée</Text>
+                  <Text style={styles.itemStyle}>Chez {item.organization}</Text>
+
                   <Text style={styles.itemStyle}>{item.duration}</Text>
 
-                  <Text style={styles.item}>Date</Text>
-                  <Text style={styles.itemStyle}>{item.date}</Text>
-
-                  <Text style={styles.item}>Description</Text>
                   <Text style={styles.itemStyle}>{item.description}</Text>
+
+                  <Text style={styles.itemTitle}>Pendant -- {item.date}</Text>
+
                 </View>
               )}
             />
@@ -292,6 +292,18 @@ const styles = StyleSheet.create({
     //flexDirection: "column",
     backgroundColor: "white",
     //marginTop: Constants.statusBarHeight,
+  },
+  itemStyle: {
+    marginLeft: 10,
+    margin: 2,
+    fontSize: 17,
+    //width: "80%",
+  },
+  itemTitle: {
+    marginLeft: 10,
+    margin: 2,
+    fontSize: 17,
+    fontWeight: "bold",
   },
   row: {
     flexDirection: "row",
@@ -358,11 +370,7 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
     //fontStyle: "italic",
   },
-  itemStyle: {
-    marginLeft: 10,
-    margin: 2,
-    fontSize: 16,
-  },
+
   details: {
     //flexDirection: "row",
     marginTop: 2,

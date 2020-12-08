@@ -72,7 +72,7 @@ const CreateGoalUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Domaine (ex: Boulangérie, ...)"
+              placeholder="Domaine * (ex: Boulangérie, ...)"
               onChangeText={props.handleChange("domaine")}
               value={props.values.domaine}
               onBlur={props.handleBlur("domaine")}
@@ -83,7 +83,7 @@ const CreateGoalUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Poste Recherché"
+              placeholder="Poste Recherché *"
               onChangeText={props.handleChange("wantedJob")}
               value={props.values.wantedJob}
               onBlur={props.handleBlur("wantedJob")}
@@ -94,7 +94,7 @@ const CreateGoalUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Disponibilité (ex: à partir du 01/02/2020, ...)"
+              placeholder="Disponibilité * (ex: 01/02/2020)"
               onChangeText={props.handleChange("availability")}
               value={props.values.availability}
               onBlur={props.handleBlur("availability")}
@@ -105,7 +105,7 @@ const CreateGoalUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Durée De Travail Souhaitée (ex: 6 mois, ...)"
+              placeholder="Durée De Travail (ex: 6 mois, ...)"
               onChangeText={props.handleChange("workingTime")}
               value={props.values.workingTime}
               onBlur={props.handleBlur("workingTime")}
@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
   aindia: {
     textAlign: "center",
     fontSize: 30,
-    marginTop: 30,
-    marginBottom: 10,
+    marginTop: 20,
+    marginBottom: 5,
     color: "#254151",
   },
   input: {

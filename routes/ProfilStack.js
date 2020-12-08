@@ -10,14 +10,14 @@ const screens = {
   ProfilScreen: {
     screen: ProfilScreen,
     navigationOptions: {
-      headerTitle: "Mon Profil",
+      headerTitle: "Profil",
       headerStyle: {
         backgroundColor: "#254151",
       },
       headerTintColor: "white",
       headerTitleStyle: {
         fontWeight: "bold",
-        fontSize: 20,
+        fontSize: 26,
       },
       headerLeft: () => null,
     },
@@ -25,8 +25,9 @@ const screens = {
   EditUserProfil: {
     screen: EditUserProfil,
     navigationOptions: {
-      title: "Edition De Profil",
+      title: "J'édite Mon Profil",
     },
+    headerBackTitle: "Retour",
   },
   ProfilUser: {
     screen: ProfilUser,
@@ -49,6 +50,7 @@ const screens = {
       //title: "Mes Formations",
       //headerStyle: {justifyContent: 'center',}
     },
+    //headerBackTitle: "Retour",
   },
   ExperienceUser: {
     screen: ExperienceUser,

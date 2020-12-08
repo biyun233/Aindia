@@ -5,7 +5,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  SafeAreaView,
+  SafeAreaView, Alert,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Firebase } from "../../utils/Firebase";
@@ -65,12 +65,34 @@ class EditStudiesUser extends Component {
       });
   }
 
+  deleteItem() {
+    Alert.alert("", "Voulez-vous supprimer cette formation?", [
+      {
+        text: "Annuler",
+        onPress: () => console.log("annuler"),
+        style: "cancel",
+      },
+      {
+        text: "Oui",
+        onPress: () =>
+            Firebase.firestore()
+                .collection("studiesUsers")
+                .doc(this.props.navigation.state.params.key)
+                .delete()
+                .then(this.props.navigation.navigate("ProfilScreen"))
+                .catch((error) => console.log(error)),
+      },
+    ]);
+  }
+
+
+
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
         <KeyboardAwareScrollView>
-          <Text style={styles.aindia}>J'édite Mon Parcours</Text>
-
+          <View style={styles.aindia}></View>
           <TextInput
               multiline={true}
               style={styles.input}
@@ -115,9 +137,19 @@ class EditStudiesUser extends Component {
             onPress={() => this.updateUser()}
           >
             <View style={styles.button}>
-              <Text style={styles.connexion}>VALIDER</Text>
+              <Text style={styles.connexion}>EDITER</Text>
             </View>
           </TouchableOpacity>
+
+          <TouchableOpacity
+              style={styles.buttonStyle}
+              onPress={() => this.deleteItem(this.state.key)}
+          >
+            <View style={styles.buttonDelete}>
+              <Text style={styles.connexion}>SUPPRIMER</Text>
+            </View>
+          </TouchableOpacity>
+
         </KeyboardAwareScrollView>
       </SafeAreaView>
     );
@@ -136,8 +168,8 @@ const styles = StyleSheet.create({
   },
   aindia: {
     textAlign: "center",
-    fontSize: 30,
-    marginTop: 50,
+    //fontSize: 30,
+    marginTop: 20,
     marginBottom: 30,
     color: "#254151",
   },
@@ -146,7 +178,7 @@ const styles = StyleSheet.create({
     width: 278,
     height: 55,
     marginTop: 8,
-    fontSize: 16,
+    fontSize: 18,
     padding: 3,
   },
 
@@ -155,7 +187,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#254151",
-    height: 60,
+    height: 50,
+    //width: 180,
+    marginTop: 18,
+    marginLeft: 65,
+    marginRight: 65,
+    marginBottom: 20,
+    borderRadius: 16,
+  },
+
+  buttonDelete: {
+    backgroundColor: "red",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 50,
     //width: 180,
     marginTop: 20,
     marginLeft: 65,
@@ -166,7 +212,7 @@ const styles = StyleSheet.create({
 
   connexion: {
     color: "white",
-    fontSize: 30,
+    fontSize: 26,
   },
   errorInput: {
     width: 293,

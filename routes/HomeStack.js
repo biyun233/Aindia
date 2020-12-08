@@ -56,7 +56,7 @@ const screens = {
         fontWeight: "bold",
         fontSize: 20,
       },
-      headerBackTitle: "Candidat",
+      headerBackTitle: "Retour",
     },
   },
   OffreDetails: {
@@ -68,24 +68,27 @@ const screens = {
         fontWeight: "bold",
         fontSize: 20,
       },
-      headerBackTitle: "Candidat",
+      headerBackTitle: "Retour",
     },
   },
   CreateProfilUser: {
     screen: CreateProfilUser,
     navigationOptions: {
-      title: "Création De Mon Profil",
-      //header: null,
+      title: "Je Crée Mon Profil",
+      header: null,
     },
   },
   ProfilUserRecruiter: {
     screen: ProfilUserRecruiter,
     navigationOptions: {
       title: "Mon Profil",
-      headerTintColor: "#254151",
+      headerTintColor: "white",
+      headerStyle: {
+        backgroundColor: "#254151",
+      },
       headerTitleStyle: {
         fontWeight: "bold",
-        fontSize: 20,
+        fontSize: 25,
       },
       headerBackTitle: "Retour",
     },
@@ -101,8 +104,9 @@ const screens = {
   CreateGoalUser: {
     screen: CreateGoalUser,
     navigationOptions: {
-      //headerLeft: null,
-      title: "Mon Objectif",
+      headerLeft: null,
+      header: null,
+      //title: "Mon Objectif",
       //headerStyle: {justifyContent: 'center',}
     },
   },
@@ -123,7 +127,7 @@ const screens = {
   EditStudiesUser: {
     screen: EditStudiesUser,
     navigationOptions: {
-      title: "Mon Parcours",
+      title: "J'édite Mon Parcours",
       headerTintColor: "#254151",
       headerTitleStyle: {
         fontWeight: "bold",
@@ -140,19 +144,19 @@ const screens = {
       //header: null,
       //headerStyle: {justifyContent: 'center',}
     },
+    headerBackTitle: "Retour",
   },
 
   EditExperienceUser: {
     screen: EditExperienceUser,
     navigationOptions: {
-      //headerLeft: null,
-      title: "Mon Expérience",
+      title: "J'édite Mon Expérience",
       headerTintColor: "#254151",
       headerTitleStyle: {
         fontWeight: "bold",
         fontSize: 20,
       },
-      //headerBackTitle: "Retour",
+      headerBackTitle: "Retour",
     },
   },
 };

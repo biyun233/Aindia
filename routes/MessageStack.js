@@ -6,7 +6,16 @@ const screens = {
     Message: {
         screen: Message,
         navigationOptions: {
-            headerShown: false
+            headerLeft: null,
+            title: "Message",
+            headerStyle: {
+                backgroundColor: "#254151",
+            },
+            headerTintColor: "white",
+            headerTitleStyle: {
+                fontWeight: "bold",
+                fontSize: 25,
+            },
         }
     }
     

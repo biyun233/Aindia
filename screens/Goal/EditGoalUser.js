@@ -5,7 +5,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  SafeAreaView,
+  SafeAreaView, Alert,
 } from "react-native";
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { Firebase } from "../../utils/Firebase";
@@ -61,11 +61,13 @@ class EditGoalUser extends Component {
       });
   }
 
+
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
         <KeyboardAwareScrollView>
-          <Text style={styles.aindia}>J'édite Mon Objectif</Text>
+          <Text style={styles.aindia}></Text>
 
           <TextInput
             style={styles.input}
@@ -114,9 +116,11 @@ class EditGoalUser extends Component {
             onPress={() => this.updateUser()}
           >
             <View style={styles.button}>
-              <Text style={styles.connexion}>VALIDER</Text>
+              <Text style={styles.connexion}>EDITER</Text>
             </View>
           </TouchableOpacity>
+
+
         </KeyboardAwareScrollView>
       </SafeAreaView>
     );
@@ -136,8 +140,8 @@ const styles = StyleSheet.create({
   },
   aindia: {
     textAlign: "center",
-    fontSize: 30,
-    marginTop: 30,
+    //fontSize: 30,
+    marginTop: 10,
     marginBottom: 10,
     color: "#254151",
   },

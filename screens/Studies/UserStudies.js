@@ -69,6 +69,7 @@ class UserStudies extends Component {
     ]);
   }
 
+
   _renderItem = ({ item, index }) => {
     let swipeBtns = [
       {
@@ -83,26 +84,26 @@ class UserStudies extends Component {
       },
     ];
     return (
-      <Swipeout right={swipeBtns} backgroundColor="transparent">
+      <TouchableOpacity onPress={() =>
+          this.props.navigation.navigate("EditStudiesUser", item)
+      }
+      >
         <View style={styles.card}>
           <View style={styles.details}>
-            <Text style={styles.item}>Domaine</Text>
-            <Text style={styles.itemStyle}>{item.domaine}</Text>
 
-            <Text style={styles.item}>Niveau</Text>
+            <Text style={styles.itemTitle}>{item.school}</Text>
+
             <Text style={styles.itemStyle}>{item.level}</Text>
 
-            <Text style={styles.item}>Intitulé</Text>
+            <Text style={styles.itemStyle}>{item.domaine}</Text>
+
             <Text style={styles.itemStyle}>{item.name}</Text>
 
-            <Text style={styles.item}>Établissement</Text>
-            <Text style={styles.itemStyle}>{item.school}</Text>
-
-            <Text style={styles.item}>Date</Text>
             <Text style={styles.itemStyle}>{item.date}</Text>
+
           </View>
         </View>
-      </Swipeout>
+      </TouchableOpacity>
     );
   };
   render() {
@@ -153,10 +154,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textDecorationLine: "underline",
   },
-  itemStyle: {
-    marginLeft: 20,
+  itemTitle: {
+    marginLeft: 10,
     margin: 2,
     fontSize: 17,
+    fontWeight: "bold",
+  },
+  itemStyle: {
+    marginLeft: 10,
+    margin: 2,
+    fontSize: 17,
+    //width: "80%",
   },
   separator: {
     borderTopWidth: 1,
@@ -186,7 +194,7 @@ const styles = StyleSheet.create({
     //flexDirection: "row",
     marginTop: 2,
     marginLeft: 4,
-    width: "85%",
+    width: "98%",
     marginBottom: 2,
     fontWeight: "bold",
     alignItems: "flex-start",

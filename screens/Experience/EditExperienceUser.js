@@ -5,7 +5,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  SafeAreaView,
+  SafeAreaView, Alert,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Firebase } from "../../utils/Firebase";
@@ -67,12 +67,33 @@ class EditExperienceUser extends Component {
       });
   }
 
+  deleteItem() {
+    Alert.alert("", "Voulez-vous supprimer cette expérience?", [
+      {
+        text: "Annuler",
+        onPress: () => console.log("annuler"),
+        style: "cancel",
+      },
+      {
+        text: "Oui",
+        onPress: () =>
+            Firebase.firestore()
+                .collection("experienceUsers")
+                .doc(this.props.navigation.state.params.key)
+                .delete()
+                .then(this.props.navigation.navigate("ProfilScreen"))
+                .catch((error) => console.log(error)),
+      },
+    ]);
+  }
+
+
   render() {
     return (
       <SafeAreaView>
         <KeyboardAwareScrollView>
           <View style={styles.container}>
-            <Text style={styles.aindia}>J'édite Mon Expérience</Text>
+            <View style={styles.aindia}></View>
 
             <TextInput
               style={styles.input}
@@ -132,9 +153,19 @@ class EditExperienceUser extends Component {
               onPress={() => this.updateUser()}
             >
               <View style={styles.button}>
-                <Text style={styles.connexion}>VALIDER</Text>
+                <Text style={styles.connexion}>EDITER</Text>
               </View>
             </TouchableOpacity>
+
+            <TouchableOpacity
+                style={styles.buttonStyle}
+                onPress={() => this.deleteItem(this.state.key)}
+            >
+              <View style={styles.buttonDelete}>
+                <Text style={styles.connexion}>SUPPRIMER</Text>
+              </View>
+            </TouchableOpacity>
+
           </View>
         </KeyboardAwareScrollView>
       </SafeAreaView>
@@ -154,8 +185,8 @@ const styles = StyleSheet.create({
   aindia: {
     textAlign: "center",
     fontSize: 30,
-    marginTop: 15,
-    marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 10,
     color: "#254151",
   },
   input: {
@@ -183,15 +214,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#254151",
     height: 50,
     width: 180,
-    marginTop: 20,
+    marginTop: 10,
     //marginLeft: 60,
     marginBottom: 20,
     borderRadius: 16,
   },
-
   connexion: {
     color: "white",
     fontSize: 30,
+  },
+  buttonDelete: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "red",
+    height: 50,
+    width: 180,
+    marginTop: 10,
+    //marginLeft: 60,
+    marginBottom: 20,
+    borderRadius: 16,
   },
   errorInput: {
     width: 293,

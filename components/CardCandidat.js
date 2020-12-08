@@ -8,26 +8,21 @@ export default function Card({item}) {
                 <Text style={styles.cardContent}>{item.userName}</Text>
             </View>
 
-            <View style={styles.row}>
-                <Text style={styles.itemS}>Domaine</Text>
-                <Text style={styles.itemStyle}>{item.domaine}</Text>
-            </View>
+            <Text style={styles.itemStyle}>Domaine ->
+                <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.domaine}</Text>
+            </Text>
 
-            <View style={styles.row}>
-                <Text style={styles.itemJob}>Poste Recherché</Text>
-                <Text style={styles.itemStyleJob}>{item.wantedJob}</Text>
-            </View>
+            <Text style={styles.itemStyle}>Poste Recherché ->
+                <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.wantedJob}</Text>
+            </Text>
 
+            <Text style={styles.itemStyle}>Durée ->
+                <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.workingTime}</Text>
+            </Text>
 
-            <View style={styles.row}>
-                <Text style={styles.itemJob}>Durée Souhaitée</Text>
-                <Text style={styles.itemStyleJob}>{item.workingTime}</Text>
-            </View>
-
-            <View style={styles.row}>
-                <Text style={styles.itemDate}>Disponibilité</Text>
-                <Text style={styles.itemStyleDtae}>{item.availability}</Text>
-            </View>
+            <Text style={styles.itemStyle}>Disponibilité ->
+                <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.availability}</Text>
+            </Text>
 
         </View>
     )
@@ -80,6 +75,21 @@ const styles = StyleSheet.create({
         marginVertical: 2,
     },
 
+
+    itemStyle: {
+        marginLeft: 10,
+        margin: 2,
+        fontSize: 18,
+        fontWeight: 'bold',
+        //width: "80%",
+    },
+    itemTitle: {
+        marginLeft: 10,
+        margin: 2,
+        fontSize: 17,
+        fontWeight: "bold",
+    },
+
     row: {
         flexDirection: "row",
         //justifyContent: "space-between",
@@ -96,14 +106,7 @@ const styles = StyleSheet.create({
         textDecorationLine: "underline",
         //width: '44%',
     },
-    itemStyle: {
-        //flexDirection: "column",
-        //margin: 10,
-        fontSize: 16,
-        marginLeft: 75,
-        //marginLeft: '29%',
-        width: "62%"
-    },
+
 
     itemJob: {
         //marginLeft: 20,
@@ -139,7 +142,7 @@ const styles = StyleSheet.create({
         margin: 10,
         marginLeft: 44,
         fontSize: 16,
-        width: "62%"
+        //width: "62%"
     }
 
 });

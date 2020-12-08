@@ -72,7 +72,7 @@ const CreateProfilUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Nom"
+              placeholder="Nom * ex: DIALLO"
               onChangeText={props.handleChange("firstname")}
               value={props.values.firstname}
               onBlur={props.handleBlur("firstname")}
@@ -83,7 +83,7 @@ const CreateProfilUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Prénom"
+              placeholder="Prénom * ex: Mamadou"
               onChangeText={props.handleChange("lastname")}
               value={props.values.lastname}
               onBlur={props.handleBlur("lastname")}
@@ -94,7 +94,7 @@ const CreateProfilUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Statut"
+              placeholder="Statut * ex: Étudiant"
               onChangeText={props.handleChange("status")}
               value={props.values.status}
               onBlur={props.handleBlur("status")}
@@ -116,7 +116,7 @@ const CreateProfilUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Ville"
+              placeholder="Ville ex: Saint Martin d'Hères"
               onChangeText={props.handleChange("homeCity")}
               value={props.values.homeCity}
               onBlur={props.handleBlur("homeCity")}
@@ -127,7 +127,7 @@ const CreateProfilUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Code Postal"
+              placeholder="Code Postal ex: 38400"
               onChangeText={props.handleChange("postalCode")}
               value={props.values.postalCode}
               onBlur={props.handleBlur("postalCode")}
@@ -138,7 +138,7 @@ const CreateProfilUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Adresse"
+              placeholder="Adresse ex: 55 Allée Condillac"
               onChangeText={props.handleChange("address")}
               value={props.values.address}
               onBlur={props.handleBlur("address")}
@@ -149,7 +149,7 @@ const CreateProfilUser = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Pays"
+              placeholder="Pays ex: France"
               onChangeText={props.handleChange("country")}
               value={props.values.country}
               onBlur={props.handleBlur("country")}
@@ -186,15 +186,15 @@ const styles = StyleSheet.create({
   aindia: {
     textAlign: "center",
     fontSize: 30,
-    marginTop: 15,
-    marginBottom: 5,
+    marginTop: 25,
+    marginBottom: 10,
     color: "#254151",
   },
   input: {
     borderBottomWidth: 1,
     width: 278,
     //height: 40,
-    marginTop: 20,
+    marginTop: 15,
     fontSize: 17,
   },
   button: {
