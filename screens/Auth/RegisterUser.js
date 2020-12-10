@@ -7,7 +7,6 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import { showMessage, hideMessage } from "react-native-flash-message";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Firebase } from "../../utils/Firebase";
