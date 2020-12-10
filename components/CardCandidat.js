@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 
 export default function Card({item}) {
     return (
-        <View style={styles.card}>
+        <SafeAreaView style={styles.card}>
             <View style={styles.line}>
                 <Text style={styles.cardContent}>{item.userName}</Text>
             </View>
@@ -24,7 +24,7 @@ export default function Card({item}) {
                 <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.availability}</Text>
             </Text>
 
-        </View>
+        </SafeAreaView>
     )
 }
 const styles = StyleSheet.create({

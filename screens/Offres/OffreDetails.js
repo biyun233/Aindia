@@ -11,7 +11,10 @@ export default function OffreDetails({ navigation }) {
     navigation.getParam("salaireMax") +
     "€";
   return (
-    <ScrollView>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+    >
       <View style={styles.container}>
         <Text style={styles.title}>{navigation.getParam("title")}</Text>
         <Text style={styles.salaire}>{salaire}</Text>

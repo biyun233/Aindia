@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
   TouchableOpacity,
   FlatList,
   ScrollView,
@@ -176,10 +177,14 @@ class ProfilUserRecruiter extends Component {
 
   render() {
     return (
-      <ScrollView>
-        <View style={styles.container}>
-          <View style={styles.infos}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
+        <SafeAreaView style={styles.container}>
+          <SafeAreaView style={styles.infos}>
             <FlatList
+              
               data={this.state.userData}
               renderItem={({ item }) => (
                 <View style={styles.rowContent}>
@@ -192,14 +197,16 @@ class ProfilUserRecruiter extends Component {
 
                     <Text style={styles.infos}>{item.address}</Text>
 
-                    <Text style={styles.infos}>{item.postalCode}, {item.homeCity}, {item.country}</Text>
+                    <Text style={styles.infos}>
+                      {item.postalCode}, {item.homeCity}, {item.country}
+                    </Text>
                   </View>
                 </View>
               )}
             />
-          </View>
+          </SafeAreaView>
 
-          <View>
+          <SafeAreaView>
             <FlatList
               data={this.state.userGoalData}
               renderItem={({ item }) => (
@@ -209,55 +216,76 @@ class ProfilUserRecruiter extends Component {
                   </View>
 
                   <View style={styles.card}>
-                    <Text style={styles.itemTitle}>Domaine ->
-                      <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.domaine}</Text>
+                    <Text style={styles.itemTitle}>
+                      Domaine ->
+                      <Text
+                        style={[styles.itemStyle, { fontWeight: "normal" }]}
+                      >
+                        {" "}
+                        {item.domaine}
+                      </Text>
                     </Text>
 
-                    <Text style={styles.itemTitle}>Poste Recherché ->
-                      <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.wantedJob}</Text>
+                    <Text style={styles.itemTitle}>
+                      Poste Recherché ->
+                      <Text
+                        style={[styles.itemStyle, { fontWeight: "normal" }]}
+                      >
+                        {" "}
+                        {item.wantedJob}
+                      </Text>
                     </Text>
 
-                    <Text style={styles.itemTitle}>Durée ->
-                      <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.workingTime}</Text>
+                    <Text style={styles.itemTitle}>
+                      Durée ->
+                      <Text
+                        style={[styles.itemStyle, { fontWeight: "normal" }]}
+                      >
+                        {" "}
+                        {item.workingTime}
+                      </Text>
                     </Text>
 
-                    <Text style={styles.itemTitle}>Disponibilité ->
-                      <Text style={[styles.itemStyle, {fontWeight: 'normal'}]}> {item.availability}</Text>
+                    <Text style={styles.itemTitle}>
+                      Disponibilité ->
+                      <Text
+                        style={[styles.itemStyle, { fontWeight: "normal" }]}
+                      >
+                        {" "}
+                        {item.availability}
+                      </Text>
                     </Text>
 
                     <Text style={styles.itemStyle}>{item.description}</Text>
                   </View>
-
                 </View>
               )}
             />
-          </View>
+          </SafeAreaView>
 
-          <View style={styles.contentView}>
+          <SafeAreaView style={styles.contentView}>
             <View>
               <Text style={styles.content}>Formations </Text>
             </View>
             <FlatList
               data={this.state.userStudiesData}
               renderItem={({ item }) => (
-                  <View style={styles.card}>
+                <View style={styles.card}>
+                  <Text style={styles.itemTitle}>{item.school}</Text>
 
-                    <Text style={styles.itemTitle}>{item.school}</Text>
+                  <Text style={styles.itemTitle}>{item.level}</Text>
 
-                    <Text style={styles.itemTitle}>{item.level}</Text>
+                  <Text style={styles.itemStyle}>{item.domaine}</Text>
 
-                    <Text style={styles.itemStyle}>{item.domaine}</Text>
+                  <Text style={styles.itemStyle}>{item.name}</Text>
 
-                    <Text style={styles.itemStyle}>{item.name}</Text>
-
-                    <Text style={styles.itemTitle}>{item.date}</Text>
-                  </View>
-
+                  <Text style={styles.itemTitle}>{item.date}</Text>
+                </View>
               )}
             />
-          </View>
+          </SafeAreaView>
 
-          <View style={styles.contentView}>
+          <SafeAreaView style={styles.contentView}>
             <View>
               <Text style={styles.content}>Expériences</Text>
             </View>
@@ -265,7 +293,6 @@ class ProfilUserRecruiter extends Component {
               data={this.state.userExperiencesData}
               renderItem={({ item }) => (
                 <View style={styles.card}>
-
                   <Text style={styles.itemTitle}>{item.responsability}</Text>
 
                   <Text style={styles.itemStyle}>Chez {item.organization}</Text>
@@ -275,12 +302,11 @@ class ProfilUserRecruiter extends Component {
                   <Text style={styles.itemStyle}>{item.description}</Text>
 
                   <Text style={styles.itemTitle}>Année -- {item.date}</Text>
-
                 </View>
               )}
             />
-          </View>
-        </View>
+          </SafeAreaView>
+        </SafeAreaView>
       </ScrollView>
     );
   }

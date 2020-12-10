@@ -152,7 +152,10 @@ class Candidat extends Component {
           navigation={this.props.navigation}
           handle={this.handle}
         />
-        <ScrollView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        >
           <View style={styles.row}>
             <Button
               title="Effacer"

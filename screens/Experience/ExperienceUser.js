@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  SafeAreaView,
   FlatList,
   Alert,
 } from "react-native";
@@ -101,7 +102,7 @@ class ExperienceUser extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.card}>
           <View style={styles.row}>
             <Text style={styles.experience}>Expériences </Text>
@@ -115,7 +116,7 @@ class ExperienceUser extends Component {
           </View>
           <FlatList data={this.state.userData} renderItem={this._renderItem} />
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

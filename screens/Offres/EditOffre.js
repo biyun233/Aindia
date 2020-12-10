@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   FlatList,
+  Alert,
 } from "react-native";
 import { Button } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -89,6 +90,24 @@ class EditOffre extends Component {
       });
   }
 
+  supprimerOffre() {
+    Alert.alert("", "Voulez-vous supprimer cette offre?", [
+      {
+        text: "Annuler",
+        onPress: () => console.log("annuler"),
+        style: "cancel",
+      },
+      {
+        text: "Oui",
+        onPress: () =>
+          Firebase.firestore()
+            .collection("OfferDetails")
+            .doc(item.key)
+            .delete()
+            .catch((error) => console.log(error)),
+      },
+    ]);
+  }
   _renderItem = ({ item, index }) => {
     const styleItem =
       item.select == "false" ? styles.itemNonSelected : styles.itemSelected;
@@ -202,6 +221,12 @@ class EditOffre extends Component {
               titleStyle={styles.appliquer}
               onPress={() => this.updateOffre()}
             />
+            <Button
+              title="Supprimer"
+              buttonStyle={styles.button_supprimer}
+              titleStyle={styles.appliquer}
+              onPress={() => this.supprimerOffre()}
+            />
           </View>
         </KeyboardAwareScrollView>
       </SafeAreaView>
@@ -247,6 +272,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#254151",
+    height: 50,
+    width: 250,
+    marginTop: 50,
+    marginHorizontal: 40,
+  },
+  button_supprimer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "red",
     height: 50,
     width: 250,
     marginTop: 50,

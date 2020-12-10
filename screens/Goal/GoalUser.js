@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
   TouchableOpacity,
   FlatList,
 } from "react-native";
@@ -78,8 +79,8 @@ class GoalUser extends Component {
 
   render() {
     return (
-        <View style={styles.container}>
-          <View style={styles.card}>
+        <SafeAreaView style={styles.container}>
+          <SafeAreaView style={styles.card}>
             <FlatList
                 data={this.state.userData}
                 renderItem={({ item }) => (
@@ -124,8 +125,8 @@ class GoalUser extends Component {
                     </View>
                 )}
             />
-          </View>
-        </View>
+          </SafeAreaView>
+        </SafeAreaView>
     );
   }
 }

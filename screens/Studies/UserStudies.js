@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
   TouchableOpacity,
   FlatList,
   Alert,
@@ -108,7 +109,7 @@ class UserStudies extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.card}>
           <View style={styles.row}>
             <Text style={styles.experience}>Formations </Text>
@@ -122,7 +123,7 @@ class UserStudies extends Component {
           </View>
           <FlatList data={this.state.userData} renderItem={this._renderItem} />
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

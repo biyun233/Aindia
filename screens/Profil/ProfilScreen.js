@@ -20,7 +20,10 @@ class ProfilScreen extends Component {
   }
   render() {
     return (
-      <ScrollView>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
         <View style={styles.container}>
           <ProfilUser navigation={this.props.navigation} />
           <GoalUser navigation={this.props.navigation} />
