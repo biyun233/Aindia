@@ -93,13 +93,13 @@ class UserStudies extends Component {
 
             <Text style={styles.itemTitle}>{item.school}</Text>
 
-            <Text style={styles.itemStyle}>{item.level}</Text>
+            <Text style={styles.itemTitle}>{item.level}</Text>
 
             <Text style={styles.itemStyle}>{item.domaine}</Text>
 
             <Text style={styles.itemStyle}>{item.name}</Text>
 
-            <Text style={styles.itemStyle}>{item.date}</Text>
+            <Text style={styles.itemTitle}>{item.date}</Text>
 
           </View>
         </View>
@@ -156,13 +156,13 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     marginLeft: 10,
-    margin: 2,
+    margin: 3,
     fontSize: 17,
     fontWeight: "bold",
   },
   itemStyle: {
     marginLeft: 10,
-    margin: 2,
+    margin: 3,
     fontSize: 17,
     //width: "80%",
   },

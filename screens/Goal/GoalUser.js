@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   itemStyle: {
     marginLeft: 10,
-    margin: 2,
+    margin: 3,
     fontSize: 17,
     fontWeight: "bold",
     //width: "80%",
@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     fontWeight: "bold",
     alignItems: "flex-start",
+    fontSize: 17,
   },
   details: {
     //flexDirection: "row",

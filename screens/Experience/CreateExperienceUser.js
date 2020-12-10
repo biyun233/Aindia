@@ -16,15 +16,15 @@ import { Firebase } from "../../utils/Firebase";
 
 // Validation des champs du formulaire 
 const reviewSchema = Yup.object({
-  domaine: Yup.string().required("Renseigner un Domaine est Obligatoire"),
-  responsability: Yup.string().required("Renseigner une Résponsabiilité est Obligatoire"),
-  organization: Yup.string().required("L'indication de la durée est Obligatoire"),
-  duration: Yup.string().required("Renseigner l'organisme d'accueil est Obligatoire"),
+  domaine: Yup.string().required("Ce Champ est Obligatoire"),
+  responsability: Yup.string().required("Ce Champ est Obligatoire"),
+  organization: Yup.string().required("Ce Champ est Obligatoire"),
+  duration: Yup.string().required("Ce Champ est Obligatoire"),
   //description: Yup.string().required("La Description n'est Obligatoire"),
   //date: Yup.string().required("La date n'est pas obligatoire"),
 });
 
-// Renvoie l'écran contenant les formulaires
+
 const CreateExperienceUser = ({ navigation }) => {
   // Cette fonction permet de naviguer de cet écran à un autre en fonction du paramtètre donné
   // Quand elle sera appelée
@@ -66,12 +66,12 @@ const CreateExperienceUser = ({ navigation }) => {
       {(props) => (
         <SafeAreaView style={styles.container}>
           <KeyboardAwareScrollView>
-            <Text style={styles.aindia}>Je Crée Mon Expérience</Text>
+            <Text style={styles.aindia}></Text>
 
             <TextInput
               style={styles.input}
               multiline={true}
-              placeholder="Domaine (ex: Boulangérie, ...)"
+              placeholder="Domaine * (ex: Boulangérie)"
               onChangeText={props.handleChange("domaine")}
               value={props.values.domaine}
               onBlur={props.handleBlur("domaine")}
@@ -83,7 +83,7 @@ const CreateExperienceUser = ({ navigation }) => {
             <TextInput
               style={styles.input}
               multiline={true}
-              placeholder="Responsabilité (ex: Développeur Web, ...)"
+              placeholder="Responsabilité * (ex: Développeur Web)"
               onChangeText={props.handleChange("responsability")}
               value={props.values.responsability}
               onBlur={props.handleBlur("responsability")}
@@ -95,7 +95,7 @@ const CreateExperienceUser = ({ navigation }) => {
             <TextInput
               style={styles.input}
               multiline={true}
-              placeholder="Organisation (ex: Google New York, ...)"
+              placeholder=" Organisation * (ex: Google New York)"
               onChangeText={props.handleChange("organization")}
               value={props.values.organization}
               onBlur={props.handleBlur("organization")}
@@ -107,7 +107,7 @@ const CreateExperienceUser = ({ navigation }) => {
             <TextInput
               style={styles.input}
               multiline={true}
-              placeholder="Durée (ex: 6 mois, ...)"
+              placeholder="Durée * (ex: 6 mois)"
               onChangeText={props.handleChange("duration")}
               value={props.values.duration}
               onBlur={props.handleBlur("duration")}
@@ -119,7 +119,7 @@ const CreateExperienceUser = ({ navigation }) => {
             <TextInput
               style={styles.description}
               multiline={true}
-              placeholder="Description (ex: j'ai developpé une ..., ...)"
+              placeholder="Description (ex: j'ai developpé une...)"
               onChangeText={props.handleChange("description")}
               value={props.values.description}
               onBlur={props.handleBlur("description")}
@@ -167,8 +167,8 @@ const styles = StyleSheet.create({
   aindia: {
     textAlign: "center",
     fontSize: 30,
-    marginTop: 18,
-    marginBottom: 10,
+    marginTop: 2,
+    marginBottom: 5,
     color: "#254151",
   },
   input: {

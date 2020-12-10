@@ -9,14 +9,12 @@ import OffreDetails from '../screens/Offres/OffreDetails';
 import CreateProfilUser from '../screens/Profil/CreateProfilUser';
 
 
-
 import CreateStudiesUser from '../screens/Studies/CreateStudiesUser';
 import EditStudiesUser from "../screens/Studies/EditStudiesUser";
 import CreateExperienceUser from "../screens/Experience/CreateExperienceUser";
 import EditExperienceUser from '../screens/Experience/EditExperienceUser';
 import CreateGoalUser from "../screens/Goal/CreateGoalUser";
 import EditGoalUser from '../screens/Goal/EditGoalUser';
-
 import ProfilUserRecruiter from '../screens/Profil/ProfilUserRecruiter';
 
 
@@ -74,7 +72,7 @@ const screens = {
   CreateProfilUser: {
     screen: CreateProfilUser,
     navigationOptions: {
-      title: "Je Crée Mon Profil",
+      title: "Création de Profil",
       header: null,
     },
   },
@@ -96,9 +94,16 @@ const screens = {
   CreateStudiesUser: {
     screen: CreateStudiesUser,
     navigationOptions: {
-      //headerLeft: null,
-      title: "Mes Formations",
-      //headerStyle: {justifyContent: 'center',}
+      headerStyle: {
+        backgroundColor: "#254151",
+      },
+      title: "Création de Parcours",
+      headerTintColor: "white",
+      headerTitleStyle: {
+        fontWeight: "bold",
+        fontSize: 20,
+      },
+      headerBackTitle: "Retour",
     },
   },
   CreateGoalUser: {
@@ -133,7 +138,7 @@ const screens = {
       headerStyle: {
         backgroundColor: "#254151",
       },
-      title: "J'édite Mon Parcours",
+      title: "Édition de Parcours",
       headerTintColor: "white",
       headerTitleStyle: {
         fontWeight: "bold",
@@ -145,12 +150,17 @@ const screens = {
   CreateExperienceUser: {
     screen: CreateExperienceUser,
     navigationOptions: {
-      //headerLeft: null,
-      title: "Mon Expérience",
-      //header: null,
-      //headerStyle: {justifyContent: 'center',}
-    },
-    headerBackTitle: "Retour",
+      headerStyle: {
+        backgroundColor: "#254151",
+      },
+      title: "Création d'Expérience",
+      headerTintColor: "white",
+      headerTitleStyle: {
+        fontWeight: "bold",
+        fontSize: 20,
+      },
+      headerBackTitle: "Retour",
+    }
   },
 
   EditExperienceUser: {
@@ -159,7 +169,7 @@ const screens = {
       headerStyle: {
         backgroundColor: "#254151",
       },
-      title: "J'édite Mon Expérience",
+      title: "Édition d'Expérience",
       headerTintColor: "white",
       headerTitleStyle: {
         fontWeight: "bold",

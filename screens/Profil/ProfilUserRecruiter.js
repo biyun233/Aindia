@@ -274,7 +274,7 @@ class ProfilUserRecruiter extends Component {
 
                   <Text style={styles.itemStyle}>{item.description}</Text>
 
-                  <Text style={styles.itemTitle}>Pendant -- {item.date}</Text>
+                  <Text style={styles.itemTitle}>Année -- {item.date}</Text>
 
                 </View>
               )}
@@ -295,13 +295,13 @@ const styles = StyleSheet.create({
   },
   itemStyle: {
     marginLeft: 10,
-    margin: 2,
+    margin: 3,
     fontSize: 17,
     //width: "80%",
   },
   itemTitle: {
     marginLeft: 10,
-    margin: 2,
+    margin: 3,
     fontSize: 17,
     fontWeight: "bold",
   },

@@ -89,11 +89,11 @@ class ExperienceUser extends Component {
 
             <Text style={styles.itemTitle}>{item.responsability}</Text>
 
-            <Text style={styles.itemStyle}>Chez {item.organization}</Text>
+            <Text style={styles.itemTitle}>Chez {item.organization}</Text>
 
             <Text style={styles.itemStyle}>{item.description}</Text>
 
-            <Text style={styles.itemStyle}>Pendant {item.duration} -- {item.date}</Text>
+            <Text style={styles.itemTitle}>Pendant {item.duration} -- {item.date}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -156,13 +156,13 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     marginLeft: 10,
-    margin: 2,
+    margin: 3,
     fontSize: 17,
     fontWeight: "bold",
   },
   itemStyle: {
     marginLeft: 10,
-    margin: 2,
+    margin: 3,
     fontSize: 17,
     //width: "80%",
   },

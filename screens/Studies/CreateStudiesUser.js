@@ -13,13 +13,11 @@ import * as Yup from "yup";
 import { Firebase } from "../../utils/Firebase";
 
 
-// Validation des champs du formulaire d'inscription de l'Utilisateur
+// Validation des champs du formulaire de Création
 const reviewSchema = Yup.object({
-  domaine: Yup.string().required("Renseigner un Nom est Obligatoire"),
-  level: Yup.string().required("Renseigner un Prénom est Obligatoire"),
-  name: Yup.string().required("Renseigner un Statut est Obligatoire"),
-  //school: Yup.string().min(1).max(50),
-  //date: Yup.string().notRequired("Ce champ n'est pas obligatoire"),
+  domaine: Yup.string().required("Ce Champ est Obligatoire"),
+  level: Yup.string().required("Ce champ est Obligatoire"),
+  name: Yup.string().required("Ce Champ est Obligatoire"),
 });
 
 // Renvoie l'écran contenant les formulaires
@@ -60,12 +58,12 @@ const CreateStudiesUser = ({ navigation }) => {
       {(props) => (
         <SafeAreaView style={styles.container}>
           <KeyboardAwareScrollView>
-            <Text style={styles.aindia}>Je Crée Mon Parcours</Text>
+            <Text style={styles.aindia}></Text>
 
             <TextInput
               style={styles.input}
               multiline={true}
-              placeholder="Domaine (ex: Informaticien, ...)"
+              placeholder="Domaine * (ex: Informaticien, ...)"
               onChangeText={props.handleChange("domaine")}
               value={props.values.domaine}
               onBlur={props.handleBlur("domaine")}
@@ -77,7 +75,7 @@ const CreateStudiesUser = ({ navigation }) => {
             <TextInput
               style={styles.input}
               multiline={true}
-              placeholder="Niveau (ex: Licence 3, ...)"
+              placeholder="Niveau * (ex: Licence 3)"
               onChangeText={props.handleChange("level")}
               value={props.values.level}
               onBlur={props.handleBlur("level")}
@@ -89,7 +87,7 @@ const CreateStudiesUser = ({ navigation }) => {
             <TextInput
               style={styles.input}
               multiline={true}
-              placeholder="Intitulé (ex: Web Informatique et Connaissances)"
+              placeholder="Intitulé * (ex: Web, Informatique, Connaissances)"
               onChangeText={props.handleChange("name")}
               value={props.values.name}
               onBlur={props.handleBlur("name")}

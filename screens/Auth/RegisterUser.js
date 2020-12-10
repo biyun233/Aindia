@@ -22,7 +22,7 @@ const reviewSchema = Yup.object({
     .min(5, "Le nombre de caractères doit être égal ou supérieur à 5 !")
     .max(10, "Le nombre de caractère ne doit pas dépasser 10 !"),
   confirmPassword: Yup.string()
-    .required("La Confirmation du Mot de Passe est Obligatoire ! ")
+    .required("Veuillez Confirmer le mot de passe ! ")
     .test(
       "Les mots de passes entrer correspondent",
       "Les mots de passes doivent correspondre !",
@@ -77,7 +77,7 @@ const RegisterUser = ({ navigation }) => {
 
           <TextInput
             style={styles.input}
-            placeholder="Adresse Email"
+            placeholder="Adresse Email *"
             keyboardType={"email-address"}
             onChangeText={props.handleChange("email")}
             value={props.values.email}
@@ -89,7 +89,7 @@ const RegisterUser = ({ navigation }) => {
 
           <TextInput
             style={styles.input}
-            placeholder="Mot de Passe"
+            placeholder="Mot de Passe *"
             secureTextEntry
             onChangeText={props.handleChange("password")}
             value={props.values.password}
@@ -101,7 +101,7 @@ const RegisterUser = ({ navigation }) => {
 
           <TextInput
             style={styles.input}
-            placeholder="Confirmation du Mot de Passe"
+            placeholder="Confirmation du Mot de Passe *"
             secureTextEntry
             onChangeText={props.handleChange("confirmPassword")}
             value={props.values.confirmPassword}
@@ -149,6 +149,7 @@ const styles = StyleSheet.create({
     //height: 40,
     marginTop: 20,
     fontSize: 18,
+    padding: 3,
   },
   text: {
     color: "white",

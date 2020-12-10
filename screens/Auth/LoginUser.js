@@ -30,8 +30,6 @@ const reviewSchema = Yup.object({
 
 const LoginUser = ({ navigation}) => {
 
-  const [notification, setNotification] = useState(false);
-  const t = true;
 
   const pressHandler = () => {
     navigation.navigate("RegisterUser");
@@ -48,7 +46,6 @@ const LoginUser = ({ navigation}) => {
           .signInWithEmailAndPassword(values.email, values.password)
           .then(() => {
             //
-
             //
             navigation.navigate("TabRoute_candidat");
           })
@@ -65,7 +62,7 @@ const LoginUser = ({ navigation}) => {
 
               <TextInput
                 style={styles.email}
-                placeholder="Email"
+                placeholder="Email *"
                 keyboardType={"email-address"}
                 onChangeText={props.handleChange("email")}
                 value={props.values.email}
@@ -77,7 +74,7 @@ const LoginUser = ({ navigation}) => {
 
               <TextInput
                 style={styles.passeword}
-                placeholder="Mot de Passe"
+                placeholder="Mot de Passe *"
                 secureTextEntry
                 onChangeText={props.handleChange("password")}
                 value={props.values.password}
@@ -140,14 +137,16 @@ const styles = StyleSheet.create({
     width: 278,
     //height: 40,
     marginTop: 20,
-    fontSize: 17,
+    fontSize: 18,
+    padding: 3,
   },
   passeword: {
     borderBottomWidth: 1,
     width: 278,
     //height: 40,
     marginTop: 20,
-    fontSize: 17,
+    fontSize: 18,
+    padding: 3,
   },
 
 
