@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     width: 90,
     marginVertical: 10,
     marginEnd: 50,
-    marginLeft: 270,
+    marginLeft: 220,
   },
   button: {
     flexDirection: "column",
