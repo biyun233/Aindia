@@ -79,7 +79,7 @@ const screens = {
   ProfilUserRecruiter: {
     screen: ProfilUserRecruiter,
     navigationOptions: {
-      title: "Mon Profil",
+      title: "Profil",
       headerTintColor: "white",
       headerStyle: {
         backgroundColor: "#254151",

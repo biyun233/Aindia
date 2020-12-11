@@ -8,6 +8,7 @@ import {
   FlatList,
   ScrollView,
 } from "react-native";
+import { Button } from "react-native-elements";
 
 import Global from "../../utils/Global";
 
@@ -27,17 +28,17 @@ class ProfilUserRecruiter extends Component {
       userExperiencesData: [],
     };
     this.userInfos = Firebase.firestore()
-      .collection("UsersInfos")
-      .where("AuthId", "==", this.state.AuthId);
+        .collection("UsersInfos")
+        .where("AuthId", "==", this.state.AuthId);
     this.userGoalInfos = Firebase.firestore()
-      .collection("goalUsers")
-      .where("AuthId", "==", this.state.AuthId);
+        .collection("goalUsers")
+        .where("AuthId", "==", this.state.AuthId);
     this.userStudiesInfos = Firebase.firestore()
-      .collection("studiesUsers")
-      .where("AuthId", "==", this.state.AuthId);
+        .collection("studiesUsers")
+        .where("AuthId", "==", this.state.AuthId);
     this.userExperiencesInfos = Firebase.firestore()
-      .collection("experienceUsers")
-      .where("AuthId", "==", this.state.AuthId);
+        .collection("experienceUsers")
+        .where("AuthId", "==", this.state.AuthId);
   }
 
   componentDidMount() {
@@ -45,7 +46,7 @@ class ProfilUserRecruiter extends Component {
     this.unsubscribe_1 = this.userGoalInfos.onSnapshot(this.getCollection_1);
     this.unsubscribe_2 = this.userStudiesInfos.onSnapshot(this.getCollection_2);
     this.unsubscribe_3 = this.userExperiencesInfos.onSnapshot(
-      this.getCollection_3
+        this.getCollection_3
     );
   }
 
@@ -177,137 +178,142 @@ class ProfilUserRecruiter extends Component {
 
   render() {
     return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-      >
-        <SafeAreaView style={styles.container}>
-          <SafeAreaView style={styles.infos}>
-            <FlatList
-              
-              data={this.state.userData}
-              renderItem={({ item }) => (
-                <View style={styles.rowContent}>
-                  <View style={styles.details}>
-                    <Title style={styles.infos}>
-                      {item.lastname} {item.firstname}
-                    </Title>
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+        >
+          <SafeAreaView style={styles.container}>
+            <SafeAreaView style={styles.infos}>
+              <FlatList
 
-                    <Text style={styles.infos}>{item.status}</Text>
+                  data={this.state.userData}
+                  renderItem={({ item }) => (
+                      <View style={styles.rowContent}>
+                        <View style={styles.details}>
+                          <Title style={styles.infos}>
+                            {item.lastname} {item.firstname}
+                          </Title>
 
-                    <Text style={styles.infos}>{item.address}</Text>
+                          <Text style={styles.infos}>{item.status}</Text>
 
-                    <Text style={styles.infos}>
-                      {item.postalCode}, {item.homeCity}, {item.country}
-                    </Text>
-                  </View>
-                </View>
-              )}
+                          <Text style={styles.infos}>{item.address}</Text>
+
+                          <Text style={styles.infos}>
+                            {item.postalCode}, {item.homeCity}, {item.country}
+                          </Text>
+                        </View>
+                      </View>
+                  )}
+              />
+            </SafeAreaView>
+
+            <SafeAreaView>
+              <FlatList
+                  data={this.state.userGoalData}
+                  renderItem={({ item }) => (
+                      <View style={styles.contentView}>
+                        <View>
+                          <Text style={styles.content}>Mon Objectif </Text>
+                        </View>
+
+                        <View style={styles.card}>
+                          <Text style={styles.itemTitle}>
+                            Domaine ->
+                            <Text
+                                style={[styles.itemStyle, { fontWeight: "normal" }]}
+                            >
+                              {" "}
+                              {item.domaine}
+                            </Text>
+                          </Text>
+
+                          <Text style={styles.itemTitle}>
+                            Poste Recherché ->
+                            <Text
+                                style={[styles.itemStyle, { fontWeight: "normal" }]}
+                            >
+                              {" "}
+                              {item.wantedJob}
+                            </Text>
+                          </Text>
+
+                          <Text style={styles.itemTitle}>
+                            Durée ->
+                            <Text
+                                style={[styles.itemStyle, { fontWeight: "normal" }]}
+                            >
+                              {" "}
+                              {item.workingTime}
+                            </Text>
+                          </Text>
+
+                          <Text style={styles.itemTitle}>
+                            Disponibilité ->
+                            <Text
+                                style={[styles.itemStyle, { fontWeight: "normal" }]}
+                            >
+                              {" "}
+                              {item.availability}
+                            </Text>
+                          </Text>
+
+                          <Text style={styles.itemStyle}>{item.description}</Text>
+                        </View>
+                      </View>
+                  )}
+              />
+            </SafeAreaView>
+
+            <SafeAreaView style={styles.contentView}>
+              <View>
+                <Text style={styles.content}>Formations </Text>
+              </View>
+              <FlatList
+                  data={this.state.userStudiesData}
+                  renderItem={({ item }) => (
+                      <View style={styles.card}>
+                        <Text style={styles.itemTitle}>{item.school}</Text>
+
+                        <Text style={styles.itemTitle}>{item.level}</Text>
+
+                        <Text style={styles.itemStyle}>{item.domaine}</Text>
+
+                        <Text style={styles.itemStyle}>{item.name}</Text>
+
+                        <Text style={styles.itemTitle}>{item.date}</Text>
+                      </View>
+                  )}
+              />
+            </SafeAreaView>
+
+            <SafeAreaView style={styles.contentView}>
+              <View>
+                <Text style={styles.content}>Expériences</Text>
+              </View>
+              <FlatList
+                  data={this.state.userExperiencesData}
+                  renderItem={({ item }) => (
+                      <View style={styles.card}>
+                        <Text style={styles.itemTitle}>{item.responsability}</Text>
+
+                        <Text style={styles.itemStyle}>Chez {item.organization}</Text>
+
+                        <Text style={styles.itemStyle}>{item.duration}</Text>
+
+                        <Text style={styles.itemStyle}>{item.description}</Text>
+
+                        <Text style={styles.itemTitle}>Année -- {item.date}</Text>
+                      </View>
+                  )}
+              />
+            </SafeAreaView>
+            <Button
+                title="Communiquer"
+                buttonStyle={styles.button}
+                titleStyle={styles.buttonContent}
             />
           </SafeAreaView>
-
-          <SafeAreaView>
-            <FlatList
-              data={this.state.userGoalData}
-              renderItem={({ item }) => (
-                <View style={styles.contentView}>
-                  <View>
-                    <Text style={styles.content}>Mon Objectif </Text>
-                  </View>
-
-                  <View style={styles.card}>
-                    <Text style={styles.itemTitle}>
-                      Domaine ->
-                      <Text
-                        style={[styles.itemStyle, { fontWeight: "normal" }]}
-                      >
-                        {" "}
-                        {item.domaine}
-                      </Text>
-                    </Text>
-
-                    <Text style={styles.itemTitle}>
-                      Poste Recherché ->
-                      <Text
-                        style={[styles.itemStyle, { fontWeight: "normal" }]}
-                      >
-                        {" "}
-                        {item.wantedJob}
-                      </Text>
-                    </Text>
-
-                    <Text style={styles.itemTitle}>
-                      Durée ->
-                      <Text
-                        style={[styles.itemStyle, { fontWeight: "normal" }]}
-                      >
-                        {" "}
-                        {item.workingTime}
-                      </Text>
-                    </Text>
-
-                    <Text style={styles.itemTitle}>
-                      Disponibilité ->
-                      <Text
-                        style={[styles.itemStyle, { fontWeight: "normal" }]}
-                      >
-                        {" "}
-                        {item.availability}
-                      </Text>
-                    </Text>
-
-                    <Text style={styles.itemStyle}>{item.description}</Text>
-                  </View>
-                </View>
-              )}
-            />
-          </SafeAreaView>
-
-          <SafeAreaView style={styles.contentView}>
-            <View>
-              <Text style={styles.content}>Formations </Text>
-            </View>
-            <FlatList
-              data={this.state.userStudiesData}
-              renderItem={({ item }) => (
-                <View style={styles.card}>
-                  <Text style={styles.itemTitle}>{item.school}</Text>
-
-                  <Text style={styles.itemTitle}>{item.level}</Text>
-
-                  <Text style={styles.itemStyle}>{item.domaine}</Text>
-
-                  <Text style={styles.itemStyle}>{item.name}</Text>
-
-                  <Text style={styles.itemTitle}>{item.date}</Text>
-                </View>
-              )}
-            />
-          </SafeAreaView>
-
-          <SafeAreaView style={styles.contentView}>
-            <View>
-              <Text style={styles.content}>Expériences</Text>
-            </View>
-            <FlatList
-              data={this.state.userExperiencesData}
-              renderItem={({ item }) => (
-                <View style={styles.card}>
-                  <Text style={styles.itemTitle}>{item.responsability}</Text>
-
-                  <Text style={styles.itemStyle}>Chez {item.organization}</Text>
-
-                  <Text style={styles.itemStyle}>{item.duration}</Text>
-
-                  <Text style={styles.itemStyle}>{item.description}</Text>
-
-                  <Text style={styles.itemTitle}>Année -- {item.date}</Text>
-                </View>
-              )}
-            />
-          </SafeAreaView>
-        </SafeAreaView>
-      </ScrollView>
+        </ScrollView>
     );
   }
 }
@@ -428,6 +434,20 @@ const styles = StyleSheet.create({
 
   separator: {
     borderBottomWidth: 1,
+  },
+  button: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#254151",
+    height: 50,
+    width: 250,
+    marginVertical:20,
+    marginHorizontal:55
+  },
+  buttonContent: {
+    color: "white",
+    fontSize: 30,
   },
 });
 
