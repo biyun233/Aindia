@@ -26,9 +26,9 @@ AINDIA est une application Mobile développée avec React Native et Firebase sou
 
   3. Installation de l'outil expo sur votre Téléphone : 
 
-         Si vous êtes sur Android, aller sur Play Store, taper expo dans la barre de recherche et l'installer ensuite.
+         Si vous êtes sur Android, aller sur Play Store et installer expo.
 
-         Si vous êtes sur Ios, aller sur Ap Store taper expo dans la barre de recherche et l'installer ensuite.
+         Si vous êtes sur Ios, aller sur Ap Store et installer expo.
     
 
 
