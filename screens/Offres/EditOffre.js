@@ -225,7 +225,27 @@ class EditOffre extends Component {
               title="Supprimer"
               buttonStyle={styles.button_supprimer}
               titleStyle={styles.appliquer}
-              onPress={() => this.supprimerOffre()}
+              onPress={() =>
+                Alert.alert("", "Voulez-vous supprimer cette offre?", [
+                  {
+                    text: "Annuler",
+                    onPress: () => console.log("annuler"),
+                    style: "cancel",
+                  },
+                  {
+                    text: "Oui",
+                    onPress: () =>
+                      Firebase.firestore()
+                        .collection("OfferDetails")
+                        .doc(this.state.key)
+                        .delete()
+                        .then(() => {
+                          this.props.navigation.navigate("ProfilRecruteur");
+                        })
+                        .catch((error) => console.log(error)),
+                  },
+                ])
+              }
             />
           </View>
         </KeyboardAwareScrollView>

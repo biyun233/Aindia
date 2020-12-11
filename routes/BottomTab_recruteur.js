@@ -44,7 +44,7 @@ const BottomTabNavigator = createBottomTabNavigator({
     screen: ProfilRecruStack,
     navigationOptions: {
       headerShown: false,
-      tabBarLabel: "Mon Compte",
+      tabBarLabel: "Mes Offres",
       tabBarIcon: ({ tintColor }) => (
         <Fontisto name="person" size={24} color={tintColor} />
       ),

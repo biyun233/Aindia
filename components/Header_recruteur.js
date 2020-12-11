@@ -30,7 +30,7 @@ export default class Header_recruteur extends Component {
         <View style={styles.searchbarContainer}>
           <TextInput
             style={styles.input}
-            placeholder="Chercher"
+            placeholder="Chercher par domaine"
             placeholderTextColor="#254151"
             value={this.state.query}
             onChangeText={this.handleSearch}
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 15,
   },
 
   version: {
